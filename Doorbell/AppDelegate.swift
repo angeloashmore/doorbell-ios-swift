@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Bolts
-//import LayerKit
 import Parse
-import ParseUI
 
 struct ExternalKeys {
     struct Layer {
@@ -28,17 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
 
         // Configure Parse.
         Parse.enableLocalDatastore()
         Parse.setApplicationId(ExternalKeys.Parse.AppID, clientKey: ExternalKeys.Parse.ClientKey)
         PFACL.setDefaultACL(PFACL(), withAccessForCurrentUser: true)
 
-//        let layerClient: LYRClient = LYRClient(appID: ExternalKeys.Layer.AppID)
+        // Override point for customization after application launch.
+        self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
+        self.window!.backgroundColor = UIColor.whiteColor()
 
-//        let controller: ViewController = ViewController()
-//        controller.layerClient = layerClient
+        // Load the initial form from Storyboard.
+        let storyboard = UIStoryboard.init(name: "Authentication", bundle: nil)
+        self.window!.rootViewController = storyboard.instantiateInitialViewController() as? UIViewController
+        self.window!.makeKeyAndVisible()
 
         return true
     }

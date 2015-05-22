@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0433C0B286BC816E93465DF3 /* Pods_Doorbell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061A033492DFB42E4D15802 /* Pods_Doorbell.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		1784853E1B0D592C00C2B1D0 /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1784853D1B0D592C00C2B1D0 /* LoginTableViewController.swift */; };
-		178485451B0D9A3F00C2B1D0 /* SignUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178485441B0D9A3F00C2B1D0 /* SignUpTableViewController.swift */; };
+		17223D381B0FB0C400B37BCD /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17223D371B0FB0C400B37BCD /* Authentication.storyboard */; };
+		17223D3A1B0FB21C00B37BCD /* LogInFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */; };
+		17223D3C1B0FC11F00B37BCD /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */; };
 		17850AD91B0D464600504176 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17850AD81B0D464600504176 /* AppDelegate.swift */; };
-		17850ADE1B0D464600504176 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17850ADC1B0D464600504176 /* Main.storyboard */; };
 		17850AE01B0D464600504176 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17850ADF1B0D464600504176 /* Images.xcassets */; };
 		17850AE31B0D464600504176 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17850AE11B0D464600504176 /* LaunchScreen.xib */; };
 		17850AEF1B0D464600504176 /* DoorbellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17850AEE1B0D464600504176 /* DoorbellTests.swift */; };
@@ -28,12 +28,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1784853D1B0D592C00C2B1D0 /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
-		178485441B0D9A3F00C2B1D0 /* SignUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTableViewController.swift; sourceTree = "<group>"; };
+		17223D371B0FB0C400B37BCD /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInFormViewController.swift; sourceTree = "<group>"; };
+		17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
 		17850AD31B0D464600504176 /* Doorbell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doorbell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17850AD71B0D464600504176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Doorbell/Info.plist; sourceTree = "<group>"; };
 		17850AD81B0D464600504176 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		17850ADD1B0D464600504176 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17850ADF1B0D464600504176 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Doorbell/Images.xcassets; sourceTree = "<group>"; };
 		17850AE21B0D464600504176 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		17850AE81B0D464600504176 /* DoorbellTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoorbellTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +75,7 @@
 		1784853F1B0D609200C2B1D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				17850ADC1B0D464600504176 /* Main.storyboard */,
+				17223D371B0FB0C400B37BCD /* Authentication.storyboard */,
 				17850AD71B0D464600504176 /* Info.plist */,
 				17850ADF1B0D464600504176 /* Images.xcassets */,
 				17850AE11B0D464600504176 /* LaunchScreen.xib */,
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				17850AD81B0D464600504176 /* AppDelegate.swift */,
-				1784853D1B0D592C00C2B1D0 /* LoginTableViewController.swift */,
-				178485441B0D9A3F00C2B1D0 /* SignUpTableViewController.swift */,
+				17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */,
+				17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */,
 				17850AD61B0D464600504176 /* Supporting Files */,
 			);
 			name = Code;
@@ -234,7 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17850ADE1B0D464600504176 /* Main.storyboard in Resources */,
+				17223D381B0FB0C400B37BCD /* Authentication.storyboard in Resources */,
 				17850AE31B0D464600504176 /* LaunchScreen.xib in Resources */,
 				17850AE01B0D464600504176 /* Images.xcassets in Resources */,
 			);
@@ -302,9 +302,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17223D3A1B0FB21C00B37BCD /* LogInFormViewController.swift in Sources */,
 				17850AD91B0D464600504176 /* AppDelegate.swift in Sources */,
-				178485451B0D9A3F00C2B1D0 /* SignUpTableViewController.swift in Sources */,
-				1784853E1B0D592C00C2B1D0 /* LoginTableViewController.swift in Sources */,
+				17223D3C1B0FC11F00B37BCD /* SignUpFormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,15 +327,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		17850ADC1B0D464600504176 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				17850ADD1B0D464600504176 /* Base */,
-			);
-			name = Main.storyboard;
-			path = Doorbell;
-			sourceTree = "<group>";
-		};
 		17850AE11B0D464600504176 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,6 +433,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Doorbell/Doorbell-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/** Pods/**";
 			};
 			name = Debug;
 		};
@@ -455,6 +447,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Doorbell/Doorbell-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "Frameworks/** Pods/**";
 			};
 			name = Release;
 		};
