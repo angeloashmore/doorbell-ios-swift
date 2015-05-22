@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17223D371B0FB0C400B37BCD /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		17223D371B0FB0C400B37BCD /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Authentication.storyboard; path = ../Authentication.storyboard; sourceTree = "<group>"; };
 		17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInFormViewController.swift; sourceTree = "<group>"; };
 		17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
 		17850AD31B0D464600504176 /* Doorbell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doorbell.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +64,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17223D3D1B0FCF5E00B37BCD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				17223D371B0FB0C400B37BCD /* Authentication.storyboard */,
+				17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */,
+				17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 		1728B66D3E7E7F5A90DAACBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +85,6 @@
 		1784853F1B0D609200C2B1D0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				17223D371B0FB0C400B37BCD /* Authentication.storyboard */,
 				17850AD71B0D464600504176 /* Info.plist */,
 				17850ADF1B0D464600504176 /* Images.xcassets */,
 				17850AE11B0D464600504176 /* LaunchScreen.xib */,
@@ -108,8 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				17850AD81B0D464600504176 /* AppDelegate.swift */,
-				17223D391B0FB21C00B37BCD /* LogInFormViewController.swift */,
-				17223D3B1B0FC11F00B37BCD /* SignUpFormViewController.swift */,
+				17223D3D1B0FCF5E00B37BCD /* Authentication */,
 				17850AD61B0D464600504176 /* Supporting Files */,
 			);
 			name = Code;
