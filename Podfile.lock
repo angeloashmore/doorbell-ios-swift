@@ -5,36 +5,31 @@ PODS:
   - ParseUI (1.1.4):
     - Parse (~> 1.7)
   - PKHUD (2.0.1)
+  - SwiftForms (0.8)
   - SwiftValidator (2.1.1)
-  - XLForm (3.0.0)
 
 DEPENDENCIES:
   - Parse
   - ParseUI
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
+  - SwiftForms
   - SwiftValidator
-  - XLForm (from `https://github.com/xmartlabs/XLForm.git`)
 
 EXTERNAL SOURCES:
   PKHUD:
     :git: https://github.com/pkluz/PKHUD.git
-  XLForm:
-    :git: https://github.com/xmartlabs/XLForm.git
 
 CHECKOUT OPTIONS:
   PKHUD:
     :commit: 86f3f342a6d83b124a8de4ed31f0ffda1ad3aeaa
     :git: https://github.com/pkluz/PKHUD.git
-  XLForm:
-    :commit: 395ad92609508df3cd1da0aa96a450fee462da28
-    :git: https://github.com/xmartlabs/XLForm.git
 
 SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
+  SwiftForms: bdde1f65c21cdf57951e2b2d8b88d9af266d2ddf
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
-  XLForm: 10fc7eb9e2d5df21a515fa3a794f4e26319abd0e
 
 COCOAPODS: 0.37.1

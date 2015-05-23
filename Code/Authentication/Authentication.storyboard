@@ -1,66 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d9L-ML-TKf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lDY-2L-oYy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="Ekd-BX-rIr">
+        <!--Log In Form View Controller-->
+        <scene sceneID="wAw-7u-phf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d9L-ML-TKf" sceneMemberID="viewController">
+                <tableViewController id="fp6-xA-6cL" customClass="LogInFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wl1-Dt-1fk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="fp6-xA-6cL" id="vK2-I4-HpJ"/>
+                            <outlet property="delegate" destination="fp6-xA-6cL" id="mKp-gW-oBs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1Qz-7e-whK"/>
+                    <connections>
+                        <segue destination="lep-E9-oLh" kind="show" identifier="SignUpSegue" id="FqO-Ud-Bvn"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SHf-E5-GIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="-306"/>
+        </scene>
+        <!--Sign Up Form View Controller-->
+        <scene sceneID="KyT-Lz-wQ3">
+            <objects>
+                <tableViewController id="lep-E9-oLh" customClass="SignUpFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lob-7c-TIj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="lep-E9-oLh" id="9jx-sv-rwV"/>
+                            <outlet property="delegate" destination="lep-E9-oLh" id="KPC-DS-8VX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="SG7-7J-vLT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gd7-ax-H07" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1621" y="-306"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2z9-BT-PeH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lDY-2L-oYy" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OPq-L5-36i">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gi1-kp-bgJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="a8S-iH-eZO" kind="relationship" relationship="rootViewController" id="0hS-4v-sLK"/>
+                        <segue destination="fp6-xA-6cL" kind="relationship" relationship="rootViewController" id="Kox-B9-QDE"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2ns-sa-UmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R5J-NK-wyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="106"/>
-        </scene>
-        <!--Log In-->
-        <scene sceneID="lVc-Zo-XdN">
-            <objects>
-                <viewController id="a8S-iH-eZO" customClass="LogInFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AQF-Ez-n1E"/>
-                        <viewControllerLayoutGuide type="bottom" id="LQo-tr-NEX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ibA-03-U22">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Log In" id="QLg-2v-mUC"/>
-                    <connections>
-                        <segue destination="gBK-QS-Yb2" kind="show" identifier="SignUp" id="TMR-sx-PyF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WWO-Le-huy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2462" y="106"/>
-        </scene>
-        <!--Sign Up Form View Controller-->
-        <scene sceneID="Y5d-fw-uOJ">
-            <objects>
-                <viewController id="gBK-QS-Yb2" customClass="SignUpFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AqF-Sb-1XB"/>
-                        <viewControllerLayoutGuide type="bottom" id="J4B-UR-UaO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="irD-Rw-mel">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZVK-We-iQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3178" y="106"/>
+            <point key="canvasLocation" x="10" y="-306"/>
         </scene>
     </scenes>
 </document>

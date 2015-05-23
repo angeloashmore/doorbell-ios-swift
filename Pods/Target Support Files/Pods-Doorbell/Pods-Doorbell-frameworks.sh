@@ -52,14 +52,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'PKHUD.framework'
   install_framework 'Parse.framework'
   install_framework 'ParseUI.framework'
+  install_framework 'SwiftForms.framework'
   install_framework 'SwiftValidator.framework'
-  install_framework 'XLForm.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Bolts.framework'
   install_framework 'PKHUD.framework'
   install_framework 'Parse.framework'
   install_framework 'ParseUI.framework'
+  install_framework 'SwiftForms.framework'
   install_framework 'SwiftValidator.framework'
-  install_framework 'XLForm.framework'
 fi

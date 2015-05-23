@@ -32,8 +32,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Authentication.storyboard</string>
 			<key>path</key>
 			<string>Authentication.storyboard</string>
 			<key>sourceTree</key>
@@ -96,8 +94,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Authentication</string>
 			<key>path</key>
 			<string>Authentication</string>
 			<key>sourceTree</key>
@@ -126,8 +122,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Resources</string>
 			<key>path</key>
 			<string>Resources</string>
 			<key>sourceTree</key>
@@ -326,8 +320,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Code</string>
 			<key>path</key>
 			<string>Code</string>
 			<key>sourceTree</key>
@@ -341,8 +333,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
 			<key>path</key>
 			<string>Supporting Files</string>
 			<key>sourceTree</key>
@@ -354,8 +344,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>text.plist.xml</string>
-			<key>name</key>
-			<string>Info.plist</string>
 			<key>path</key>
 			<string>Info.plist</string>
 			<key>sourceTree</key>
@@ -385,8 +373,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>folder.assetcatalog</string>
-			<key>name</key>
-			<string>Images.xcassets</string>
 			<key>path</key>
 			<string>Images.xcassets</string>
 			<key>sourceTree</key>
@@ -540,8 +526,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Tests</string>
 			<key>path</key>
 			<string>Tests</string>
 			<key>sourceTree</key>
@@ -555,8 +539,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Supporting Files</string>
 			<key>path</key>
 			<string>Supporting Files</string>
 			<key>sourceTree</key>
@@ -775,13 +757,13 @@
 				<key>CLANG_ENABLE_MODULES</key>
 				<string>YES</string>
 				<key>INFOPLIST_FILE</key>
-				<string>Doorbell/Info.plist</string>
+				<string>Resources/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
 				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
-				<string>Doorbell/Doorbell-Bridging-Header.h</string>
+				<string>Code/Supporting Files/Doorbell-Bridging-Header.h</string>
 				<key>SWIFT_OPTIMIZATION_LEVEL</key>
 				<string>-Onone</string>
 				<key>USER_HEADER_SEARCH_PATHS</key>
@@ -803,13 +785,13 @@
 				<key>CLANG_ENABLE_MODULES</key>
 				<string>YES</string>
 				<key>INFOPLIST_FILE</key>
-				<string>Doorbell/Info.plist</string>
+				<string>Resources/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
 				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
-				<string>Doorbell/Doorbell-Bridging-Header.h</string>
+				<string>Code/Supporting Files/Doorbell-Bridging-Header.h</string>
 				<key>USER_HEADER_SEARCH_PATHS</key>
 				<string>Frameworks/** Pods/**</string>
 			</dict>

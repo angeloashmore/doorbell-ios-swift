@@ -9,9 +9,9 @@
 import UIKit
 import Parse
 import PKHUD
-import XLForm
+import SwiftForms
 
-class SignUpFormViewController: XLFormViewController {
+class SignUpFormViewController: FormViewController, FormViewControllerDelegate {
 
     private enum Tags: String {
         case Name = "Name"
@@ -28,93 +28,89 @@ class SignUpFormViewController: XLFormViewController {
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.initializeForm()
+        self.loadForm()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let nextButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: "handleFormSubmit")
-        self.navigationItem.rightBarButtonItem = nextButton
+        self.delegate = self
+
+        let submitButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
+        self.navigationItem.rightBarButtonItem = submitButton
     }
 
 
     // MARK: Form Configuration
-    func initializeForm() {
-        let form: XLFormDescriptor
-        var section: XLFormSectionDescriptor
-        var row: XLFormRowDescriptor
+    private func loadForm() {
+        let form = FormDescriptor()
 
-        form = XLFormDescriptor()
+        form.title = "Sign Up"
 
-        // New Section
-        section = XLFormSectionDescriptor.formSectionWithTitle("Account Credentials")
-        form.addFormSection(section)
+        let section1 = FormSectionDescriptor()
 
-        // Full Name
-        row = XLFormRowDescriptor(tag: Tags.Name.rawValue, rowType: XLFormRowDescriptorTypeText, title: "Full Name")
-        row.cellConfigAtConfigure["textField.placeholder"] = "First Last"
-        row.required = true
-        section.addFormRow(row)
+        var row = FormRowDescriptor(tag: Tags.Name.rawValue, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        section1.addRow(row)
 
-        // Email
-        row = XLFormRowDescriptor(tag: Tags.Email.rawValue, rowType: XLFormRowDescriptorTypeEmail, title: "Email")
-        row.cellConfigAtConfigure["textField.placeholder"] = "name@example.com"
-        row.required = true
-        section.addFormRow(row)
+        row = FormRowDescriptor(tag: Tags.Email.rawValue, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
+        section1.addRow(row)
 
-        // New Section
-        section = XLFormSectionDescriptor.formSection()
-        section.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
-        form.addFormSection(section)
+        let section2 = FormSectionDescriptor()
+        section2.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
 
-        // Username
-        row = XLFormRowDescriptor(tag: Tags.Username.rawValue, rowType: XLFormRowDescriptorTypeText, title: "Username")
-        row.cellConfigAtConfigure["textField.placeholder"] = "Required"
-        row.required = true
-        section.addFormRow(row)
+        row = FormRowDescriptor(tag: Tags.Username.rawValue, rowType: FormRowType.Name, title: "Username", placeholder: "Required")
+        section2.addRow(row)
 
-        // Password
-        row = XLFormRowDescriptor(tag: Tags.Password.rawValue, rowType: XLFormRowDescriptorTypePassword, title: "Password")
-        row.cellConfigAtConfigure["textField.placeholder"] = "Required"
-        row.required = true
-        section.addFormRow(row)
+        row = FormRowDescriptor(tag: Tags.Password.rawValue, rowType: FormRowType.Password, title: "Password", placeholder: "Required")
+        section2.addRow(row)
 
-        // Password Verify
-        row = XLFormRowDescriptor(tag: Tags.PasswordVerify.rawValue, rowType: XLFormRowDescriptorTypePassword, title: "Verify")
-        row.cellConfigAtConfigure["textField.placeholder"] = "Retype password"
-        row.required = true
-        section.addFormRow(row)
+        row = FormRowDescriptor(tag: Tags.PasswordVerify.rawValue, rowType: FormRowType.Password, title: "Verify", placeholder: "Retype password")
+        section2.addRow(row)
+
+        form.sections = [section1, section2]
 
         self.form = form
     }
 
 
     // MARK: Methods
-    func handleFormSubmit() {
+    func submit() {
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
+        
+        let formValues = form.formValues()
+        let username = formValues[Tags.Username.rawValue] as? String
+        let password = formValues[Tags.Password.rawValue] as? String
+        let email = formValues[Tags.Email.rawValue] as? String
+        let name = formValues[Tags.Name.rawValue] as? String
+        
+        let user = PFUser()
+        if username != nil { user.username = username }
+        if password != nil { user.password = password }
+        if email != nil { user.email = email }
+        if name != nil { user["name"] = name }
 
-//        // Create the user
-//        var user = PFUser()
-//        user.username = self.usernameField.text
-//        user.password = self.passwordField.text
-//        user.email = self.emailAddressField.text
-//        user["name"] = self.nameField.text
-//
-//        user.signUpInBackgroundWithBlock {
-//            (succeeded: Bool, error: NSError?) -> Void in
-//            if error == nil {
-//                dispatch_async(dispatch_get_main_queue()) {
-//                    PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
-//                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
-////                    self.performSegueWithIdentifier("signInToNavigation", sender: self)
-//                }
-//            } else {
-//                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
-//                PKHUD.sharedHUD.hide(afterDelay: 1.0)
-//            }
-//        }
+        user.signUpInBackgroundWithBlock {
+            (succeeded: Bool, error: NSError?) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                }
+            } else {
+                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+            }
+        }
     }
-   
+
+
+    /// MARK: FormViewControllerDelegate
+    
+    func formViewController(controller: FormViewController, didSelectRowDescriptor rowDescriptor: FormRowDescriptor) {
+        switch rowDescriptor.tag {
+        default:
+            break
+        }
+    }
 }
