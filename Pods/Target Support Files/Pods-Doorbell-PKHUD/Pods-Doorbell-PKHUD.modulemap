@@ -1,6 +1,0 @@
-framework module PKHUD {
-  umbrella header "Pods-Doorbell-PKHUD-umbrella.h"
-
-  export *
-  module * { export * }
-}

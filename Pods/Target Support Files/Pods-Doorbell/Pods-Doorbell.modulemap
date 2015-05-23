@@ -1,6 +1,0 @@
-framework module Pods_Doorbell {
-  umbrella header "Pods-Doorbell-umbrella.h"
-
-  export *
-  module * { export * }
-}
