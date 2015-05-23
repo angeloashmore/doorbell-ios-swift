@@ -10,4 +10,5 @@ target 'Doorbell' do
   pod 'SwiftValidator'
   pod 'PKHUD', git: 'https://github.com/pkluz/PKHUD.git'
   pod 'SwiftForms'
+  pod 'Honour'
 end

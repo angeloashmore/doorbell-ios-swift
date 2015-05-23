@@ -13,10 +13,10 @@ import SwiftForms
 
 class LogInFormViewController: FormViewController, FormViewControllerDelegate {
 
-    private enum Tags: String {
-        case Username = "Username"
-        case Password = "Password"
-        case SignUp = "SignUp"
+    private struct Tags {
+        static let username = "username"
+        static let password = "password"
+        static let signUp = "signUp"
     }
 
 
@@ -48,18 +48,18 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
         let section1 = FormSectionDescriptor()
         section1.headerTitle = "Account Credentials"
 
-        var row = FormRowDescriptor(tag: Tags.Username.rawValue, rowType: FormRowType.Name, title: "Username", placeholder: "Username")
+        var row = FormRowDescriptor(tag: Tags.username, rowType: FormRowType.Name, title: "Username", placeholder: "Username")
         row.title = nil
         section1.addRow(row)
 
-        row = FormRowDescriptor(tag: Tags.Password.rawValue, rowType: FormRowType.Password, title: "Password", placeholder: "Password")
+        row = FormRowDescriptor(tag: Tags.password, rowType: FormRowType.Password, title: "Password", placeholder: "Password")
         row.title = nil
         section1.addRow(row)
 
         let section2 = FormSectionDescriptor()
         section2.footerTitle = "Join Doorbell now to start chatting with your clients. The first 3 months are FREE and then only $10 a month."
 
-        row = FormRowDescriptor(tag: Tags.SignUp.rawValue, rowType: FormRowType.Button, title: "Create a new Doorbell account")
+        row = FormRowDescriptor(tag: Tags.signUp, rowType: FormRowType.Button, title: "Create a new Doorbell account")
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["titleLabel.textAlignment": NSTextAlignment.Left.rawValue, "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)]
         section2.addRow(row)
 
@@ -75,8 +75,8 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
         PKHUD.sharedHUD.show()
 
         let formValues = form.formValues()
-        let username = (formValues[Tags.Username.rawValue] == nil ? "" : formValues[Tags.Username.rawValue]) as! String
-        let password = (formValues[Tags.Password.rawValue] == nil ? "" : formValues[Tags.Password.rawValue]) as! String
+        let username = (formValues[Tags.username] == nil ? "" : formValues[Tags.username]) as! String
+        let password = (formValues[Tags.password] == nil ? "" : formValues[Tags.password]) as! String
 
         PFUser.logInWithUsernameInBackground(username, password: password) {
             (user: PFUser?, error: NSError?) -> Void in
@@ -105,7 +105,7 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
     
     func formViewController(controller: FormViewController, didSelectRowDescriptor rowDescriptor: FormRowDescriptor) {
         switch rowDescriptor.tag {
-        case Tags.SignUp.rawValue:
+        case Tags.signUp:
             self.performSegueWithIdentifier("SignUpSegue", sender: self)
         default:
             break
