@@ -11,6 +11,7 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
+import LayerKit
 
 class LogInFormViewController: FormViewController, FormViewControllerDelegate {
 
