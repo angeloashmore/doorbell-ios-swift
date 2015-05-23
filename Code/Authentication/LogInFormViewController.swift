@@ -10,17 +10,21 @@ import UIKit
 import Parse
 import PKHUD
 import SwiftForms
+import Honour
 
 class LogInFormViewController: FormViewController, FormViewControllerDelegate {
 
+    // MARK: Class Properties
     private struct Tags {
         static let username = "username"
         static let password = "password"
         static let signUp = "signUp"
     }
 
-
-    // MARK: Class Properties
+    private struct Validators {
+        static let username = Validator().addRule(NotEmpty())
+        static let password = Validator().addRule(NotEmpty())
+    }
 
 
     // MARK: Life-Cycle Methods
@@ -39,7 +43,7 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
     }
 
 
-    // MARK: Form Configuration
+    // MARK: Methods
     private func loadForm() {
         let form = FormDescriptor()
 
@@ -68,15 +72,43 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
         self.form = form
     }
 
-
-    // MARK: Methods
     func submit() {
+        let validationResults = validate()
+
+        if validationResults.isValid {
+            logIn()
+        } else {
+            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+    }
+
+    func validate() -> (isValid: Bool, invalidRules: [String: Array<Rule>]) {
+        let values = form.formValues()
+        var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
+
+        results[Tags.username] = Validators.username.assert(values[Tags.username] as? String ?? "")
+        results[Tags.password] = Validators.password.assert(values[Tags.password] as? String ?? "")
+
+        var isValid = true
+        var invalidRules = Dictionary<String, Array<Rule>>()
+        for (key, result) in results {
+            if !result.isValid {
+                isValid = false
+                invalidRules[key] = result.invalidRules
+            }
+        }
+
+        return (isValid, invalidRules)
+    }
+
+    func logIn() {
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
 
         let formValues = form.formValues()
-        let username = (formValues[Tags.username] == nil ? "" : formValues[Tags.username]) as! String
-        let password = (formValues[Tags.password] == nil ? "" : formValues[Tags.password]) as! String
+        let username = formValues[Tags.username] as? String ?? ""
+        let password = formValues[Tags.password] as? String ?? ""
 
         PFUser.logInWithUsernameInBackground(username, password: password) {
             (user: PFUser?, error: NSError?) -> Void in
@@ -90,16 +122,23 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
 //
 //                self.navigationController?.presentViewController(initialViewController, animated: true, completion: nil)
             } else {
-                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
-                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                PKHUD.sharedHUD.hide()
+
+                var message: String
+
+                switch error!.code {
+                case 101:
+                    message = "Incorrect username or password."
+                default:
+                    message = "An error occured. Please try again."
+                }
+
+                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
             }
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let vc = segue.destinationViewController as? SignUpFormViewController
-        // Pass username and password field values.
-    }
 
     /// MARK: FormViewControllerDelegate
     
