@@ -65,7 +65,11 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
         section2.footerTitle = "Join Doorbell now to start chatting with your clients. The first 3 months are FREE and then only $10 a month."
 
         row = FormRowDescriptor(tag: Tags.signUp, rowType: FormRowType.Button, title: "Create a new Doorbell account")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["titleLabel.textAlignment": NSTextAlignment.Left.rawValue, "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)]
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
+            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
+            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
+            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
+        ]
         section2.addRow(row)
 
         form.sections = [section1, section2]

@@ -58,13 +58,19 @@ class SettingsViewController: FormViewController, FormViewControllerDelegate {
         let section1 = FormSectionDescriptor()
 
         var row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: FormRowType.Button, title: "About This Version")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["titleLabel.textAlignment": NSTextAlignment.Left.rawValue]
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
+            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
+            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
+        ]
         section1.addRow(row)
 
         let section2 = FormSectionDescriptor()
 
         row = FormRowDescriptor(tag: Tags.logOut, rowType: FormRowType.Button, title: "Log Out")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = ["titleLabel.textAlignment": NSTextAlignment.Left.rawValue, "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)]
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
+            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
+            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)
+        ]
         section2.addRow(row)
 
         form.sections = [section1, section2]
