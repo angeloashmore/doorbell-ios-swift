@@ -74,6 +74,8 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
     }
 
     func submit() {
+        self.view.endEditing(true)
+        
         let validationResults = validate()
 
         if validationResults.isValid {
@@ -143,6 +145,7 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
     func formViewController(controller: FormViewController, didSelectRowDescriptor rowDescriptor: FormRowDescriptor) {
         switch rowDescriptor.tag {
         case Tags.signUp:
+            self.view.endEditing(true)
             self.performSegueWithIdentifier("SignUpSegue", sender: self)
         default:
             break

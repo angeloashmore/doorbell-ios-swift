@@ -38,16 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LYRClientDelegate {
         let layerClient = LYRClient(appID: appID)
         layerClient.delegate = self
 
-        // Log out the current user.
-//        PFUser.logOutInBackgroundWithBlock { (error) -> Void in
-//            if error == nil {
-//                println("successfully logged out")
-//            } else {
-//                println("error logging out")
-//                println(error)
-//            }
-//        }
-
         // Load InitialViewController.
         let initialViewController = InitialViewController()
         initialViewController.layerClient = layerClient

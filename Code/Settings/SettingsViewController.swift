@@ -64,15 +64,19 @@ class SettingsViewController: FormViewController, FormViewControllerDelegate {
     }
 
     func handleLogOutButton() {
-        let alertController = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .Alert)
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+        let OKAction = UIAlertAction(title: "Log Out", style: .Destructive) { (action) -> Void in
+            PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+            PKHUD.sharedHUD.show()
+
             PFUser.logOutInBackgroundWithBlock { (error) -> Void in
                 if error == nil {
                     // Logged out!
+                    PKHUD.sharedHUD.hide()
                     let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
                     let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
                     self.presentViewController(authenticationVC, animated: true, completion: nil)
