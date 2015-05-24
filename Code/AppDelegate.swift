@@ -21,9 +21,10 @@ struct ExternalKeys {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, LYRClientDelegate {
 
     var window: UIWindow?
+    var layerClient: LYRClient!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
@@ -35,56 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Layer.
         let appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
         let layerClient = LYRClient(appID: appID)
+        layerClient.delegate = self
 
-        // Create UITabBarController.
-        let tabBarController = UITabBarController()
+        // Load InitialViewController.
+        let initialViewController = InitialViewController()
+        initialViewController.layerClient = layerClient
 
-        let chatsStoryboard = UIStoryboard(name: "Chats", bundle: nil)
-        let chatsVC = chatsStoryboard.instantiateInitialViewController() as! UIViewController
-        let chatsIcon = UIImage(named: "ChatsIcon")
-        chatsVC.tabBarItem = UITabBarItem(title: nil, image: chatsIcon, selectedImage: chatsIcon)
-        chatsVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
-        let calendarVC = calendarStoryboard.instantiateInitialViewController() as! UIViewController
-        let calendarIcon = UIImage(named: "CalendarIcon")
-        calendarVC.tabBarItem = UITabBarItem(title: nil, image: calendarIcon, selectedImage: calendarIcon)
-        calendarVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        let directoryStoryboard = UIStoryboard(name: "Directory", bundle: nil)
-        let directoryVC = directoryStoryboard.instantiateInitialViewController() as! UIViewController
-        let directoryIcon = UIImage(named: "DirectoryIcon")
-        directoryVC.tabBarItem = UITabBarItem(title: nil, image: directoryIcon, selectedImage: directoryIcon)
-        directoryVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        let adsStoryboard = UIStoryboard(name: "Ads", bundle: nil)
-        let adsVC = adsStoryboard.instantiateInitialViewController() as! UIViewController
-        let adsIcon = UIImage(named: "AdsIcon")
-        adsVC.tabBarItem = UITabBarItem(title: nil, image: adsIcon, selectedImage: adsIcon)
-        adsVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        let settingsStoryboard = UIStoryboard(name: "Settings", bundle: nil)
-        let settingsVC = settingsStoryboard.instantiateInitialViewController() as! UIViewController
-        let settingsIcon = UIImage(named: "SettingsIcon")
-        settingsVC.tabBarItem = UITabBarItem(title: nil, image: settingsIcon, selectedImage: settingsIcon)
-        settingsVC.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        let controllers = [chatsVC, calendarVC, directoryVC, adsVC, settingsVC]
-        tabBarController.viewControllers = controllers
-
-        window?.rootViewController = tabBarController
-
-//        // Override point for customization after application launch.
-//        self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-//        self.window!.backgroundColor = UIColor.whiteColor()
-//
-//        // Load the initial form from Storyboard.
-//        let storyboard = UIStoryboard.init(name: "Authentication", bundle: nil)
-//        let vc = storyboard.instantiateInitialViewController() as? UIViewController
-//        self.window!.rootViewController = vc
-//        self.window!.makeKeyAndVisible()
+        window?.rootViewController = initialViewController
 
         return true
+    }
+
+    func layerClient(client: LYRClient!, didReceiveAuthenticationChallengeWithNonce nonce: String!) {
+        println("Layer Client did recieve authentication challenge with nonce: \(nonce)") 
     }
 
 }

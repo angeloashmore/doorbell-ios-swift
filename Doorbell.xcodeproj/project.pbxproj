@@ -128,8 +128,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Ads</string>
 			<key>path</key>
 			<string>Ads</string>
 			<key>sourceTree</key>
@@ -163,8 +161,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Settings</string>
 			<key>path</key>
 			<string>Settings</string>
 			<key>sourceTree</key>
@@ -195,11 +191,10 @@
 			<key>children</key>
 			<array>
 				<string>173CC13C1B116FAB007ACB1C</string>
+				<string>173CC1421B1177E7007ACB1C</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Chats</string>
 			<key>path</key>
 			<string>Chats</string>
 			<key>sourceTree</key>
@@ -222,6 +217,46 @@
 		<dict>
 			<key>fileRef</key>
 			<string>173CC13C1B116FAB007ACB1C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>173CC1401B117323007ACB1C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>InitialViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC1411B117323007ACB1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>173CC1401B117323007ACB1C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>173CC1421B1177E7007ACB1C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ChatsViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC1431B1177E7007ACB1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>173CC1421B1177E7007ACB1C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -296,8 +331,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Calendar</string>
 			<key>path</key>
 			<string>Calendar</string>
 			<key>sourceTree</key>
@@ -331,8 +364,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Directory</string>
 			<key>path</key>
 			<string>Directory</string>
 			<key>sourceTree</key>
@@ -492,9 +523,11 @@
 				<string>17F01EF41B113C0D00244ED8</string>
 				<string>17F01ED51B113C0D00244ED8</string>
 				<string>17F01EDB1B113C0D00244ED8</string>
+				<string>173CC1431B1177E7007ACB1C</string>
 				<string>17F01EE91B113C0D00244ED8</string>
 				<string>17F01EE81B113C0D00244ED8</string>
 				<string>17F01EE21B113C0D00244ED8</string>
+				<string>173CC1411B117323007ACB1C</string>
 				<string>17F01EE11B113C0D00244ED8</string>
 				<string>17223D3C1B0FC11F00B37BCD</string>
 				<string>17F01EE31B113C0D00244ED8</string>
@@ -631,8 +664,9 @@
 			<key>children</key>
 			<array>
 				<string>17850AD81B0D464600504176</string>
-				<string>173CC13B1B116F98007ACB1C</string>
+				<string>173CC1401B117323007ACB1C</string>
 				<string>17223D3D1B0FCF5E00B37BCD</string>
+				<string>173CC13B1B116F98007ACB1C</string>
 				<string>178403A11B11549C00EBA244</string>
 				<string>178403A41B11550E00EBA244</string>
 				<string>173CC1351B116C47007ACB1C</string>
