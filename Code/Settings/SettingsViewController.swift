@@ -18,6 +18,7 @@ class SettingsViewController: FormViewController {
     private struct Tags {
         static let editProfile = "editProfile"
         static let changePassword = "changePassword"
+        static let privateAccount = "privateAccount"
         static let aboutThisVersion = "aboutThisVersion"
         static let logOut = "logOut"
     }
@@ -49,6 +50,8 @@ class SettingsViewController: FormViewController {
         form.title = "Settings"
 
         let userSection = FormSectionDescriptor()
+        userSection.footerTitle = "When your account is private, only people you approve can see your profile and interact with you."
+        
         row = FormRowDescriptor(tag: Tags.editProfile, rowType: .Button, title: "Edit Profile")
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
@@ -61,6 +64,10 @@ class SettingsViewController: FormViewController {
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.performSegueWithIdentifier("ChangePasswordSegue", sender: nil)
         } as DidSelectClosure
+        userSection.addRow(row)
+
+        row = FormRowDescriptor(tag: Tags.privateAccount, rowType: .BooleanSwitch, title: "Private Account")
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
         userSection.addRow(row)
 
         let aboutSection = FormSectionDescriptor()

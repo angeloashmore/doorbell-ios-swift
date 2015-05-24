@@ -17,10 +17,18 @@ class EditProfileViewController: FormViewController {
     // MARK: Class Properties
     private struct Tags {
         static let name = "name"
+        static let email = "email"
     }
 
     private struct Validators {
         static let name = Validator().addRule(NotEmpty())
+        static let email = Validator().addRule(NotEmpty()).addRule(Email())
+    }
+
+    private struct VisualConstraints {
+        static let textFieldRow: VisualConstraintsClosure = { row in
+            return ["H:|-16-[titleLabel(85)]-[textField]-16-|"]
+        }
     }
 
 
@@ -44,13 +52,20 @@ class EditProfileViewController: FormViewController {
     // MARK: Methods
     private func loadForm() {
         let form = FormDescriptor()
+        var row: FormRowDescriptor
 
         form.title = "Edit Profile"
 
         let section1 = FormSectionDescriptor()
 
-        var row = FormRowDescriptor(tag: Tags.name, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        row = FormRowDescriptor(tag: Tags.name, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         row.value = PFUser.currentUser()?.objectForKey("name") as? String ?? ""
+        section1.addRow(row)
+
+        row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
+        row.value = PFUser.currentUser()?.email
         section1.addRow(row)
 
         form.sections = [section1]
@@ -76,6 +91,7 @@ class EditProfileViewController: FormViewController {
         var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
 
         results[Tags.name] = Validators.name.assert(values[Tags.name] as? String ?? "")
+        results[Tags.email] = Validators.email.assert(values[Tags.email] as? String ?? "")
 
         var isValid = true
         var invalidRules = Dictionary<String, Array<Rule>>()

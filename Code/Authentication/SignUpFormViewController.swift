@@ -31,6 +31,13 @@ class SignUpFormViewController: FormViewController {
 //        static let passwordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
     }
 
+    private struct VisualConstraints {
+        static let textFieldRow: VisualConstraintsClosure = { row in
+            return ["H:|-16-[titleLabel(85)]-[textField]-16-|"]
+        }
+    }
+    
+
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -54,21 +61,26 @@ class SignUpFormViewController: FormViewController {
         let section1 = FormSectionDescriptor()
 
         var row = FormRowDescriptor(tag: Tags.name, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section1.addRow(row)
 
         row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section1.addRow(row)
 
         let section2 = FormSectionDescriptor()
         section2.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
 
         row = FormRowDescriptor(tag: Tags.username, rowType: FormRowType.Name, title: "Username", placeholder: "Required")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section2.addRow(row)
 
         row = FormRowDescriptor(tag: Tags.password, rowType: FormRowType.Password, title: "Password", placeholder: "Required")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section2.addRow(row)
 
         row = FormRowDescriptor(tag: Tags.passwordVerify, rowType: FormRowType.Password, title: "Verify", placeholder: "Retype password")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section2.addRow(row)
 
         form.sections = [section1, section2]
@@ -84,7 +96,7 @@ class SignUpFormViewController: FormViewController {
         if validationResults.isValid {
             signUp()
         } else {
-            let alert = UIAlertView(title: "Error", message: "Please check your credentials and try again.", delegate: nil, cancelButtonTitle: "OK")
+            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
     }
