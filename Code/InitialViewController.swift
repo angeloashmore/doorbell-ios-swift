@@ -7,11 +7,24 @@
 //
 
 import UIKit
+import Parse
 import LayerKit
 
 class InitialViewController: UITabBarController {
 
     var layerClient: LYRClient!
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if PFUser.currentUser() == nil {
+            let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+            let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
+            self.presentViewController(authenticationVC, animated: true, completion: nil)
+        } else {
+
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

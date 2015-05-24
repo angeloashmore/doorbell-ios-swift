@@ -118,10 +118,7 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
                 PKHUD.sharedHUD.hide(afterDelay: 1.0)
 
-//                let applicationStoryboard = UIStoryboard(name: "Application", bundle: nil)
-//                let initialViewController = applicationStoryboard.instantiateInitialViewController() as! UIViewController
-//
-//                self.navigationController?.presentViewController(initialViewController, animated: true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             } else {
                 PKHUD.sharedHUD.hide()
 

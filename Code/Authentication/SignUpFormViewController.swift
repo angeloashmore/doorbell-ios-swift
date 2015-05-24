@@ -135,6 +135,8 @@ class SignUpFormViewController: FormViewController, FormViewControllerDelegate {
                 dispatch_async(dispatch_get_main_queue()) {
                     PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
                     PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             } else {
                 PKHUD.sharedHUD.hide()
