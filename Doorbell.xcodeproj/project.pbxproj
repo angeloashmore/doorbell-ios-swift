@@ -120,6 +120,111 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>173CC1351B116C47007ACB1C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>173CC1361B116C98007ACB1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Ads</string>
+			<key>path</key>
+			<string>Ads</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC1361B116C98007ACB1C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Ads.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC1371B116C98007ACB1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>173CC1361B116C98007ACB1C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>173CC1381B116CA3007ACB1C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>173CC1391B116CAF007ACB1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Settings</string>
+			<key>path</key>
+			<string>Settings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC1391B116CAF007ACB1C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Settings.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC13A1B116CAF007ACB1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>173CC1391B116CAF007ACB1C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>173CC13B1B116F98007ACB1C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>173CC13C1B116FAB007ACB1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Chats</string>
+			<key>path</key>
+			<string>Chats</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC13C1B116FAB007ACB1C</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Chats.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>173CC13D1B116FAB007ACB1C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>173CC13C1B116FAB007ACB1C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>1784039B1B11473E00EBA244</key>
 		<dict>
 			<key>children</key>
@@ -180,6 +285,76 @@
 		<dict>
 			<key>fileRef</key>
 			<string>1784039E1B11473E00EBA244</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>178403A11B11549C00EBA244</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>178403A21B1154C900EBA244</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Calendar</string>
+			<key>path</key>
+			<string>Calendar</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>178403A21B1154C900EBA244</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Calendar.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>178403A31B1154C900EBA244</key>
+		<dict>
+			<key>fileRef</key>
+			<string>178403A21B1154C900EBA244</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>178403A41B11550E00EBA244</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>178403A51B11552400EBA244</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Directory</string>
+			<key>path</key>
+			<string>Directory</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>178403A51B11552400EBA244</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Directory.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>178403A61B11552400EBA244</key>
+		<dict>
+			<key>fileRef</key>
+			<string>178403A51B11552400EBA244</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -363,19 +538,24 @@
 			<key>files</key>
 			<array>
 				<string>17223D381B0FB0C400B37BCD</string>
+				<string>173CC1371B116C98007ACB1C</string>
 				<string>17850AE31B0D464600504176</string>
 				<string>17F01F121B113C2800244ED8</string>
 				<string>17F01F0D1B113C2800244ED8</string>
 				<string>17F01F191B113C2800244ED8</string>
 				<string>17F01F171B113C2800244ED8</string>
+				<string>178403A61B11552400EBA244</string>
 				<string>17F01F101B113C2800244ED8</string>
 				<string>17F01F0E1B113C2800244ED8</string>
+				<string>178403A31B1154C900EBA244</string>
 				<string>17F01F181B113C2800244ED8</string>
 				<string>17F01F111B113C2800244ED8</string>
 				<string>17850AE01B0D464600504176</string>
 				<string>17F01F0C1B113C2800244ED8</string>
+				<string>173CC13A1B116CAF007ACB1C</string>
 				<string>17F01F0F1B113C2800244ED8</string>
 				<string>178403A01B11473E00EBA244</string>
+				<string>173CC13D1B116FAB007ACB1C</string>
 				<string>17F01F151B113C2800244ED8</string>
 				<string>17F01F141B113C2800244ED8</string>
 				<string>17F01F131B113C2800244ED8</string>
@@ -451,7 +631,12 @@
 			<key>children</key>
 			<array>
 				<string>17850AD81B0D464600504176</string>
+				<string>173CC13B1B116F98007ACB1C</string>
 				<string>17223D3D1B0FCF5E00B37BCD</string>
+				<string>178403A11B11549C00EBA244</string>
+				<string>178403A41B11550E00EBA244</string>
+				<string>173CC1351B116C47007ACB1C</string>
+				<string>173CC1381B116CA3007ACB1C</string>
 				<string>17850AD61B0D464600504176</string>
 			</array>
 			<key>isa</key>
