@@ -13,7 +13,7 @@ import SwiftForms
 import Honour
 import LayerKit
 
-class LogInFormViewController: FormViewController, FormViewControllerDelegate {
+class LogInFormViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
@@ -36,8 +36,6 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.delegate = self
 
         let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
         self.navigationItem.rightBarButtonItem = submitButton
@@ -70,6 +68,9 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
             "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
             "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
         ]
+        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.performSegueWithIdentifier("SignUpSegue", sender: self)
+        } as DidSelectClosure
         section2.addRow(row)
 
         form.sections = [section1, section2]
@@ -140,19 +141,6 @@ class LogInFormViewController: FormViewController, FormViewControllerDelegate {
                 let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
             }
-        }
-    }
-
-
-    /// MARK: FormViewControllerDelegate
-    
-    func formViewController(controller: FormViewController, didSelectRowDescriptor rowDescriptor: FormRowDescriptor) {
-        switch rowDescriptor.tag {
-        case Tags.signUp:
-            self.view.endEditing(true)
-            self.performSegueWithIdentifier("SignUpSegue", sender: self)
-        default:
-            break
         }
     }
 }

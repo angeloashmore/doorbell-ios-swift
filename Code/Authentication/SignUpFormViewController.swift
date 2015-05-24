@@ -12,7 +12,7 @@ import PKHUD
 import SwiftForms
 import Honour
 
-class SignUpFormViewController: FormViewController, FormViewControllerDelegate {
+class SignUpFormViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
@@ -39,8 +39,6 @@ class SignUpFormViewController: FormViewController, FormViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.delegate = self
 
         let submitButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
         self.navigationItem.rightBarButtonItem = submitButton

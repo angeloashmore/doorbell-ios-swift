@@ -12,7 +12,7 @@ import PKHUD
 import SwiftForms
 import Honour
 
-class SettingsViewController: FormViewController, FormViewControllerDelegate {
+class SettingsViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
@@ -30,24 +30,6 @@ class SettingsViewController: FormViewController, FormViewControllerDelegate {
         self.loadForm()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.delegate = self
-    }
-
-    /// MARK: FormViewControllerDelegate
-    func formViewController(controller: FormViewController, didSelectRowDescriptor rowDescriptor: FormRowDescriptor) {
-        switch rowDescriptor.tag {
-        case Tags.aboutThisVersion:
-            handleAboutThisVersionButton()
-        case Tags.logOut:
-            handleLogOutButton()
-        default:
-            break
-        }
-    }
-
 
     // MARK: Methods
     private func loadForm() {
@@ -62,6 +44,9 @@ class SettingsViewController: FormViewController, FormViewControllerDelegate {
             "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
             "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
         ]
+        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.handleAboutThisVersionButton()
+        } as DidSelectClosure
         section1.addRow(row)
 
         let section2 = FormSectionDescriptor()
@@ -71,6 +56,9 @@ class SettingsViewController: FormViewController, FormViewControllerDelegate {
             "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
             "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)
         ]
+        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.handleLogOutButton()
+        } as DidSelectClosure
         section2.addRow(row)
 
         form.sections = [section1, section2]
