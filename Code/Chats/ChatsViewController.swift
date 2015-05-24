@@ -8,31 +8,105 @@
 
 import UIKit
 import LayerKit
+import PKHUD
+import Parse
 
 class ChatsViewController: UIViewController {
 
     var layerClient: LYRClient!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if PFUser.currentUser() != nil {
+            loginLayer()
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    func loginLayer() {
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        PKHUD.sharedHUD.show()
 
-    /*
-    // MARK: - Navigation
+        // Connect to Layer.
+        layerClient.connectWithCompletion { (success, error) -> Void in
+            if !success {
+                println("Failed to connect to Layer")
+            } else {
+                let user = PFUser.currentUser()
+                let userID = user?.objectId
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+                self.authenticateLayerWithUserID(userID!, completion: { (success, error) -> Void in
+                    if error == nil {
+                        self.presentConversationListViewController()
+                    } else {
+                        println("Failed Authenticating Layer Client with error: \(error)")
+                    }
+                })
+            }
+        }
     }
-    */
+
+    func authenticateLayerWithUserID(userID: String, completion: (success: Bool, error: NSError?) -> Void) {
+        // Check to see if layerClient is already authenticated.
+        if let authenticatedUserID = layerClient.authenticatedUserID {
+            if authenticatedUserID == userID {
+                println("Layer Authenticated as User \(authenticatedUserID)")
+                completion(success: true, error: nil)
+            } else {
+                layerClient.deauthenticateWithCompletion({ (success, error) -> Void in
+                    if error == nil {
+                        self.authenticationTokenWithUserID(userID, completion: { (success, error) -> Void in
+                            completion(success: success, error: error)
+                        })
+                    } else {
+                        completion(success: false, error: error)
+                    }
+                })
+            }
+        } else {
+            authenticationTokenWithUserID(userID, completion: { (success, error) -> Void in
+                completion(success: success, error: error)
+            })
+        }
+
+        return
+    }
+
+    func authenticationTokenWithUserID(userID: String, completion: (success: Bool, error: NSError?) -> Void) {
+        /*
+        * 1. Request an authentication Nonce from Layer
+        */
+        layerClient.requestAuthenticationNonceWithCompletion({(nonce, error) in
+            if let nonce = nonce {
+                println("nonce \(nonce)")
+
+                PFCloud.callFunctionInBackground("generateToken", withParameters: ["nonce": nonce, "userID": userID], block: { (object, error) -> Void in
+                    if error == nil {
+                        let identityToken = object as? String
+                        self.layerClient.authenticateWithIdentityToken(identityToken, completion: { (authenticatedUserID, error) -> Void in
+                            if let authenticatedUserID = authenticatedUserID {
+                                println("Layer Authenticated as User: \(authenticatedUserID)")
+                                completion(success: true, error: nil)
+                            } else {
+                                completion(success: false, error: error)
+                            }
+                        })
+                    } else {
+                        println("Parse Cloud function failed to be called to generate token with error: \(error)")
+                    }
+                })
+            } else {
+                completion(success: false, error: error)
+            }
+
+            return
+        })
+    }
+
+    func presentConversationListViewController() {
+        PKHUD.sharedHUD.hide()
+
+        println("this is where we would show the list")
+    }
 
 }

@@ -21,7 +21,7 @@ struct ExternalKeys {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, LYRClientDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var layerClient: LYRClient!
@@ -36,11 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LYRClientDelegate {
         // Configure Layer.
         let appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
         let layerClient = LYRClient(appID: appID)
-        layerClient.delegate = self
 
         // Load InitialViewController.
-        let initialViewController = InitialViewController()
-        initialViewController.layerClient = layerClient
+        let initialViewController = InitialViewController(layerClient: layerClient)
 
         window?.rootViewController = initialViewController
 

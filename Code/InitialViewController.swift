@@ -14,6 +14,12 @@ class InitialViewController: UITabBarController {
 
     var layerClient: LYRClient!
 
+    convenience init(layerClient: LYRClient) {
+        self.init()
+        self.layerClient = layerClient
+        self.viewControllers = buildControllersArray()
+    }
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -21,15 +27,11 @@ class InitialViewController: UITabBarController {
             let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
             let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
             self.presentViewController(authenticationVC, animated: true, completion: nil)
-        } else {
-
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        var controllers = Array<UIViewController>()
+    private func buildControllersArray() -> [UIViewController] {
+        var controllers: [UIViewController] = []
 
         let tabs = ["Chats", "Calendar", "Directory", "Ads", "Settings"]
         for name in tabs {
@@ -37,8 +39,10 @@ class InitialViewController: UITabBarController {
 
             switch name {
             case "Chats":
-                if let vc = vc as? ChatsViewController {
-                    vc.layerClient = layerClient
+                if let vc = vc as? UINavigationController {
+                    if let vc = vc.viewControllers.first as? ChatsViewController {
+                        vc.layerClient = layerClient
+                    }
                 }
             default:
                 break
@@ -47,7 +51,7 @@ class InitialViewController: UITabBarController {
             controllers.append(vc)
         }
 
-        self.viewControllers = controllers
+        return controllers
     }
 
     private func instantiateViewControllerFromStoryboard(name: String) -> UIViewController {
