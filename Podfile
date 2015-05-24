@@ -9,6 +9,6 @@ target 'Doorbell' do
   pod 'ParseUI'
   pod 'SwiftValidator'
   pod 'PKHUD', git: 'https://github.com/pkluz/PKHUD.git'
-  pod 'SwiftForms', git: 'https://github.com/ortuman/SwiftForms.git'
+  pod 'SwiftForms'
   pod 'Honour'
 end

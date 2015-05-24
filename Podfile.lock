@@ -14,22 +14,17 @@ DEPENDENCIES:
   - Parse
   - ParseUI
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
-  - SwiftForms (from `https://github.com/ortuman/SwiftForms.git`)
+  - SwiftForms
   - SwiftValidator
 
 EXTERNAL SOURCES:
   PKHUD:
     :git: https://github.com/pkluz/PKHUD.git
-  SwiftForms:
-    :git: https://github.com/ortuman/SwiftForms.git
 
 CHECKOUT OPTIONS:
   PKHUD:
     :commit: 86f3f342a6d83b124a8de4ed31f0ffda1ad3aeaa
     :git: https://github.com/pkluz/PKHUD.git
-  SwiftForms:
-    :commit: dfe91f639f9f62f33a1a380a66d29d3022349a9d
-    :git: https://github.com/ortuman/SwiftForms.git
 
 SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
