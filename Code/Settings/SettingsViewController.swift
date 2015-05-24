@@ -16,11 +16,21 @@ class SettingsViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
+        static let editProfile = "editProfile"
+        static let changePassword = "changePassword"
         static let aboutThisVersion = "aboutThisVersion"
         static let logOut = "logOut"
     }
 
-    private struct Validators {
+    private struct RowConfigurationTypes {
+        static let DisclosureIndicatorButton = [
+            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
+            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
+        ]
+        static let DefaultButton = [
+            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
+            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
+        ]
     }
 
 
@@ -33,41 +43,47 @@ class SettingsViewController: FormViewController {
 
     // MARK: Methods
     private func loadForm() {
+        var row: FormRowDescriptor
         let form = FormDescriptor()
 
         form.title = "Settings"
 
-        let section1 = FormSectionDescriptor()
-
-        var row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: FormRowType.Button, title: "About This Version")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
-        ]
+        let userSection = FormSectionDescriptor()
+        row = FormRowDescriptor(tag: Tags.editProfile, rowType: .Button, title: "Edit Profile")
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.handleAboutThisVersionButton()
+            self.performSegueWithIdentifier("EditProfileSegue", sender: nil)
         } as DidSelectClosure
-        section1.addRow(row)
+        userSection.addRow(row)
 
-        let section2 = FormSectionDescriptor()
+        row = FormRowDescriptor(tag: Tags.changePassword, rowType: .Button, title: "Change Password")
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
+        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.performSegueWithIdentifier("ChangePasswordSegue", sender: nil)
+        } as DidSelectClosure
+        userSection.addRow(row)
 
-        row = FormRowDescriptor(tag: Tags.logOut, rowType: FormRowType.Button, title: "Log Out")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0)
-        ]
+        let aboutSection = FormSectionDescriptor()
+
+        row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: .Button, title: "About This Version")
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
+        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.performSegueWithIdentifier("AboutThisVersionSegue", sender: nil)
+        } as DidSelectClosure
+        aboutSection.addRow(row)
+
+        let logOutSection = FormSectionDescriptor()
+
+        row = FormRowDescriptor(tag: Tags.logOut, rowType: .Button, title: "Log Out")
+        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DefaultButton
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.handleLogOutButton()
         } as DidSelectClosure
-        section2.addRow(row)
+        logOutSection.addRow(row)
 
-        form.sections = [section1, section2]
+        form.sections = [userSection, aboutSection, logOutSection]
 
         self.form = form
-    }
-
-    func handleAboutThisVersionButton() {
-        self.performSegueWithIdentifier("AboutThisVersionSegue", sender: nil)
     }
 
     func handleLogOutButton() {
