@@ -12,11 +12,7 @@ import LayerKit
 
 class InitialViewController: UITabBarController {
 
-    var layerClient: LYRClient!
-
-    convenience init(layerClient: LYRClient) {
-        self.init()
-        self.layerClient = layerClient
+    override func viewDidLoad() {
         self.viewControllers = buildControllersArray()
     }
 
@@ -36,18 +32,6 @@ class InitialViewController: UITabBarController {
         let tabs = ["Chats", "Calendar", "Directory", "Ads", "Settings"]
         for name in tabs {
             let vc = instantiateViewControllerFromStoryboard(name)
-
-            switch name {
-            case "Chats":
-                if let vc = vc as? UINavigationController {
-                    if let vc = vc.viewControllers.first as? ChatsViewController {
-                        vc.layerClient = layerClient
-                    }
-                }
-            default:
-                break
-            }
-
             controllers.append(vc)
         }
 

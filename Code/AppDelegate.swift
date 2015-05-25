@@ -34,11 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFACL.setDefaultACL(PFACL(), withAccessForCurrentUser: true)
 
         // Configure Layer.
-        let appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
-        let layerClient = LYRClient(appID: appID)
+        LayerClient.sharedClient.appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
 
         // Load InitialViewController.
-        let initialViewController = InitialViewController(layerClient: layerClient)
+        let initialViewController = InitialViewController()
 
         window?.rootViewController = initialViewController
 
