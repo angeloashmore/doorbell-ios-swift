@@ -1,52 +1,35 @@
 //
-//  ViewController.swift
+//  InitialViewController.swift
 //  Doorbell
 //
-//  Created by Angelo on 5/23/15.
+//  Created by Angelo on 5/26/15.
 //  Copyright (c) 2015 Doorbell. All rights reserved.
 //
 
 import UIKit
-import Parse
-import LayerKit
 
-class InitialViewController: UITabBarController {
+class InitialViewController: UIViewController {
 
     override func viewDidLoad() {
-        self.viewControllers = buildControllersArray()
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if PFUser.currentUser() == nil {
-            let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
-            self.presentViewController(authenticationVC, animated: true, completion: nil)
-        }
-    }
-
-    private func buildControllersArray() -> [UIViewController] {
-        var controllers: [UIViewController] = []
-
-        let tabs = ["Chats", "Calendar", "Directory", "Ads", "Settings"]
-        for name in tabs {
-            let vc = instantiateViewControllerFromStoryboard(name)
-            controllers.append(vc)
-        }
-
-        return controllers
-    }
-
-    private func instantiateViewControllerFromStoryboard(name: String) -> UIViewController {
-        let storyboard = UIStoryboard(name: name, bundle: nil)
-        let vc = storyboard.instantiateInitialViewController() as! UIViewController
-        let icon = UIImage(named: "\(name)Icon")
-
-        vc.tabBarItem = UITabBarItem(title: nil, image: icon, selectedImage: icon)
-        vc.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
-
-        return vc
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }
