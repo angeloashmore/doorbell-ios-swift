@@ -32,7 +32,7 @@ public class LayerClient {
         }
     }
 
-    private var client: LYRClient?
+    public var client: LYRClient?
 
 
     // MARK: Methods
