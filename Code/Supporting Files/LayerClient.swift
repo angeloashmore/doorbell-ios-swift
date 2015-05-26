@@ -39,27 +39,27 @@ public class LayerClient {
         return client != nil && PFUser.currentUser() != nil
     }
 
-    func initializeClient() -> Promise {
-        return Promise { (resolve, reject) -> () in
-            if self.readyToInitialize() {
-                if let userID = PFUser.currentUser()?.objectId {
-                    self.loginLayer(userID).then({ (_) -> () in
-                        resolve(true)
-                    })
-                }
-            } else {
-                reject(true)
+    public func initializeClient() -> Promise {
+        if self.readyToInitialize() {
+            if let userID = PFUser.currentUser()?.objectId {
+                return self.loginLayer(userID)
             }
+        }
+
+        return Promise { (resolve, reject) -> () in
+            reject(true)
         }
     }
 
-    func loginLayer(userID: String) -> Promise {
-        return self.connectToLayerServer().then({ (_) -> () in
-            self.authenticateLayerWithUserID(userID)
-        })
+    private func loginLayer(userID: String) -> Promise {
+        return self.connectToLayerServer()
+
+        .then { (_) -> (AnyObject?) in
+            return self.authenticateLayerWithUserID(userID)
+        }
     }
 
-    func connectToLayerServer() -> Promise {
+    private func connectToLayerServer() -> Promise {
         return Promise { (resolve, reject) -> () in
             self.client!.connectWithCompletion({ (success, error) -> Void in
                 if !success {
@@ -71,31 +71,27 @@ public class LayerClient {
         }
     }
 
-    func authenticateLayerWithUserID(userID: String) -> Promise {
-        return Promise { (resolve, reject) -> () in
-            if let authenticatedUserID = self.client!.authenticatedUserID {
-                // If the client is already authenticated
-                if authenticatedUserID == userID {
-                    // If the client is authenticated with the correct user
+    private func authenticateLayerWithUserID(userID: String) -> Promise {
+        if let authenticatedUserID = self.client!.authenticatedUserID {
+            // If the client is already authenticated
+            if authenticatedUserID == userID {
+                // If the client is authenticated with the correct user
+                return Promise { (resolve, reject) -> () in
                     resolve(true)
-                } else {
-                    // If the client is NOT authenticated with the correct user
-                    self.deauthenticateWithLayer().then({ (_) -> () in
-                        self.authenticateWithLayerForTheFirstTime(userID)
-                    }).then({ (_) -> () in
-                        resolve(true)
-                    })
                 }
             } else {
-                // If the client is NOT authenticated
-                self.authenticateWithLayerForTheFirstTime(userID).then({ (_) -> () in
-                    resolve(true)
-                })
+                // If the client is NOT authenticated with the correct user
+                return self.deauthenticateWithLayer().then { (_) -> () in
+                    return self.authenticateWithLayerForTheFirstTime(userID)
+                }
             }
+        } else {
+            // If the client is NOT authenticated
+            return self.authenticateWithLayerForTheFirstTime(userID)
         }
     }
 
-    func deauthenticateWithLayer() -> Promise {
+    private func deauthenticateWithLayer() -> Promise {
         return Promise { (resolve, reject) -> () in
             self.client!.deauthenticateWithCompletion({ (success, error) -> Void in
                 if error == nil {
@@ -107,18 +103,19 @@ public class LayerClient {
         }
     }
 
-    func authenticateWithLayerForTheFirstTime(userID: String) -> Promise {
+    private func authenticateWithLayerForTheFirstTime(userID: String) -> Promise {
         return requestAuthenticationNonce()
+
         .then { (nonce) -> (AnyObject?) in
-            self.generateToken((nonce as? String)!, userID: userID)
+            return self.generateToken((nonce as? String)!, userID: userID)
 
         }.then { (identityToken) -> (AnyObject?) in
-            self.authenticateWithIdentityToken((identityToken as? String)!)
+            return self.authenticateWithIdentityToken((identityToken as? String)!)
 
         }
     }
 
-    func requestAuthenticationNonce() -> Promise {
+    private func requestAuthenticationNonce() -> Promise {
         return Promise { (resolve, reject) -> () in
             self.client!.requestAuthenticationNonceWithCompletion({ (nonce, error) -> Void in
                 if let nonce = nonce {
@@ -130,7 +127,7 @@ public class LayerClient {
         }
     }
 
-    func generateToken(nonce: String, userID: String) -> Promise {
+    private func generateToken(nonce: String, userID: String) -> Promise {
         return Promise { (resolve, reject) -> () in
             let params = ["nonce": nonce, "userID": userID]
             PFCloud.callFunctionInBackground("generateToken", withParameters: params, block: { (object, error) -> Void in
@@ -143,7 +140,7 @@ public class LayerClient {
         }
     }
 
-    func authenticateWithIdentityToken(identityToken: String) -> Promise {
+    private func authenticateWithIdentityToken(identityToken: String) -> Promise {
         return Promise { (resolve, reject) -> () in
             self.client!.authenticateWithIdentityToken(identityToken, completion: { (authenticatedUserID, error) -> Void in
                 if let authenticatedUserID = authenticatedUserID {

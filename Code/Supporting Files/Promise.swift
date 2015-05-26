@@ -55,7 +55,7 @@ class Deferred: Promise {
     
 }
 
-class Promise {
+public class Promise {
 
     var thens = Array<thenClosure>()
     var cat: catchClosure?
