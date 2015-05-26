@@ -10,26 +10,18 @@ import UIKit
 import Parse
 import LayerKit
 
-class InitialViewController: UITabBarController {
+class MainTabBarController: UITabBarController {
+
+    private let tabs = ["Chats", "Calendar", "Directory", "Ads", "Settings"]
 
     override func viewDidLoad() {
-        self.viewControllers = buildControllersArray()
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        if PFUser.currentUser() == nil {
-            let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
-            self.presentViewController(authenticationVC, animated: true, completion: nil)
-        }
+        let controllers = buildControllersArray()
+        self.viewControllers = controllers
     }
 
     private func buildControllersArray() -> [UIViewController] {
         var controllers: [UIViewController] = []
 
-        let tabs = ["Chats", "Calendar", "Directory", "Ads", "Settings"]
         for name in tabs {
             let vc = instantiateViewControllerFromStoryboard(name)
             controllers.append(vc)

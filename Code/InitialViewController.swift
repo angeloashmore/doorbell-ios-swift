@@ -7,29 +7,42 @@
 //
 
 import UIKit
+import Parse
+import PKHUD
 
 class InitialViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
 
-        // Do any additional setup after loading the view.
+        if PFUser.currentUser() == nil {
+            let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
+            let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
+            self.presentViewController(authenticationVC, animated: true, completion: nil)
+        } else {
+            initializeLayerClient()
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    func initializeLayerClient() -> Promise {
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        PKHUD.sharedHUD.show()
 
-    /*
-    // MARK: - Navigation
+        return LayerClient.sharedClient.initializeClient()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        .then { (_) -> () in
+            PKHUD.sharedHUD.hide()
+            println("Connected to Layer successfully")
+
+            let controller = MainTabBarController()
+            self.presentViewController(controller, animated: true, completion: nil)
+
+        }.catch { (error) -> () in
+            PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+            PKHUD.sharedHUD.hide(afterDelay: 1.0)
+            println(error)
+
+        }
     }
-    */
 
 }

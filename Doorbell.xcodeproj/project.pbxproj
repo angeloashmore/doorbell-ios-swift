@@ -231,7 +231,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>InitialViewController.swift</string>
+			<string>MainTabBarController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -571,6 +571,7 @@
 				<string>17F01EE71B113C0D00244ED8</string>
 				<string>17223D3A1B0FB21C00B37BCD</string>
 				<string>17F01EDE1B113C0D00244ED8</string>
+				<string>17D14D761B14F751003C93BA</string>
 				<string>17F01ED31B113C0D00244ED8</string>
 				<string>17850AD91B0D464600504176</string>
 				<string>17F01EDF1B113C0D00244ED8</string>
@@ -730,6 +731,7 @@
 			<key>children</key>
 			<array>
 				<string>17850AD81B0D464600504176</string>
+				<string>17D14D751B14F751003C93BA</string>
 				<string>173CC1401B117323007ACB1C</string>
 				<string>17223D3D1B0FCF5E00B37BCD</string>
 				<string>173CC13B1B116F98007ACB1C</string>
@@ -1346,6 +1348,26 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
+		</dict>
+		<key>17D14D751B14F751003C93BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>InitialViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D761B14F751003C93BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D14D751B14F751003C93BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>17E30D891B0D48CD003331BB</key>
 		<dict>

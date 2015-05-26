@@ -39,14 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Load InitialViewController.
         let initialViewController = InitialViewController()
 
-        window?.rootViewController = initialViewController
+        self.window?.rootViewController = initialViewController
+        self.window?.backgroundColor = UIColor.whiteColor()
+        self.window?.makeKeyAndVisible()
 
         return true
     }
 
-    func layerClient(client: LYRClient!, didReceiveAuthenticationChallengeWithNonce nonce: String!) {
-        println("Layer Client did recieve authentication challenge with nonce: \(nonce)") 
-    }
-
 }
-

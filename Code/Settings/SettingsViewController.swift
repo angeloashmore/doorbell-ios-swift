@@ -107,9 +107,7 @@ class SettingsViewController: FormViewController {
                 if error == nil {
                     // Logged out!
                     PKHUD.sharedHUD.hide()
-                    let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
-                    let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
-                    self.presentViewController(authenticationVC, animated: true, completion: nil)
+                    self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
                 } else {
                     // Error logging out!
                 }
