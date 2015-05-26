@@ -16,8 +16,11 @@ class ChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Configure Layer.
-        LayerClient.sharedClient.initializeClient()
+        LayerClient.sharedClient.initializeClient().then { (_) -> () in
+            println("Connected!")
+        }.catch { (error) -> () in
+            println("Didn't connect!")
+        }
     }
 
 //    func loginLayer() {
