@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.1.5)
+  - Evergreen (0.4.1)
   - Honour (0.1.1)
   - Parse (1.7.4):
     - Bolts/Tasks (>= 1.1.5)
@@ -10,6 +11,7 @@ PODS:
   - SwiftValidator (2.1.1)
 
 DEPENDENCIES:
+  - Evergreen
   - Honour
   - Parse
   - ParseUI
@@ -28,6 +30,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Evergreen: 11ba79fe1f49dae762df433bbf00b370f93c609b
   Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0

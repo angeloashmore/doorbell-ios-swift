@@ -106,8 +106,12 @@ class SettingsViewController: FormViewController {
             PFUser.logOutInBackgroundWithBlock { (error) -> Void in
                 if error == nil {
                     // Logged out!
-                    PKHUD.sharedHUD.hide()
-                    self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+                    LayerClient.sharedClient.deauthenticateWithLayer().then({ (_) -> () in
+                        PKHUD.sharedHUD.hide()
+                        self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+                    }).catch({ (error) -> () in
+                        println(error)
+                    })
                 } else {
                     // Error logging out!
                 }

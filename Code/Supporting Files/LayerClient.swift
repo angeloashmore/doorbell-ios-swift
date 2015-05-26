@@ -9,6 +9,7 @@
 import Foundation
 import LayerKit
 import Parse
+import Evergreen
 
 public class LayerClient {
 
@@ -47,6 +48,7 @@ public class LayerClient {
         }
 
         return Promise { (resolve, reject) -> () in
+            log("Unsuccessfully initialized Layer Client", forLevel: .Error)
             reject(true)
         }
     }
@@ -63,8 +65,10 @@ public class LayerClient {
         return Promise { (resolve, reject) -> () in
             self.client!.connectWithCompletion({ (success, error) -> Void in
                 if !success {
+                    log("Unsuccessfully connected to Layer", forLevel: .Error)
                     reject(error)
                 } else {
+                    log("Successfully connected to Layer", forLevel: .Info)
                     resolve(true)
                 }
             })
@@ -77,6 +81,7 @@ public class LayerClient {
             if authenticatedUserID == userID {
                 // If the client is authenticated with the correct user
                 return Promise { (resolve, reject) -> () in
+                    log("Successfully authenticated with Layer using existing user ID", forLevel: .Info)
                     resolve(true)
                 }
             } else {
@@ -91,12 +96,14 @@ public class LayerClient {
         }
     }
 
-    private func deauthenticateWithLayer() -> Promise {
+    public func deauthenticateWithLayer() -> Promise {
         return Promise { (resolve, reject) -> () in
             self.client!.deauthenticateWithCompletion({ (success, error) -> Void in
                 if error == nil {
+                    log("Successfully deauthenticated from Layer", forLevel: .Info)
                     resolve(true)
                 } else {
+                    log("Unsuccessfully deauthenticated from Layer", forLevel: .Error)
                     reject(error)
                 }
             })
@@ -119,8 +126,10 @@ public class LayerClient {
         return Promise { (resolve, reject) -> () in
             self.client!.requestAuthenticationNonceWithCompletion({ (nonce, error) -> Void in
                 if let nonce = nonce {
+                    log("Successfully requested nonce from Layer", forLevel: .Info)
                     resolve(nonce)
                 } else {
+                    log("Unsuccessfully requested nonce from Layer", forLevel: .Error)
                     reject(error)
                 }
             })
@@ -132,8 +141,10 @@ public class LayerClient {
             let params = ["nonce": nonce, "userID": userID]
             PFCloud.callFunctionInBackground("generateToken", withParameters: params, block: { (object, error) -> Void in
                 if error == nil {
+                    log("Successfully generated token from Parse using nonce from Layer", forLevel: .Info)
                     resolve(object as? String)
                 } else {
+                    log("Unsuccessfully generated token from Parse using nonce from Layer", forLevel: .Error)
                     reject(error)
                 }
             })
@@ -144,8 +155,10 @@ public class LayerClient {
         return Promise { (resolve, reject) -> () in
             self.client!.authenticateWithIdentityToken(identityToken, completion: { (authenticatedUserID, error) -> Void in
                 if let authenticatedUserID = authenticatedUserID {
+                    log("Successfully authenticated with provided identity token", forLevel: .Info)
                     resolve(authenticatedUserID)
                 } else {
+                    log("Unsuccessfully authenticated with provided identity token", forLevel: .Error)
                     reject(error)
                 }
             })

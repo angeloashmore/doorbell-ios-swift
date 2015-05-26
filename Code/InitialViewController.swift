@@ -24,23 +24,21 @@ class InitialViewController: UIViewController {
         }
     }
 
-    func initializeLayerClient() -> Promise {
+    func initializeLayerClient() {
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
 
-        return LayerClient.sharedClient.initializeClient()
+        LayerClient.sharedClient.initializeClient()
 
         .then { (_) -> () in
             PKHUD.sharedHUD.hide()
-            println("Connected to Layer successfully")
-
+            
             let controller = MainTabBarController()
             self.presentViewController(controller, animated: true, completion: nil)
 
         }.catch { (error) -> () in
-            PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+            PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
             PKHUD.sharedHUD.hide(afterDelay: 1.0)
-            println(error)
 
         }
     }
