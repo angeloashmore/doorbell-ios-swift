@@ -14,6 +14,11 @@ import Evergreen
 
 class ChatsConversationListViewController: ATLConversationListViewController, ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource {
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tabBarController?.tabBar.hidden = false
+    }
+
     override func viewDidLoad() {
         self.dataSource = self
         self.delegate = self
@@ -21,6 +26,9 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
         log("Selected conversation")
+        let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
+        self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didDeleteConversation conversation: LYRConversation!, deletionMode: LYRDeletionMode) {
