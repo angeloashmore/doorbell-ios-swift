@@ -36,13 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Layer.
         LayerClient.sharedClient.appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
 
-        // Load InitialViewController.
-        let initialViewController = InitialViewController()
-
-        self.window?.rootViewController = initialViewController
-        self.window?.backgroundColor = UIColor.whiteColor()
-        self.window?.makeKeyAndVisible()
-
         return true
     }
 
