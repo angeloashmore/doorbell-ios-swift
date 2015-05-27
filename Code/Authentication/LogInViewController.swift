@@ -12,7 +12,7 @@ import PKHUD
 import SwiftForms
 import Honour
 
-class LogInFormViewController: FormViewController {
+class LogInViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {

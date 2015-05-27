@@ -36,8 +36,13 @@ class SettingsViewController: FormViewController {
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         self.loadForm()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 
 
@@ -54,7 +59,7 @@ class SettingsViewController: FormViewController {
         row = FormRowDescriptor(tag: Tags.editProfile, rowType: .Button, title: "Edit Profile")
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-//            self.performSegueWithIdentifier("EditProfileSegue", sender: nil)
+            self.performSegueWithIdentifier("EditProfile", sender: nil)
         } as DidSelectClosure
         userSection.addRow(row)
 
@@ -74,7 +79,7 @@ class SettingsViewController: FormViewController {
         row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: .Button, title: "About This Version")
         row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
         row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-//            self.performSegueWithIdentifier("AboutThisVersionSegue", sender: nil)
+            self.performSegueWithIdentifier("About", sender: nil)
         } as DidSelectClosure
         aboutSection.addRow(row)
 

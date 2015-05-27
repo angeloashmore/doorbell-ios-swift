@@ -53,7 +53,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>LogInFormViewController.swift</string>
+			<string>LogInViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -73,7 +73,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>SignUpFormViewController.swift</string>
+			<string>SignUpViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -94,6 +94,8 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Authentication</string>
 			<key>path</key>
 			<string>Authentication</string>
 			<key>sourceTree</key>
@@ -124,7 +126,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D881B15202A003C93BA</string>
+				<string>17D14D9C1B154CE3003C93BA</string>
 				<string>17D14D861B15201B003C93BA</string>
 			</array>
 			<key>isa</key>
@@ -138,8 +140,9 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D8A1B152059003C93BA</string>
+				<string>17D14D921B1540B2003C93BA</string>
 				<string>173CC1441B11A771007ACB1C</string>
+				<string>17D14D901B15402E003C93BA</string>
 				<string>173CC1481B11CF7F007ACB1C</string>
 			</array>
 			<key>isa</key>
@@ -172,7 +175,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>MainTabBarController.swift</string>
+			<string>TabBarController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -232,7 +235,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>EditProfileViewController.swift</string>
+			<string>SettingsEditProfileViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -330,7 +333,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D7E1B151E5D003C93BA</string>
+				<string>17D14D981B154C99003C93BA</string>
 				<string>17D14D801B151E7B003C93BA</string>
 			</array>
 			<key>isa</key>
@@ -344,7 +347,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D821B151FE4003C93BA</string>
+				<string>17D14D9A1B154CCC003C93BA</string>
 				<string>17D14D841B151FF2003C93BA</string>
 			</array>
 			<key>isa</key>
@@ -471,9 +474,9 @@
 				<string>17F01EF01B113C0D00244ED8</string>
 				<string>17F01EE51B113C0D00244ED8</string>
 				<string>17F01EDD1B113C0D00244ED8</string>
-				<string>17D14D831B151FE4003C93BA</string>
 				<string>17F01EE71B113C0D00244ED8</string>
 				<string>17223D3A1B0FB21C00B37BCD</string>
+				<string>17D14D911B15402E003C93BA</string>
 				<string>17F01EDE1B113C0D00244ED8</string>
 				<string>17D14D761B14F751003C93BA</string>
 				<string>17F01ED31B113C0D00244ED8</string>
@@ -495,7 +498,6 @@
 				<string>173CC1491B11CF7F007ACB1C</string>
 				<string>17F01EDB1B113C0D00244ED8</string>
 				<string>173CC1431B1177E7007ACB1C</string>
-				<string>17D14D891B15202A003C93BA</string>
 				<string>17F01EE91B113C0D00244ED8</string>
 				<string>17F01EE81B113C0D00244ED8</string>
 				<string>175F98131B13D40B00B3EAB6</string>
@@ -506,9 +508,7 @@
 				<string>17223D3C1B0FC11F00B37BCD</string>
 				<string>17F01EE31B113C0D00244ED8</string>
 				<string>17F01EF21B113C0D00244ED8</string>
-				<string>17D14D7F1B151E5D003C93BA</string>
 				<string>17F01ED11B113C0D00244ED8</string>
-				<string>17D14D8B1B152059003C93BA</string>
 				<string>17F01ED81B113C0D00244ED8</string>
 				<string>17F01EEE1B113C0D00244ED8</string>
 				<string>17F01EED1B113C0D00244ED8</string>
@@ -551,11 +551,14 @@
 				<string>17223D381B0FB0C400B37BCD</string>
 				<string>17850AE31B0D464600504176</string>
 				<string>17F01F121B113C2800244ED8</string>
+				<string>17D14D8D1B153B73003C93BA</string>
 				<string>17F01F0D1B113C2800244ED8</string>
+				<string>17D14D9D1B154CE3003C93BA</string>
 				<string>17F01F191B113C2800244ED8</string>
 				<string>17F01F171B113C2800244ED8</string>
 				<string>17F01F101B113C2800244ED8</string>
 				<string>17F01F0E1B113C2800244ED8</string>
+				<string>17D14D9B1B154CCC003C93BA</string>
 				<string>17F01F181B113C2800244ED8</string>
 				<string>17F01F111B113C2800244ED8</string>
 				<string>17850AE01B0D464600504176</string>
@@ -566,10 +569,12 @@
 				<string>17F01F141B113C2800244ED8</string>
 				<string>17F01F131B113C2800244ED8</string>
 				<string>17F01F161B113C2800244ED8</string>
+				<string>17D14D931B1540B2003C93BA</string>
 				<string>17F01F0B1B113C2800244ED8</string>
 				<string>17F01F0A1B113C2800244ED8</string>
 				<string>17F01F1A1B113C2800244ED8</string>
 				<string>17F01F1B1B113C2800244ED8</string>
+				<string>17D14D991B154C99003C93BA</string>
 				<string>17F01F091B113C2800244ED8</string>
 			</array>
 			<key>isa</key>
@@ -636,15 +641,12 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>17D14D8C1B153B73003C93BA</string>
 				<string>17850AD81B0D464600504176</string>
 				<string>17D14D751B14F751003C93BA</string>
-				<string>173CC1401B117323007ACB1C</string>
 				<string>17223D3D1B0FCF5E00B37BCD</string>
-				<string>173CC13B1B116F98007ACB1C</string>
-				<string>178403A11B11549C00EBA244</string>
-				<string>178403A41B11550E00EBA244</string>
-				<string>173CC1351B116C47007ACB1C</string>
-				<string>173CC1381B116CA3007ACB1C</string>
+				<string>17D14D9E1B154D20003C93BA</string>
+				<string>17D14D9F1B154E0C003C93BA</string>
 				<string>17850AD61B0D464600504176</string>
 			</array>
 			<key>isa</key>
@@ -658,8 +660,6 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17E670051B1288A60086D68F</string>
-				<string>175F98121B13D40B00B3EAB6</string>
 				<string>17E30D891B0D48CD003331BB</string>
 				<string>17F01E7E1B113C0400244ED8</string>
 			</array>
@@ -1295,26 +1295,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>17D14D7E1B151E5D003C93BA</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>CalendarNavigationViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17D14D7F1B151E5D003C93BA</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17D14D7E1B151E5D003C93BA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>17D14D801B151E7B003C93BA</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -1335,28 +1315,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>17D14D821B151FE4003C93BA</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>DirectoryNavigationViewController.swift</string>
-			<key>path</key>
-			<string>DirectoryNavigationViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17D14D831B151FE4003C93BA</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17D14D821B151FE4003C93BA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>17D14D841B151FF2003C93BA</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -1365,8 +1323,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>DirectoryViewController.swift</string>
 			<key>path</key>
 			<string>DirectoryViewController.swift</string>
 			<key>sourceTree</key>
@@ -1399,7 +1355,27 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>17D14D881B15202A003C93BA</key>
+		<key>17D14D8C1B153B73003C93BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D8D1B153B73003C93BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D14D8C1B153B73003C93BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17D14D901B15402E003C93BA</key>
 		<dict>
 			<key>fileEncoding</key>
 			<string>4</string>
@@ -1408,36 +1384,128 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>AdsNavigationViewController.swift</string>
+			<string>SettingsAboutViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>17D14D891B15202A003C93BA</key>
+		<key>17D14D911B15402E003C93BA</key>
 		<dict>
 			<key>fileRef</key>
-			<string>17D14D881B15202A003C93BA</string>
+			<string>17D14D901B15402E003C93BA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>17D14D8A1B152059003C93BA</key>
+		<key>17D14D921B1540B2003C93BA</key>
 		<dict>
 			<key>fileEncoding</key>
 			<string>4</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
+			<string>file.storyboard</string>
 			<key>path</key>
-			<string>SettingsNavigationViewController.swift</string>
+			<string>Settings.storyboard</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>17D14D8B1B152059003C93BA</key>
+		<key>17D14D931B1540B2003C93BA</key>
 		<dict>
 			<key>fileRef</key>
-			<string>17D14D8A1B152059003C93BA</string>
+			<string>17D14D921B1540B2003C93BA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>17D14D981B154C99003C93BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Calendar.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D991B154C99003C93BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D14D981B154C99003C93BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17D14D9A1B154CCC003C93BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Directory.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D9B1B154CCC003C93BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D14D9A1B154CCC003C93BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17D14D9C1B154CE3003C93BA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>path</key>
+			<string>Ads.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D9D1B154CE3003C93BA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D14D9C1B154CE3003C93BA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17D14D9E1B154D20003C93BA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>173CC1401B117323007ACB1C</string>
+				<string>173CC13B1B116F98007ACB1C</string>
+				<string>178403A11B11549C00EBA244</string>
+				<string>178403A41B11550E00EBA244</string>
+				<string>173CC1351B116C47007ACB1C</string>
+				<string>173CC1381B116CA3007ACB1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Tabs</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D14D9F1B154E0C003C93BA</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17E670051B1288A60086D68F</string>
+				<string>175F98121B13D40B00B3EAB6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>17E30D891B0D48CD003331BB</key>
 		<dict>

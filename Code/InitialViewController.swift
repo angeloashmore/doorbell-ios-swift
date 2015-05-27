@@ -33,7 +33,7 @@ class InitialViewController: UIViewController {
         .then { (_) -> () in
             PKHUD.sharedHUD.hide()
             
-            let controller = MainTabBarController()
+            let controller = TabBarController()
             self.presentViewController(controller, animated: true, completion: nil)
 
         }.catch { (error) -> () in

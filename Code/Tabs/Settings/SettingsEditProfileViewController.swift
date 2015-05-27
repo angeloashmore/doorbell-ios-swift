@@ -12,7 +12,7 @@ import PKHUD
 import SwiftForms
 import Honour
 
-class EditProfileViewController: FormViewController {
+class SettingsEditProfileViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
@@ -33,13 +33,10 @@ class EditProfileViewController: FormViewController {
 
 
     // MARK: Life-Cycle Methods
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.loadForm()
-    }
-
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.title = "Edit Profile"
+        
+        self.loadForm()
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         self.navigationItem.leftBarButtonItem = cancelButton

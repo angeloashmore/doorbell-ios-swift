@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Log In Form View Controller-->
+        <!--Log In View Controller-->
         <scene sceneID="wAw-7u-phf">
             <objects>
-                <tableViewController id="fp6-xA-6cL" customClass="LogInFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fp6-xA-6cL" customClass="LogInViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wl1-Dt-1fk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="822" y="-306"/>
         </scene>
-        <!--Sign Up Form View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="KyT-Lz-wQ3">
             <objects>
-                <tableViewController id="lep-E9-oLh" customClass="SignUpFormViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lep-E9-oLh" customClass="SignUpViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Lob-7c-TIj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
