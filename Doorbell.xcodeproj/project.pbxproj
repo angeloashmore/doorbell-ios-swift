@@ -157,6 +157,7 @@
 				<string>17D14D7C1B151C89003C93BA</string>
 				<string>173CC1421B1177E7007ACB1C</string>
 				<string>17A9C9C21B15D4A000DD5E20</string>
+				<string>177589681B1910640094CED2</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -262,6 +263,46 @@
 		<dict>
 			<key>fileRef</key>
 			<string>175F98121B13D40B00B3EAB6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>177589661B18FED90094CED2</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UserManager.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>177589671B18FED90094CED2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>177589661B18FED90094CED2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>177589681B1910640094CED2</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ChatsParticipantTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>177589691B1910640094CED2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>177589681B1910640094CED2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -402,6 +443,8 @@
 					<dict>
 						<key>CreatedOnToolsVersion</key>
 						<string>6.3.2</string>
+						<key>DevelopmentTeam</key>
+						<string>SWM5Z73U9N</string>
 					</dict>
 					<key>17850AE71B0D464600504176</key>
 					<dict>
@@ -470,6 +513,7 @@
 				<string>17D14D911B15402E003C93BA</string>
 				<string>179262B21B164A25006315AA</string>
 				<string>179262B41B164A25006315AA</string>
+				<string>177589691B1910640094CED2</string>
 				<string>17D14D761B14F751003C93BA</string>
 				<string>179262B11B164A25006315AA</string>
 				<string>179262B51B164A25006315AA</string>
@@ -481,6 +525,7 @@
 				<string>179262BA1B164A25006315AA</string>
 				<string>179262B81B164A25006315AA</string>
 				<string>179262AD1B164A25006315AA</string>
+				<string>177589671B18FED90094CED2</string>
 				<string>179262AF1B164A25006315AA</string>
 				<string>179262A01B164A25006315AA</string>
 				<string>1792629E1B164A25006315AA</string>
@@ -1090,6 +1135,8 @@
 				<string>AppIcon</string>
 				<key>CLANG_ENABLE_MODULES</key>
 				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
 				<key>DEFINES_MODULE</key>
 				<string>YES</string>
 				<key>FRAMEWORK_SEARCH_PATHS</key>
@@ -1145,6 +1192,8 @@
 				<string>AppIcon</string>
 				<key>CLANG_ENABLE_MODULES</key>
 				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
 				<key>DEFINES_MODULE</key>
 				<string>YES</string>
 				<key>FRAMEWORK_SEARCH_PATHS</key>
@@ -1262,11 +1311,10 @@
 			<key>children</key>
 			<array>
 				<string>179262441B163889006315AA</string>
+				<string>177589661B18FED90094CED2</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Models</string>
 			<key>path</key>
 			<string>Models</string>
 			<key>sourceTree</key>
@@ -1306,8 +1354,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Atlas</string>
 			<key>path</key>
 			<string>Atlas</string>
 			<key>sourceTree</key>

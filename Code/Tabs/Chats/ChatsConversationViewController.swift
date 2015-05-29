@@ -14,6 +14,7 @@ import Evergreen
 class ChatsConversationViewController: ATLConversationViewController, ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate {
 
     var dateFormatter: NSDateFormatter?
+    var usersArray:  NSArray?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,21 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     }
 
     func conversationViewController(conversationViewController: ATLConversationViewController!, participantForIdentifier participantIdentifier: String!) -> ATLParticipant! {
-        return PFUser.currentUser()
+        if participantIdentifier == PFUser.currentUser()?.objectId { return PFUser.currentUser() }
+
+        let user = UserManager.sharedManager.cachedUserForUserID(participantIdentifier)
+        if user == nil {
+            UserManager.sharedManager.queryAndCacheUsersWithIDs([participantIdentifier], completion: { (participants, error) -> Void in
+                if participants != nil && error == nil {
+//                    self.addressBarController.reloadView()
+//                    self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
+                } else {
+                    log("Error querying for users: \(error)", forLevel: .Error)
+                }
+            })
+        }
+
+        return user
     }
 
     func conversationViewController(conversationViewController: ATLConversationViewController!, attributedStringForDisplayOfDate date: NSDate!) -> NSAttributedString! {
@@ -56,32 +71,74 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     }
 
     func conversationViewController(conversationViewController: ATLConversationViewController!, attributedStringForDisplayOfRecipientStatus recipientStatus: [NSObject : AnyObject]!) -> NSAttributedString! {
-//        if recipientStatus.count == 0 {
-//            return nil
-//        }
+        if recipientStatus.count == 0 { return nil }
+
+        let mergedStatuses = NSMutableAttributedString()
+
+
+//        if (recipientStatus.count == 0) return nil;
+//        NSMutableAttributedString *mergedStatuses = [[NSMutableAttributedString alloc] init];
 //
-//        var mergedStatuses = NSMutableAttributedString()
+//        [[recipientStatus allKeys] enumerateObjectsUsingBlock:^(NSString *participant, NSUInteger idx, BOOL *stop) {
+//            LYRRecipientStatus status = [recipientStatus[participant] unsignedIntegerValue];
+//            if ([participant isEqualToString:self.layerClient.authenticatedUserID]) {
+//                return;
+//            }
 //
-//        for key in recipientStatus.keys {
-//
-//        }
-        return nil
+//            NSString *checkmark = @"✔︎";
+//            UIColor *textColor = [UIColor lightGrayColor];
+//            if (status == LYRRecipientStatusSent) {
+//                textColor = [UIColor lightGrayColor];
+//            } else if (status == LYRRecipientStatusDelivered) {
+//                textColor = [UIColor orangeColor];
+//            } else if (status == LYRRecipientStatusRead) {
+//                textColor = [UIColor greenColor];
+//            }
+//            NSAttributedString *statusString = [[NSAttributedString alloc] initWithString:checkmark attributes:@{NSForegroundColorAttributeName: textColor}];
+//            [mergedStatuses appendAttributedString:statusString];
+//        }];
+    return mergedStatuses;
     }
 
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController!, didTapAddContactsButton addContactsButton: UIButton!) {
-        // no-op
+        UserManager.sharedManager.queryForAllUsersWithCompletion { (users, error) -> Void in
+            if error == nil {
+                let controller = ChatsParticipantTableViewController(participants: NSSet(array: users!) as Set<NSObject>, sortType: ATLParticipantPickerSortType.FirstName)
+                controller.delegate = self
+
+                let navigationController = UINavigationController(rootViewController: controller)
+                self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+            } else {
+                log("Error querying for All Users: \(error)", forLevel: .Error)
+            }
+        }
     }
 
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController!, searchForParticipantsMatchingText searchText: String!, completion: (([AnyObject]!) -> Void)!) {
-        // no-op
+        UserManager.sharedManager.queryForUserWithName(searchText, completion: { (participants, error) -> Void in
+            if error == nil {
+                completion(participants as! Array)
+            } else {
+                log("Error search for participants: \(error)", forLevel: .Error)
+            }
+        })
     }
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didSelectParticipant participant: ATLParticipant!) {
-        // no-op
+        log("Participant: \(participant)", forLevel: .Debug)
+        self.addressBarController.selectParticipant(participant)
+        log("Selected Participants: \(self.addressBarController.selectedParticipants)", forLevel: .Debug)
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didSearchWithString searchText: String!, completion: ((Set<NSObject>!) -> Void)!) {
-        // no-op
+        UserManager.sharedManager.queryForUserWithName(searchText, completion: { (participants, error) -> Void in
+            if error == nil {
+                completion(NSSet(array: participants! as [AnyObject]) as Set<NSObject>)
+            } else {
+                log("Error search for participants: \(error)", forLevel: .Error)
+            }
+        })
     }
 
 }

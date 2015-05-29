@@ -27,6 +27,7 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
         log("Selected conversation")
         let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
+        controller.conversation = conversation
         self.tabBarController?.tabBar.hidden = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
