@@ -13,63 +13,76 @@ class UserManager: NSObject {
     var userCache: NSCache = NSCache()
     static let sharedManager = UserManager()
 
-    func queryForUserWithName(searchText: String, completion: (NSArray?, NSError?) -> Void) {
-        let query = PFUser.query()
-        query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
+    func queryForUserWithName(searchText: String) -> Promise {
+        return Promise { (resolve, reject) -> () in
+            let query = PFUser.query()
+            query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
 
-        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            if let error = error {
-                let contacts = NSMutableArray.new()
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                if let error = error {
+                    reject(error)
+                } else {
+                    let contacts = NSMutableArray()
 
-                if let users = objects as? [PFUser] {
-                    for user in users {
-                        if user.fullName!.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil {
-                            contacts.addObject(user)
+                    if let users = objects as? [PFUser] {
+                        for user in users {
+                            if user.fullName!.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch) != nil {
+                                contacts.addObject(user)
+                            }
                         }
                     }
-                    completion(NSArray(array: contacts), nil)
+
+                    resolve(contacts as [AnyObject])
                 }
-            } else {
-                completion(nil, error)
-            }
-        })
+            })
+        }
     }
 
-    func queryForAllUsersWithCompletion(completion: ([AnyObject]?, NSError?) -> Void) {
-        let query = PFUser.query()
-        query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
+    func queryForAllUsers() -> Promise {
+        return Promise { (resolve, reject) -> () in
+            let query = PFUser.query()
+            query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
 
-        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            if error == nil {
-                completion(objects, nil)
-            } else {
-                completion(nil, error)
-            }
-        })
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                if let error = error {
+                    reject(error)
+                } else {
+                    resolve(objects)
+                }
+            })
+        }
     }
 
-    func queryAndCacheUsersWithIDs(userIDs: [String], completion: (NSArray?, NSError?) -> Void) {
-        let query = PFUser.query()
-        query?.whereKey("objectId", containedIn: userIDs)
+    func queryAndCacheUsersWithIDs(userIDs: [String]) -> Promise {
+        return Promise { (resolve, reject) -> () in
+            let query = PFUser.query()
+            query?.whereKey("objectId", containedIn: userIDs)
 
-        query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            if error == nil {
-                if let users = objects as? [PFUser] {
-                    for user in users {
-                        self.cacheUserIfNeeded(user)
+            query?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+                if let error = error {
+                    reject(error)
+                } else {
+                    if let users = objects as? [PFUser] {
+                        for user in users {
+                            self.cacheUserIfNeeded(user)
+                        }
+
+                        if users.count > 0 {
+                            resolve(objects)
+                        } else {
+                            resolve(nil)
+                        }
                     }
                 }
-                objects!.count > 0 ? completion(objects, nil) : completion(nil, nil)
-            } else {
-                completion(nil, error)
-            }
-        })
+            })
+        }
     }
 
     func cachedUserForUserID(userID: String) -> PFUser? {
-        if self.userCache.objectForKey(userID) != nil {
-            return self.userCache.objectForKey(userID) as? PFUser
+        if let user = self.userCache.objectForKey(userID) as? PFUser {
+            return user
         }
+
         return nil
     }
 
@@ -97,8 +110,7 @@ class UserManager: NSObject {
 
         for userID in participants {
             if userID == PFUser.currentUser()!.objectId! { continue }
-            if self.userCache.objectForKey(userID) != nil {
-                let user = self.userCache.objectForKey(userID) as! PFUser
+            if let user = self.userCache.objectForKey(userID) as? PFUser {
                 array.addObject(user.firstName!)
             }
         }

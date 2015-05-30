@@ -51,15 +51,18 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
         if participantIdentifier == PFUser.currentUser()?.objectId { return PFUser.currentUser() }
 
         let user = UserManager.sharedManager.cachedUserForUserID(participantIdentifier)
+
         if user == nil {
-            UserManager.sharedManager.queryAndCacheUsersWithIDs([participantIdentifier], completion: { (participants, error) -> Void in
-                if participants != nil && error == nil {
-//                    self.addressBarController.reloadView()
-//                    self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
-                } else {
-                    log("Error querying for users: \(error)", forLevel: .Error)
-                }
-            })
+            UserManager.sharedManager.queryAndCacheUsersWithIDs([participantIdentifier])
+
+            .then { (participants) -> () in
+//                self.addressBarController.reloadView()
+//                self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
+
+            }.catch { (error) -> () in
+                log("Error querying for users: \(error)", forLevel: .Error)
+
+            }
         }
 
         return user
@@ -101,27 +104,30 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     }
 
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController!, didTapAddContactsButton addContactsButton: UIButton!) {
-        UserManager.sharedManager.queryForAllUsersWithCompletion { (users, error) -> Void in
-            if error == nil {
-                let controller = ChatsParticipantTableViewController(participants: NSSet(array: users!) as Set<NSObject>, sortType: ATLParticipantPickerSortType.FirstName)
-                controller.delegate = self
+        UserManager.sharedManager.queryForAllUsers()
 
-                let navigationController = UINavigationController(rootViewController: controller)
-                self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
-            } else {
-                log("Error querying for All Users: \(error)", forLevel: .Error)
-            }
+        .then { (users) -> () in
+            let controller = ChatsParticipantTableViewController(participants: NSSet(array: users as! [AnyObject]) as Set<NSObject>, sortType: ATLParticipantPickerSortType.FirstName)
+            controller.delegate = self
+
+            let navigationController = UINavigationController(rootViewController: controller)
+            self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+
+        }.catch { (error) -> () in
+            log("Error querying for All Users: \(error)", forLevel: .Error)
+            
         }
     }
 
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController!, searchForParticipantsMatchingText searchText: String!, completion: (([AnyObject]!) -> Void)!) {
-        UserManager.sharedManager.queryForUserWithName(searchText, completion: { (participants, error) -> Void in
-            if error == nil {
-                completion(participants as! Array)
-            } else {
-                log("Error search for participants: \(error)", forLevel: .Error)
-            }
-        })
+        UserManager.sharedManager.queryForUserWithName(searchText)
+
+        .then { (anything) -> () in
+            completion(anything as! [AnyObject])
+
+        }.catch { (error) -> () in
+            log("Error search for participants: \(error)", forLevel: .Error)
+        }
     }
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didSelectParticipant participant: ATLParticipant!) {
@@ -132,13 +138,15 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     }
 
     func participantTableViewController(participantTableViewController: ATLParticipantTableViewController!, didSearchWithString searchText: String!, completion: ((Set<NSObject>!) -> Void)!) {
-        UserManager.sharedManager.queryForUserWithName(searchText, completion: { (participants, error) -> Void in
-            if error == nil {
-                completion(NSSet(array: participants! as [AnyObject]) as Set<NSObject>)
-            } else {
-                log("Error search for participants: \(error)", forLevel: .Error)
-            }
-        })
+        UserManager.sharedManager.queryForUserWithName(searchText)
+
+        .then { (participants) -> () in
+            completion(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
+
+        }.catch { (error) -> () in
+            log("Error search for participants: \(error)", forLevel: .Error)
+
+        }
     }
 
 }

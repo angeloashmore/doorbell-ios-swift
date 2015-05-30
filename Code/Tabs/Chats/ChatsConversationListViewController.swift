@@ -17,6 +17,9 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.tabBarController?.tabBar.hidden = false
+
+        let composeItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: "composeButtonTapped")
+        self.navigationItem.rightBarButtonItem = composeItem
     }
 
     override func viewDidLoad() {
@@ -46,6 +49,12 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, titleForConversation conversation: LYRConversation!) -> String! {
         return "Title"
+    }
+
+    func composeButtonTapped() {
+        let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
+        controller.displaysAddressBar = true
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
 }
