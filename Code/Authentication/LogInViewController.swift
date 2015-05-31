@@ -12,6 +12,7 @@ import PKHUD
 import SwiftForms
 import Honour
 import PromiseKit
+import ParsePromiseKitSwift
 
 class LogInViewController: FormViewController {
 

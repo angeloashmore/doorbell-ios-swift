@@ -13,4 +13,5 @@ target 'Doorbell' do
   pod 'Honour'
   pod 'Evergreen'
   pod 'PromiseKit'
+  pod 'ParsePromiseKitSwift', git: 'https://github.com/angeloashmore/ParsePromiseKitSwift.git'
 end

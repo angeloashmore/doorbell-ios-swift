@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 import PromiseKit
+import ParsePromiseKitSwift
 
 class UserManager: NSObject {
     var userCache: NSCache = NSCache()

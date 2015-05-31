@@ -11,6 +11,7 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
+import ParsePromiseKitSwift
 
 class SettingsViewController: FormViewController {
 
