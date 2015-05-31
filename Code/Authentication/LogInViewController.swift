@@ -11,6 +11,7 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
+import PromiseKit
 
 class LogInViewController: FormViewController {
 
@@ -117,20 +118,19 @@ class LogInViewController: FormViewController {
         let username = formValues[Tags.username] as? String ?? ""
         let password = formValues[Tags.password] as? String ?? ""
 
-        PFUser.logInWithUsernameInBackground(username, password: password) {
-            (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                // User exists
+        PFUser.promiseLogInWithUsername(username, password: password)
+            .then { user -> Void in
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
                 PKHUD.sharedHUD.hide(afterDelay: 1.0)
 
                 self.dismissViewControllerAnimated(true, completion: nil)
-            } else {
+
+            }.catch(policy: .AllErrors) { (error) -> Void in
                 PKHUD.sharedHUD.hide()
 
                 var message: String
 
-                switch error!.code {
+                switch error.code {
                 case 101:
                     message = "Incorrect username or password."
                 default:
@@ -139,7 +139,6 @@ class LogInViewController: FormViewController {
 
                 let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
-            }
         }
     }
 }

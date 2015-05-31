@@ -48,18 +48,15 @@ public class LayerClient {
             }
         }
 
-        return Promise { fulfill, reject in
-            log("Unsuccessfully initialized Layer Client", forLevel: .Error)
-            reject(NSError())
-        }
+        log("Unsuccessfully initialized Layer Client", forLevel: .Error)
+        return Promise(error: "Unsuccessfully initialized Layer Client")
     }
 
     private func loginLayer(userID: String) -> Promise<AnyObject> {
         return self.connectToLayerServer()
-
-        .then { _ in
-            return self.authenticateLayerWithUserID(userID)
-        }
+            .then { _ in
+                return self.authenticateLayerWithUserID(userID)
+            }
     }
 
     private func connectToLayerServer() -> Promise<Bool> {
@@ -87,9 +84,10 @@ public class LayerClient {
                 }
             } else {
                 // If the client is NOT authenticated with the correct user
-                return self.deauthenticateWithLayer().then { _ in
-                    return self.authenticateWithLayerForTheFirstTime(userID)
-                }
+                return self.deauthenticateWithLayer()
+                    .then { _ in
+                        return self.authenticateWithLayerForTheFirstTime(userID)
+                    }
             }
         } else {
             // If the client is NOT authenticated
@@ -113,14 +111,11 @@ public class LayerClient {
 
     private func authenticateWithLayerForTheFirstTime(userID: String) -> Promise<AnyObject> {
         return requestAuthenticationNonce()
-
-        .then { nonce in
-            return self.generateToken(nonce, userID: userID)
-
-        }.then { identityToken in
-            return self.authenticateWithIdentityToken(identityToken)
-
-        }
+            .then { nonce in
+                return self.generateToken(nonce, userID: userID)
+            }.then { identityToken in
+                return self.authenticateWithIdentityToken(identityToken)
+            }
     }
 
     private func requestAuthenticationNonce() -> Promise<String> {
@@ -138,18 +133,12 @@ public class LayerClient {
     }
 
     private func generateToken(nonce: String, userID: String) -> Promise<String> {
-        return Promise { fulfill, reject in
-            let params = ["nonce": nonce, "userID": userID]
-            PFCloud.callFunctionInBackground("generateToken", withParameters: params, block: { (object, error) -> Void in
-                if error == nil {
-                    log("Successfully generated token from Parse using nonce from Layer", forLevel: .Info)
-                    fulfill(object as! String)
-                } else {
-                    log("Unsuccessfully generated token from Parse using nonce from Layer", forLevel: .Error)
-                    reject(error!)
-                }
-            })
-        }
+        let params = ["nonce": nonce, "userID": userID]
+
+        return PFCloud.promiseFunction("generateToken", withParameters: params)
+            .then { object in
+                return object as! String
+            }
     }
 
     private func authenticateWithIdentityToken(identityToken: String) -> Promise<String> {

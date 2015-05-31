@@ -11,6 +11,7 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
+import PromiseKit
 
 class SignUpViewController: FormViewController {
 
@@ -139,21 +140,19 @@ class SignUpViewController: FormViewController {
         user.email = email
         user["name"] = name
 
-        user.signUpInBackgroundWithBlock {
-            (succeeded: Bool, error: NSError?) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
-                    PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                    
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            } else {
+        user.promiseSignUp()
+            .then { user -> Void in
+                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+
+            }.catch(policy: .AllErrors) { (error) -> Void in
                 PKHUD.sharedHUD.hide()
 
                 var message: String
 
-                switch error!.code {
+                switch error.code {
                 case 202:
                     message = "Username taken. Please try another username."
                 case 203:
@@ -165,6 +164,5 @@ class SignUpViewController: FormViewController {
                 let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
             }
-        }
     }
 }

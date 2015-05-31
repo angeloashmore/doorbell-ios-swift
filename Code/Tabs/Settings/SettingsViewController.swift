@@ -107,19 +107,15 @@ class SettingsViewController: FormViewController {
             PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
             PKHUD.sharedHUD.show()
 
-            PFUser.logOutInBackgroundWithBlock { (error) -> Void in
-                if error == nil {
-                    // Logged out!
-                    LayerClient.sharedClient.deauthenticateWithLayer().then({ (_) -> () in
-                        PKHUD.sharedHUD.hide()
-                        self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
-                    }).catch({ (error) -> () in
-                        println(error)
-                    })
-                } else {
-                    // Error logging out!
+            PFUser.promiseLogOut()
+                .then { _ in
+                    return LayerClient.sharedClient.deauthenticateWithLayer()
+
+                }.then { _ -> Void in
+                    PKHUD.sharedHUD.hide()
+                    self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+
                 }
-            }
         }
         alertController.addAction(OKAction)
 

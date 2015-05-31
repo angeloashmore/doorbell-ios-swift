@@ -514,6 +514,7 @@
 				<string>179262A31B164A25006315AA</string>
 				<string>17D14D7D1B151C89003C93BA</string>
 				<string>179262A71B164A25006315AA</string>
+				<string>17E0A8301B1AAB5200279D20</string>
 				<string>1792629F1B164A25006315AA</string>
 				<string>179262A91B164A25006315AA</string>
 				<string>179262A41B164A25006315AA</string>
@@ -524,6 +525,7 @@
 				<string>179262B31B164A25006315AA</string>
 				<string>1792629A1B164A25006315AA</string>
 				<string>179262AB1B164A25006315AA</string>
+				<string>17E0A8361B1AE5CC00279D20</string>
 				<string>179262B91B164A25006315AA</string>
 				<string>179262AA1B164A25006315AA</string>
 				<string>179262B71B164A25006315AA</string>
@@ -2989,6 +2991,8 @@
 			<key>children</key>
 			<array>
 				<string>17E670051B1288A60086D68F</string>
+				<string>17E0A82F1B1AAB5200279D20</string>
+				<string>17E0A8351B1AE5CC00279D20</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -2996,6 +3000,46 @@
 			<string>Classes</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17E0A82F1B1AAB5200279D20</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ParsePromiseKit.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17E0A8301B1AAB5200279D20</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17E0A82F1B1AAB5200279D20</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17E0A8351B1AE5CC00279D20</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>PromisePFClosures.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17E0A8361B1AE5CC00279D20</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17E0A8351B1AE5CC00279D20</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>17E30D891B0D48CD003331BB</key>
 		<dict>
