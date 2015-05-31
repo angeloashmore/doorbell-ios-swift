@@ -12,4 +12,5 @@ target 'Doorbell' do
   pod 'SwiftForms'
   pod 'Honour'
   pod 'Evergreen'
+  pod 'PromiseKit'
 end

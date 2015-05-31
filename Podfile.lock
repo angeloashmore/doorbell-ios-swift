@@ -2,11 +2,30 @@ PODS:
   - Bolts/Tasks (1.1.5)
   - Evergreen (0.4.1)
   - Honour (0.1.1)
+  - OMGHTTPURLRQ (2.1):
+    - OMGHTTPURLRQ/RQ (= 2.1)
+  - OMGHTTPURLRQ/FormURLEncode (2.1)
+  - OMGHTTPURLRQ/RQ (2.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (2.1)
   - Parse (1.7.4):
     - Bolts/Tasks (>= 1.1.5)
   - ParseUI (1.1.4):
     - Parse (~> 1.7)
   - PKHUD (2.0.1)
+  - PromiseKit (2.0.1):
+    - PromiseKit/Foundation (= 2.0.1)
+    - PromiseKit/QuartzCore (= 2.0.1)
+    - PromiseKit/UIKit (= 2.0.1)
+  - PromiseKit/CorePromise (2.0.1)
+  - PromiseKit/Foundation (2.0.1):
+    - OMGHTTPURLRQ
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (2.0.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (2.0.1):
+    - PromiseKit/CorePromise
   - SwiftForms (1.0)
   - SwiftValidator (2.1.1)
 
@@ -16,6 +35,7 @@ DEPENDENCIES:
   - Parse
   - ParseUI
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
+  - PromiseKit
   - SwiftForms
   - SwiftValidator
 
@@ -32,9 +52,11 @@ SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Evergreen: 11ba79fe1f49dae762df433bbf00b370f93c609b
   Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
+  OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
+  PromiseKit: 99e70653af4599292678d92dc3bcf82b2872a578
   SwiftForms: b16bf2978e6eb6617bc9f438322a1daa6c3d2dbd
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
 

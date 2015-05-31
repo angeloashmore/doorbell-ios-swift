@@ -8,13 +8,14 @@
 
 import Foundation
 import Parse
+import PromiseKit
 
 class UserManager: NSObject {
     var userCache: NSCache = NSCache()
     static let sharedManager = UserManager()
 
-    func queryForUserWithName(searchText: String) -> Promise {
-        return Promise { (resolve, reject) -> () in
+    func queryForUserWithName(searchText: String) -> Promise<[AnyObject]> {
+        return Promise { fulfill, reject in
             let query = PFUser.query()
             query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
 
@@ -32,14 +33,14 @@ class UserManager: NSObject {
                         }
                     }
 
-                    resolve(contacts as [AnyObject])
+                    fulfill(contacts as [AnyObject])
                 }
             })
         }
     }
 
-    func queryForAllUsers() -> Promise {
-        return Promise { (resolve, reject) -> () in
+    func queryForAllUsers() -> Promise<[AnyObject]> {
+        return Promise { fulfill, reject in
             let query = PFUser.query()
             query?.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
 
@@ -47,14 +48,14 @@ class UserManager: NSObject {
                 if let error = error {
                     reject(error)
                 } else {
-                    resolve(objects)
+                    fulfill(objects!)
                 }
             })
         }
     }
 
-    func queryAndCacheUsersWithIDs(userIDs: [String]) -> Promise {
-        return Promise { (resolve, reject) -> () in
+    func queryAndCacheUsersWithIDs(userIDs: [String]) -> Promise<[AnyObject]> {
+        return Promise { fulfill, reject in
             let query = PFUser.query()
             query?.whereKey("objectId", containedIn: userIDs)
 
@@ -68,9 +69,9 @@ class UserManager: NSObject {
                         }
 
                         if users.count > 0 {
-                            resolve(objects)
+                            fulfill(objects!)
                         } else {
-                            resolve(nil)
+                            reject(NSError())
                         }
                     }
                 }

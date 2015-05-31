@@ -107,7 +107,7 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
         UserManager.sharedManager.queryForAllUsers()
 
         .then { (users) -> () in
-            let controller = ChatsParticipantTableViewController(participants: NSSet(array: users as! [AnyObject]) as Set<NSObject>, sortType: ATLParticipantPickerSortType.FirstName)
+            let controller = ChatsParticipantTableViewController(participants: NSSet(array: users) as Set<NSObject>, sortType: ATLParticipantPickerSortType.FirstName)
             controller.delegate = self
 
             let navigationController = UINavigationController(rootViewController: controller)
@@ -122,8 +122,8 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     override func addressBarViewController(addressBarViewController: ATLAddressBarViewController!, searchForParticipantsMatchingText searchText: String!, completion: (([AnyObject]!) -> Void)!) {
         UserManager.sharedManager.queryForUserWithName(searchText)
 
-        .then { (anything) -> () in
-            completion(anything as! [AnyObject])
+        .then { (users) -> () in
+            completion(users)
 
         }.catch { (error) -> () in
             log("Error search for participants: \(error)", forLevel: .Error)
@@ -141,7 +141,7 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
         UserManager.sharedManager.queryForUserWithName(searchText)
 
         .then { (participants) -> () in
-            completion(NSSet(array: participants as! [AnyObject]) as Set<NSObject>)
+            completion(NSSet(array: participants) as Set<NSObject>)
 
         }.catch { (error) -> () in
             log("Error search for participants: \(error)", forLevel: .Error)
