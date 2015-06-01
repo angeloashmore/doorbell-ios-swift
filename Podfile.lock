@@ -11,9 +11,8 @@ PODS:
   - OMGHTTPURLRQ/UserAgent (2.1)
   - Parse (1.7.4):
     - Bolts/Tasks (>= 1.1.5)
-  - ParsePromiseKitSwift (0.0.4):
+  - ParsePromiseKitSwift (0.0.5):
     - Parse (~> 1.7)
-    - Parse-OSX (~> 1.7)
     - ParseUI (~> 1.1.1)
     - PromiseKit (~> 2.0)
   - ParseUI (1.1.4):
@@ -38,7 +37,7 @@ DEPENDENCIES:
   - Evergreen
   - Honour
   - Parse
-  - ParsePromiseKitSwift (from `https://github.com/angeloashmore/Parse-PromiseKit-Swift.git`)
+  - ParsePromiseKitSwift
   - ParseUI
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
   - PromiseKit
@@ -46,15 +45,10 @@ DEPENDENCIES:
   - SwiftValidator
 
 EXTERNAL SOURCES:
-  ParsePromiseKitSwift:
-    :git: https://github.com/angeloashmore/Parse-PromiseKit-Swift.git
   PKHUD:
     :git: https://github.com/pkluz/PKHUD.git
 
 CHECKOUT OPTIONS:
-  ParsePromiseKitSwift:
-    :commit: 2ef5cd0e924b632c9ee58c15c7e342e4041f1a66
-    :git: https://github.com/angeloashmore/Parse-PromiseKit-Swift.git
   PKHUD:
     :commit: 86f3f342a6d83b124a8de4ed31f0ffda1ad3aeaa
     :git: https://github.com/pkluz/PKHUD.git
@@ -65,7 +59,7 @@ SPEC CHECKSUMS:
   Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
-  ParsePromiseKitSwift: e105ae306e6625ed588f2831894af2883f056e9c
+  ParsePromiseKitSwift: 15a7ef837160c32732587569736345353976515b
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
   PromiseKit: 99e70653af4599292678d92dc3bcf82b2872a578

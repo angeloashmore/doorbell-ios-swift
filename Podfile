@@ -1,4 +1,6 @@
-# Uncomment this line to define a global platform for your project
+source 'https://github.com/doorbellapp/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '8.0'
 use_frameworks!
 
@@ -13,5 +15,5 @@ target 'Doorbell' do
   pod 'Honour'
   pod 'Evergreen'
   pod 'PromiseKit'
-  pod 'ParsePromiseKitSwift', git: 'https://github.com/angeloashmore/ParsePromiseKitSwift.git'
+  pod 'ParsePromiseKitSwift'
 end
