@@ -14,26 +14,18 @@ import PromiseKit
 
 public class LayerClient {
 
-    // MARK: Constants
-    private struct Constants {
-        static let sharedClient = LayerClient()
-    }
-
-
     // MARK: Class Properties
-    public class var sharedClient: LayerClient {
-        return Constants.sharedClient
-    }
+    static let sharedClient = LayerClient()
 
 
     // MARK: Instance Properties
+    public var client: LYRClient?
+
     public var appID: NSUUID? {
         didSet {
             client = LYRClient(appID: appID)
         }
     }
-
-    public var client: LYRClient?
 
 
     // MARK: Methods

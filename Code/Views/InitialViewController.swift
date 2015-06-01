@@ -9,18 +9,19 @@
 import UIKit
 import Parse
 import PKHUD
+import ParsePromiseKitSwift
 
 class InitialViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        if PFUser.currentUser() == nil {
+        if let currentUser = PFUser.currentUser() {
+            initializeLayerClient()
+        } else {
             let authenticationStoryboard = UIStoryboard(name: "Authentication", bundle: nil)
             let authenticationVC = authenticationStoryboard.instantiateInitialViewController() as! UIViewController
             self.presentViewController(authenticationVC, animated: true, completion: nil)
-        } else {
-            initializeLayerClient()
         }
     }
 
@@ -29,18 +30,17 @@ class InitialViewController: UIViewController {
         PKHUD.sharedHUD.show()
 
         LayerClient.sharedClient.initializeClient()
+            .then { _ -> Void in
+                PKHUD.sharedHUD.hide()
+                
+                let controller = TabBarController()
+                self.presentViewController(controller, animated: true, completion: nil)
 
-        .then { (_) -> () in
-            PKHUD.sharedHUD.hide()
-            
-            let controller = TabBarController()
-            self.presentViewController(controller, animated: true, completion: nil)
+            }.catch(policy: .AllErrors) { (error) -> Void in
+                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
 
-        }.catch { (error) -> () in
-            PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
-            PKHUD.sharedHUD.hide(afterDelay: 1.0)
-
-        }
+            }
     }
 
 }
