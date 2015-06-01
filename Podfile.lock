@@ -2,6 +2,7 @@ PODS:
   - Bolts/Tasks (1.1.5)
   - Evergreen (0.4.1)
   - Honour (0.1.1)
+  - LayerKit (0.13.2)
   - OMGHTTPURLRQ (2.1):
     - OMGHTTPURLRQ/RQ (= 2.1)
   - OMGHTTPURLRQ/FormURLEncode (2.1)
@@ -36,6 +37,7 @@ PODS:
 DEPENDENCIES:
   - Evergreen
   - Honour
+  - LayerKit
   - Parse
   - ParsePromiseKitSwift
   - ParseUI
@@ -57,6 +59,7 @@ SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   Evergreen: 11ba79fe1f49dae762df433bbf00b370f93c609b
   Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
+  LayerKit: 5a5cdfed55b3c56e7a6bb23323ecca1ad1e6183f
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
   ParsePromiseKitSwift: 15a7ef837160c32732587569736345353976515b

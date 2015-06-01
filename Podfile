@@ -5,8 +5,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'Doorbell' do
-  # pod 'LayerKit'
-  # pod 'Atlas'
+  pod 'LayerKit'
+#  pod 'Atlas'
   pod 'Parse'
   pod 'ParseUI'
   pod 'SwiftValidator'
