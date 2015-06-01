@@ -27,12 +27,12 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
         self.dateFormatter!.dateStyle = NSDateFormatterStyle.ShortStyle
         self.dateFormatter!.timeStyle = NSDateFormatterStyle.ShortStyle
 
-
         self.configureUI()
     }
 
     func configureUI() {
         ATLOutgoingMessageCollectionViewCell.appearance().messageTextColor = UIColor.whiteColor()
+        ATLOutgoingMessageCollectionViewCell.appearance().bubbleViewColor = self.view.tintColor
     }
 
     func conversationViewController(viewController: ATLConversationViewController!, didSendMessage message: LYRMessage!) {

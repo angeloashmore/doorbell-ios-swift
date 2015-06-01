@@ -32,8 +32,9 @@ class TabBarController: UITabBarController {
         }
 
         let icon = UIImage(named: "\(name)Icon")
-        controller.tabBarItem = UITabBarItem(title: nil, image: icon, selectedImage: icon)
-        controller.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
+        let iconFilled = UIImage(named: "\(name)FilledIcon")
+        controller.tabBarItem = UITabBarItem(title: name, image: icon, selectedImage: iconFilled)
+//        controller.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
 
         return controller
     }
