@@ -14,24 +14,24 @@ import Evergreen
 
 class ChatsConversationListViewController: ATLConversationListViewController, ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource {
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
-
-        let composeItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Compose, target: self, action: "composeButtonTapped")
-        self.navigationItem.rightBarButtonItem = composeItem
-    }
-
+    // MARK: Life-Cycle Methods
     override func viewDidLoad() {
         self.dataSource = self
         self.delegate = self
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let composeButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "composeButtonTapped")
+        self.navigationItem.rightBarButtonItem = composeButton
+    }
+
+
+    // MARK: Methods
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
-        log("Selected conversation")
         let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
         controller.conversation = conversation
-        self.tabBarController?.tabBar.hidden = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
 
@@ -48,7 +48,30 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, titleForConversation conversation: LYRConversation!) -> String! {
-        return "Title"
+        if let title = conversation.metadata["title"] as? String {
+            return title
+        } else {
+            let unresolvedParticipants = UserManager.sharedManager.unCachedUserIDsFromParticipants(conversation.participants) as! [String]
+            let resolvedNames = UserManager.sharedManager.resolvedNamesFromParticipants(conversation.participants) as! [String]
+
+            if unresolvedParticipants.count > 0 {
+                UserManager.sharedManager.queryAndCacheUsersWithIDs(unresolvedParticipants)
+                    .then { objects -> Void in
+                        if objects.count > 0 {
+                            self.reloadCellForConversation(conversation)
+                        }
+                    }
+            }
+
+            if resolvedNames.count > 0 && unresolvedParticipants.count > 0 {
+                let names = ", ".join(resolvedNames)
+                return "\(names) and \(unresolvedParticipants.count) others"
+            } else if resolvedNames.count > 0 && unresolvedParticipants.count == 0 {
+                return ", ".join(resolvedNames)
+            } else {
+                return "Conversation with \(conversation.participants.count) users"
+            }
+        }
     }
 
     func composeButtonTapped() {

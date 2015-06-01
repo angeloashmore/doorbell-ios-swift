@@ -23,10 +23,6 @@ class ChatsNavigationViewController: UINavigationController {
 
         let rootViewController = ChatsConversationListViewController(layerClient: LayerClient.sharedClient.client)
         self.setViewControllers([rootViewController], animated: false)
-
-        let icon = UIImage(named: "ChatsIcon")
-        self.tabBarItem = UITabBarItem(title: nil, image: icon, selectedImage: icon)
-        self.tabBarItem.imageInsets = UIEdgeInsetsMake(5.5, 0, -5.5, 0)
     }
 
 }

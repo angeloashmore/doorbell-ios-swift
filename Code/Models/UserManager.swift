@@ -74,7 +74,7 @@ class UserManager: NSObject {
         }
     }
 
-    func unCachedUserIDsFromParticipants(participants: [String]) -> NSArray {
+    func unCachedUserIDsFromParticipants(participants: Set<NSObject>) -> NSArray {
         let array = NSMutableArray()
 
         for userID in participants {
@@ -87,7 +87,7 @@ class UserManager: NSObject {
         return NSArray(array: array)
     }
 
-    func resolvedNamesFromParticipants(participants: [String]) -> NSArray {
+    func resolvedNamesFromParticipants(participants: Set<NSObject>) -> NSArray {
         let array = NSMutableArray()
 
         for userID in participants {
