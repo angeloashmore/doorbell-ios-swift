@@ -12,9 +12,15 @@ import PromiseKit
 import ParsePromiseKitSwift
 
 class UserManager: NSObject {
-    var userCache: NSCache = NSCache()
+    // MARK: Class Properties
     static let sharedManager = UserManager()
 
+
+    // MARK: Instance Properties
+    var userCache = NSCache()
+    
+
+    // MARK: Methods
     func queryForUserWithName(searchText: String) -> Promise<[AnyObject]> {
         let query = PFUser.query()!
         query.whereKey("objectId", notEqualTo: PFUser.currentUser()!.objectId!)
