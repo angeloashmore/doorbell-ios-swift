@@ -16,6 +16,7 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
     // MARK: Life-Cycle Methods
     override func viewDidLoad() {
+        self.title = "Chats"
         self.dataSource = self
         self.delegate = self
     }
@@ -32,7 +33,10 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
         let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
         controller.conversation = conversation
+
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
+        self.hidesBottomBarWhenPushed = false
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didDeleteConversation conversation: LYRConversation!, deletionMode: LYRDeletionMode) {

@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Layer.
         LayerClient.sharedClient.appID = NSUUID(UUIDString: ExternalKeys.Layer.AppID)
 
+        window?.backgroundColor = UIColor.whiteColor()
+
         return true
     }
 

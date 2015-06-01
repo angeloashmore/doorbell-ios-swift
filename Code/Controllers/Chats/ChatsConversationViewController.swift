@@ -19,6 +19,8 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Chat"
+
         self.dataSource = self
         self.delegate = self
         self.addressBarController?.delegate = self

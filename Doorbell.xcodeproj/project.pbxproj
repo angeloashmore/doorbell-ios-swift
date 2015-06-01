@@ -52,8 +52,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>LogInViewController.swift</string>
 			<key>path</key>
 			<string>LogInViewController.swift</string>
 			<key>sourceTree</key>
@@ -74,8 +72,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>SignUpViewController.swift</string>
 			<key>path</key>
 			<string>SignUpViewController.swift</string>
 			<key>sourceTree</key>
@@ -159,8 +155,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>TabBarController.swift</string>
 			<key>path</key>
 			<string>TabBarController.swift</string>
 			<key>sourceTree</key>
@@ -181,8 +175,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>ChatsConversationListViewController.swift</string>
 			<key>path</key>
 			<string>ChatsConversationListViewController.swift</string>
 			<key>sourceTree</key>
@@ -203,8 +195,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>SettingsViewController.swift</string>
 			<key>path</key>
 			<string>SettingsViewController.swift</string>
 			<key>sourceTree</key>
@@ -225,8 +215,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>SettingsEditProfileViewController.swift</string>
 			<key>path</key>
 			<string>SettingsEditProfileViewController.swift</string>
 			<key>sourceTree</key>
@@ -267,8 +255,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>ChatsParticipantTableViewController.swift</string>
 			<key>path</key>
 			<string>ChatsParticipantTableViewController.swift</string>
 			<key>sourceTree</key>
@@ -311,10 +297,10 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17F01EF51B113C1A00244ED8</string>
 				<string>17850AD71B0D464600504176</string>
-				<string>17850ADF1B0D464600504176</string>
 				<string>17850AE11B0D464600504176</string>
+				<string>17CB52F91B1D1945000E96C6</string>
+				<string>17CB52FB1B1D19CC000E96C6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -497,31 +483,13 @@
 			<array>
 				<string>17223D381B0FB0C400B37BCD</string>
 				<string>17850AE31B0D464600504176</string>
-				<string>17F01F121B113C2800244ED8</string>
+				<string>17CB52FC1B1D19CC000E96C6</string>
 				<string>17D14D8D1B153B73003C93BA</string>
-				<string>17F01F0D1B113C2800244ED8</string>
 				<string>17D14D9D1B154CE3003C93BA</string>
-				<string>17F01F191B113C2800244ED8</string>
-				<string>17F01F171B113C2800244ED8</string>
-				<string>17F01F101B113C2800244ED8</string>
-				<string>17F01F0E1B113C2800244ED8</string>
 				<string>17D14D9B1B154CCC003C93BA</string>
-				<string>17F01F181B113C2800244ED8</string>
-				<string>17F01F111B113C2800244ED8</string>
-				<string>17850AE01B0D464600504176</string>
-				<string>17F01F0C1B113C2800244ED8</string>
-				<string>17F01F0F1B113C2800244ED8</string>
-				<string>17F01F151B113C2800244ED8</string>
-				<string>17F01F141B113C2800244ED8</string>
-				<string>17F01F131B113C2800244ED8</string>
-				<string>17F01F161B113C2800244ED8</string>
 				<string>17D14D931B1540B2003C93BA</string>
-				<string>17F01F0B1B113C2800244ED8</string>
-				<string>17F01F0A1B113C2800244ED8</string>
-				<string>17F01F1A1B113C2800244ED8</string>
-				<string>17F01F1B1B113C2800244ED8</string>
+				<string>17CB52FA1B1D1945000E96C6</string>
 				<string>17D14D991B154C99003C93BA</string>
-				<string>17F01F091B113C2800244ED8</string>
 			</array>
 			<key>isa</key>
 			<string>PBXResourcesBuildPhase</string>
@@ -641,24 +609,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>17850AD81B0D464600504176</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17850ADF1B0D464600504176</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Images.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17850AE01B0D464600504176</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17850ADF1B0D464600504176</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -2652,8 +2602,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>ChatsConversationViewController.swift</string>
 			<key>path</key>
 			<string>ChatsConversationViewController.swift</string>
 			<key>sourceTree</key>
@@ -2681,8 +2629,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Controllers</string>
 			<key>path</key>
 			<string>Controllers</string>
 			<key>sourceTree</key>
@@ -2699,8 +2645,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Chats</string>
 			<key>path</key>
 			<string>Chats</string>
 			<key>sourceTree</key>
@@ -2714,8 +2658,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Calendar</string>
 			<key>path</key>
 			<string>Calendar</string>
 			<key>sourceTree</key>
@@ -2729,8 +2671,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Directory</string>
 			<key>path</key>
 			<string>Directory</string>
 			<key>sourceTree</key>
@@ -2744,8 +2684,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Ads</string>
 			<key>path</key>
 			<string>Ads</string>
 			<key>sourceTree</key>
@@ -2761,8 +2699,6 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Settings</string>
 			<key>path</key>
 			<string>Settings</string>
 			<key>sourceTree</key>
@@ -2777,12 +2713,46 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Authentication</string>
 			<key>path</key>
 			<string>Authentication</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17CB52F91B1D1945000E96C6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17CB52FA1B1D1945000E96C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17CB52F91B1D1945000E96C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17CB52FB1B1D19CC000E96C6</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.plug-in</string>
+			<key>path</key>
+			<string>AtlasResource.bundle</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17CB52FC1B1D19CC000E96C6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17CB52FB1B1D19CC000E96C6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>17D14D751B14F751003C93BA</key>
 		<dict>
@@ -2792,8 +2762,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>InitialViewController.swift</string>
 			<key>path</key>
 			<string>InitialViewController.swift</string>
 			<key>sourceTree</key>
@@ -2814,8 +2782,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>ChatsNavigationViewController.swift</string>
 			<key>path</key>
 			<string>ChatsNavigationViewController.swift</string>
 			<key>sourceTree</key>
@@ -2836,8 +2802,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>CalendarViewController.swift</string>
 			<key>path</key>
 			<string>CalendarViewController.swift</string>
 			<key>sourceTree</key>
@@ -2858,8 +2822,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>DirectoryViewController.swift</string>
 			<key>path</key>
 			<string>DirectoryViewController.swift</string>
 			<key>sourceTree</key>
@@ -2880,8 +2842,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>AdsViewController.swift</string>
 			<key>path</key>
 			<string>AdsViewController.swift</string>
 			<key>sourceTree</key>
@@ -2902,8 +2862,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
 			<key>path</key>
 			<string>Main.storyboard</string>
 			<key>sourceTree</key>
@@ -2924,8 +2882,6 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
-			<key>name</key>
-			<string>SettingsAboutViewController.swift</string>
 			<key>path</key>
 			<string>SettingsAboutViewController.swift</string>
 			<key>sourceTree</key>
@@ -3079,379 +3035,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>17E670051B1288A60086D68F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01EF51B113C1A00244ED8</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>17F01EF61B113C2800244ED8</string>
-				<string>17F01EF71B113C2800244ED8</string>
-				<string>17F01EF81B113C2800244ED8</string>
-				<string>17F01EF91B113C2800244ED8</string>
-				<string>17F01EFA1B113C2800244ED8</string>
-				<string>17F01EFB1B113C2800244ED8</string>
-				<string>17F01EFC1B113C2800244ED8</string>
-				<string>17F01EFD1B113C2800244ED8</string>
-				<string>17F01EFE1B113C2800244ED8</string>
-				<string>17F01EFF1B113C2800244ED8</string>
-				<string>17F01F001B113C2800244ED8</string>
-				<string>17F01F011B113C2800244ED8</string>
-				<string>17F01F021B113C2800244ED8</string>
-				<string>17F01F031B113C2800244ED8</string>
-				<string>17F01F041B113C2800244ED8</string>
-				<string>17F01F051B113C2800244ED8</string>
-				<string>17F01F061B113C2800244ED8</string>
-				<string>17F01F071B113C2800244ED8</string>
-				<string>17F01F081B113C2800244ED8</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>Atlas</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EF61B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>block.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EF71B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>block@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EF81B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>block@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EF91B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>camera_dark.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFA1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>camera_dark@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFB1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>camera_dark@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFC1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>chevron.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFD1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>chevron@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFE1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>chevron@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01EFF1B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file</string>
-			<key>path</key>
-			<string>layerbell.caf</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F001B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>layerLogo.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F011B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>layerLogo@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F021B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>layerLogo@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F031B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>location_dark.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F041B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>location_dark@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F051B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>location_dark@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F061B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>plus.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F071B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>plus@2x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F081B113C2800244ED8</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>image.png</string>
-			<key>path</key>
-			<string>plus@3x.png</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>17F01F091B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EF61B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0A1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EF71B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0B1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EF81B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0C1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EF91B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0D1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFA1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0E1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFB1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F0F1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFC1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F101B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFD1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F111B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFE1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F121B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01EFF1B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F131B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F001B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F141B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F011B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F151B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F021B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F161B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F031B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F171B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F041B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F181B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F051B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F191B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F061B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F1A1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F071B113C2800244ED8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>17F01F1B1B113C2800244ED8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>17F01F081B113C2800244ED8</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
