@@ -52,6 +52,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>LogInViewController.swift</string>
 			<key>path</key>
 			<string>LogInViewController.swift</string>
 			<key>sourceTree</key>
@@ -72,6 +74,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SignUpViewController.swift</string>
 			<key>path</key>
 			<string>SignUpViewController.swift</string>
 			<key>sourceTree</key>
@@ -89,8 +93,6 @@
 			<key>children</key>
 			<array>
 				<string>17223D371B0FB0C400B37BCD</string>
-				<string>17223D391B0FB21C00B37BCD</string>
-				<string>17223D3B1B0FC11F00B37BCD</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -117,7 +119,6 @@
 			<key>children</key>
 			<array>
 				<string>17D14D9C1B154CE3003C93BA</string>
-				<string>17D14D861B15201B003C93BA</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -131,9 +132,6 @@
 			<key>children</key>
 			<array>
 				<string>17D14D921B1540B2003C93BA</string>
-				<string>173CC1441B11A771007ACB1C</string>
-				<string>17D14D901B15402E003C93BA</string>
-				<string>173CC1481B11CF7F007ACB1C</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -145,12 +143,7 @@
 		<key>173CC13B1B116F98007ACB1C</key>
 		<dict>
 			<key>children</key>
-			<array>
-				<string>17D14D7C1B151C89003C93BA</string>
-				<string>173CC1421B1177E7007ACB1C</string>
-				<string>17A9C9C21B15D4A000DD5E20</string>
-				<string>177589681B1910640094CED2</string>
-			</array>
+			<array/>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>path</key>
@@ -166,6 +159,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>TabBarController.swift</string>
 			<key>path</key>
 			<string>TabBarController.swift</string>
 			<key>sourceTree</key>
@@ -186,6 +181,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>ChatsConversationListViewController.swift</string>
 			<key>path</key>
 			<string>ChatsConversationListViewController.swift</string>
 			<key>sourceTree</key>
@@ -206,6 +203,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SettingsViewController.swift</string>
 			<key>path</key>
 			<string>SettingsViewController.swift</string>
 			<key>sourceTree</key>
@@ -226,6 +225,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SettingsEditProfileViewController.swift</string>
 			<key>path</key>
 			<string>SettingsEditProfileViewController.swift</string>
 			<key>sourceTree</key>
@@ -266,6 +267,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>ChatsParticipantTableViewController.swift</string>
 			<key>path</key>
 			<string>ChatsParticipantTableViewController.swift</string>
 			<key>sourceTree</key>
@@ -283,7 +286,6 @@
 			<key>children</key>
 			<array>
 				<string>17D14D981B154C99003C93BA</string>
-				<string>17D14D801B151E7B003C93BA</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -297,7 +299,6 @@
 			<key>children</key>
 			<array>
 				<string>17D14D9A1B154CCC003C93BA</string>
-				<string>17D14D841B151FF2003C93BA</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -586,8 +587,8 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D8C1B153B73003C93BA</string>
 				<string>17850AD81B0D464600504176</string>
+				<string>17ABCF691B1D128700DF2385</string>
 				<string>17D14D9E1B154D20003C93BA</string>
 				<string>179262431B16384B006315AA</string>
 				<string>17D14D9F1B154E0C003C93BA</string>
@@ -2651,6 +2652,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>ChatsConversationViewController.swift</string>
 			<key>path</key>
 			<string>ChatsConversationViewController.swift</string>
 			<key>sourceTree</key>
@@ -2663,6 +2666,124 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>17ABCF691B1D128700DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17D14D751B14F751003C93BA</string>
+				<string>173CC1401B117323007ACB1C</string>
+				<string>17ABCF6F1B1D12AC00DF2385</string>
+				<string>17ABCF6A1B1D129400DF2385</string>
+				<string>17ABCF6B1B1D129800DF2385</string>
+				<string>17ABCF6C1B1D129C00DF2385</string>
+				<string>17ABCF6D1B1D12A100DF2385</string>
+				<string>17ABCF6E1B1D12A600DF2385</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Controllers</string>
+			<key>path</key>
+			<string>Controllers</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6A1B1D129400DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17D14D7C1B151C89003C93BA</string>
+				<string>173CC1421B1177E7007ACB1C</string>
+				<string>17A9C9C21B15D4A000DD5E20</string>
+				<string>177589681B1910640094CED2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Chats</string>
+			<key>path</key>
+			<string>Chats</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6B1B1D129800DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17D14D801B151E7B003C93BA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Calendar</string>
+			<key>path</key>
+			<string>Calendar</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6C1B1D129C00DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17D14D841B151FF2003C93BA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Directory</string>
+			<key>path</key>
+			<string>Directory</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6D1B1D12A100DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17D14D861B15201B003C93BA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Ads</string>
+			<key>path</key>
+			<string>Ads</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6E1B1D12A600DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>173CC1441B11A771007ACB1C</string>
+				<string>17D14D901B15402E003C93BA</string>
+				<string>173CC1481B11CF7F007ACB1C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Settings</string>
+			<key>path</key>
+			<string>Settings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17ABCF6F1B1D12AC00DF2385</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>17223D391B0FB21C00B37BCD</string>
+				<string>17223D3B1B0FC11F00B37BCD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Authentication</string>
+			<key>path</key>
+			<string>Authentication</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>17D14D751B14F751003C93BA</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -2671,6 +2792,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>InitialViewController.swift</string>
 			<key>path</key>
 			<string>InitialViewController.swift</string>
 			<key>sourceTree</key>
@@ -2691,6 +2814,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>ChatsNavigationViewController.swift</string>
 			<key>path</key>
 			<string>ChatsNavigationViewController.swift</string>
 			<key>sourceTree</key>
@@ -2711,6 +2836,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>CalendarViewController.swift</string>
 			<key>path</key>
 			<string>CalendarViewController.swift</string>
 			<key>sourceTree</key>
@@ -2731,6 +2858,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>DirectoryViewController.swift</string>
 			<key>path</key>
 			<string>DirectoryViewController.swift</string>
 			<key>sourceTree</key>
@@ -2751,6 +2880,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>AdsViewController.swift</string>
 			<key>path</key>
 			<string>AdsViewController.swift</string>
 			<key>sourceTree</key>
@@ -2771,6 +2902,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
 			<key>path</key>
 			<string>Main.storyboard</string>
 			<key>sourceTree</key>
@@ -2791,6 +2924,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SettingsAboutViewController.swift</string>
 			<key>path</key>
 			<string>SettingsAboutViewController.swift</string>
 			<key>sourceTree</key>
@@ -2887,8 +3022,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>17D14D751B14F751003C93BA</string>
-				<string>173CC1401B117323007ACB1C</string>
+				<string>17D14D8C1B153B73003C93BA</string>
 				<string>17223D3D1B0FCF5E00B37BCD</string>
 				<string>173CC13B1B116F98007ACB1C</string>
 				<string>178403A11B11549C00EBA244</string>
