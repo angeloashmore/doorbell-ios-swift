@@ -94,6 +94,8 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Authentication</string>
 			<key>path</key>
 			<string>Authentication</string>
 			<key>sourceTree</key>
@@ -668,11 +670,9 @@
 			<array>
 				<string>17D14D8C1B153B73003C93BA</string>
 				<string>17850AD81B0D464600504176</string>
-				<string>17D14D751B14F751003C93BA</string>
-				<string>17223D3D1B0FCF5E00B37BCD</string>
 				<string>17D14D9E1B154D20003C93BA</string>
-				<string>17D14D9F1B154E0C003C93BA</string>
 				<string>179262431B16384B006315AA</string>
+				<string>17D14D9F1B154E0C003C93BA</string>
 				<string>17850AD61B0D464600504176</string>
 			</array>
 			<key>isa</key>
@@ -2754,6 +2754,8 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>InitialViewController.swift</string>
 			<key>path</key>
 			<string>InitialViewController.swift</string>
 			<key>sourceTree</key>
@@ -2970,7 +2972,9 @@
 		<dict>
 			<key>children</key>
 			<array>
+				<string>17D14D751B14F751003C93BA</string>
 				<string>173CC1401B117323007ACB1C</string>
+				<string>17223D3D1B0FCF5E00B37BCD</string>
 				<string>173CC13B1B116F98007ACB1C</string>
 				<string>178403A11B11549C00EBA244</string>
 				<string>178403A41B11550E00EBA244</string>
@@ -2979,8 +2983,10 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Views</string>
 			<key>path</key>
-			<string>Tabs</string>
+			<string>Views</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2992,8 +2998,10 @@
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Utilities</string>
 			<key>path</key>
-			<string>Classes</string>
+			<string>Utilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
