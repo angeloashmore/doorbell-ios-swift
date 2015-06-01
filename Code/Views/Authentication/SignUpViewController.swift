@@ -17,7 +17,8 @@ class SignUpViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
-        static let name = "name"
+        static let firstName = "firstName"
+        static let lastName = "lastName"
         static let email = "email"
         static let username = "username"
         static let password = "password"
@@ -25,7 +26,8 @@ class SignUpViewController: FormViewController {
     }
 
     private struct Validators {
-        static let name = Validator().addRule(NotEmpty())
+        static let firstName = Validator().addRule(NotEmpty())
+        static let lastName = Validator().addRule(NotEmpty())
         static let email = Validator().addRule(NotEmpty()).addRule(Email())
         static let username = Validator().addRule(NotEmpty()).addRule(Length(min: 3))
         static let password = Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
@@ -34,7 +36,7 @@ class SignUpViewController: FormViewController {
 
     private struct VisualConstraints {
         static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(85)]-[textField]-16-|"]
+            return ["H:|-16-[titleLabel(90)]-[textField]-16-|"]
         }
     }
     
@@ -61,7 +63,11 @@ class SignUpViewController: FormViewController {
 
         let section1 = FormSectionDescriptor()
 
-        var row = FormRowDescriptor(tag: Tags.name, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        var row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
+        section1.addRow(row)
+
+        row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
         row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
         section1.addRow(row)
 
@@ -106,7 +112,8 @@ class SignUpViewController: FormViewController {
         let values = form.formValues()
         var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
 
-        results[Tags.name] = Validators.name.assert(values[Tags.name] as? String ?? "")
+        results[Tags.firstName] = Validators.firstName.assert(values[Tags.firstName] as? String ?? "")
+        results[Tags.lastName] = Validators.lastName.assert(values[Tags.lastName] as? String ?? "")
         results[Tags.email] = Validators.email.assert(values[Tags.email] as? String ?? "")
         results[Tags.username] = Validators.username.assert(values[Tags.username] as? String ?? "")
         results[Tags.password] = Validators.password.assert(values[Tags.password] as? String ?? "")
@@ -132,13 +139,15 @@ class SignUpViewController: FormViewController {
         let username = formValues[Tags.username] as? String ?? ""
         let password = formValues[Tags.password] as? String ?? ""
         let email = formValues[Tags.email] as? String ?? ""
-        let name = formValues[Tags.name] as? String ?? ""
+        let firstName = formValues[Tags.firstName] as? String ?? ""
+        let lastName = formValues[Tags.lastName] as? String ?? ""
         
         let user = PFUser()
         user.username = username
         user.password = password
         user.email = email
-        user["name"] = name
+        user["firstName"] = firstName
+        user["lastName"] = lastName
 
         user.promiseSignUp()
             .then { user -> Void in

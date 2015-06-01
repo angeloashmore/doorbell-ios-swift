@@ -16,18 +16,20 @@ class SettingsEditProfileViewController: FormViewController {
 
     // MARK: Class Properties
     private struct Tags {
-        static let name = "name"
+        static let firstName = "fistName"
+        static let lastName = "lastName"
         static let email = "email"
     }
 
     private struct Validators {
-        static let name = Validator().addRule(NotEmpty())
+        static let firstName = Validator().addRule(NotEmpty())
+        static let lastName = Validator().addRule(NotEmpty())
         static let email = Validator().addRule(NotEmpty()).addRule(Email())
     }
 
     private struct VisualConstraints {
         static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(85)]-[textField]-16-|"]
+            return ["H:|-16-[titleLabel(90)]-[textField]-16-|"]
         }
     }
 
@@ -55,9 +57,14 @@ class SettingsEditProfileViewController: FormViewController {
 
         let section1 = FormSectionDescriptor()
 
-        row = FormRowDescriptor(tag: Tags.name, rowType: FormRowType.Name, title: "Full Name", placeholder: "First Last")
+        row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
         row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        row.value = PFUser.currentUser()?.objectForKey("name") as? String ?? ""
+        row.value = PFUser.currentUser()?.objectForKey("firstName") as? String ?? ""
+        section1.addRow(row)
+
+        row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
+        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
+        row.value = PFUser.currentUser()?.objectForKey("lastName") as? String ?? ""
         section1.addRow(row)
 
         row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
@@ -87,7 +94,8 @@ class SettingsEditProfileViewController: FormViewController {
         let values = form.formValues()
         var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
 
-        results[Tags.name] = Validators.name.assert(values[Tags.name] as? String ?? "")
+        results[Tags.firstName] = Validators.firstName.assert(values[Tags.firstName] as? String ?? "")
+        results[Tags.lastName] = Validators.lastName.assert(values[Tags.lastName] as? String ?? "")
         results[Tags.email] = Validators.email.assert(values[Tags.email] as? String ?? "")
 
         var isValid = true

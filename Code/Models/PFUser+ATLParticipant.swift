@@ -11,15 +11,15 @@ import Parse
 
 extension PFUser: ATLParticipant {
     public var firstName: String? {
-        return self["name"] as? String
+        return self["firstName"] as? String
     }
 
     public var lastName: String? {
-        return self["name"] as? String
+        return self["lastName"] as? String
     }
 
     public var fullName: String? {
-        return self["name"] as? String
+        return "\(firstName!) \(lastName!)"
     }
 
     public var participantIdentifier: String? {
@@ -35,7 +35,9 @@ extension PFUser: ATLParticipant {
     }
 
     public var avatarInitials: String {
-        return "\(Array(arrayLiteral: self.firstName!)[0])\(Array(arrayLiteral: self.lastName!)[0])"
+        let firstNameInitial = self.firstName![self.firstName!.startIndex]
+        let lastNameInitial = self.lastName![self.lastName!.startIndex]
+        return "\(firstNameInitial)\(lastNameInitial)"
     }
 
 }
