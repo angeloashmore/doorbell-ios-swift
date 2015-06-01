@@ -37,6 +37,7 @@ extension PFUser: ATLParticipant {
     public var avatarInitials: String {
         let firstNameInitial = self.firstName![self.firstName!.startIndex]
         let lastNameInitial = self.lastName![self.lastName!.startIndex]
+
         return "\(firstNameInitial)\(lastNameInitial)"
     }
 
