@@ -11,20 +11,10 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
-import PromiseKit
 
 class SignUpViewController: FormViewController {
 
     // MARK: Class Properties
-    private struct Tags {
-        static let firstName = "firstName"
-        static let lastName = "lastName"
-        static let email = "email"
-        static let username = "username"
-        static let password = "password"
-        static let passwordVerify = "passwordVerify"
-    }
-
     private struct Validators {
         static let firstName = Validator().addRule(NotEmpty())
         static let lastName = Validator().addRule(NotEmpty())
@@ -34,12 +24,6 @@ class SignUpViewController: FormViewController {
 //        static let passwordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
     }
 
-    private struct VisualConstraints {
-        static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(90)]-[textField]-16-|"]
-        }
-    }
-    
 
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
@@ -50,6 +34,8 @@ class SignUpViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Sign Up"
+
         let submitButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
         self.navigationItem.rightBarButtonItem = submitButton
     }
@@ -57,42 +43,9 @@ class SignUpViewController: FormViewController {
 
     // MARK: Form Configuration
     private func loadForm() {
-        let form = FormDescriptor()
+        let formView = SignUpFormView()
 
-        form.title = "Sign Up"
-
-        let section1 = FormSectionDescriptor()
-
-        var row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section1.addRow(row)
-
-        row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section1.addRow(row)
-
-        row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section1.addRow(row)
-
-        let section2 = FormSectionDescriptor()
-        section2.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
-
-        row = FormRowDescriptor(tag: Tags.username, rowType: FormRowType.Name, title: "Username", placeholder: "Required")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section2.addRow(row)
-
-        row = FormRowDescriptor(tag: Tags.password, rowType: FormRowType.Password, title: "Password", placeholder: "Required")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section2.addRow(row)
-
-        row = FormRowDescriptor(tag: Tags.passwordVerify, rowType: FormRowType.Password, title: "Verify", placeholder: "Retype password")
-        row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-        section2.addRow(row)
-
-        form.sections = [section1, section2]
-
-        self.form = form
+        self.form = formView.form
     }
 
 
@@ -112,12 +65,12 @@ class SignUpViewController: FormViewController {
         let values = form.formValues()
         var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
 
-        results[Tags.firstName] = Validators.firstName.assert(values[Tags.firstName] as? String ?? "")
-        results[Tags.lastName] = Validators.lastName.assert(values[Tags.lastName] as? String ?? "")
-        results[Tags.email] = Validators.email.assert(values[Tags.email] as? String ?? "")
-        results[Tags.username] = Validators.username.assert(values[Tags.username] as? String ?? "")
-        results[Tags.password] = Validators.password.assert(values[Tags.password] as? String ?? "")
-//        results[Tags.passwordVerify] = Validators.passwordVerify.assert(values[Tags.passwordVerify] as? String ?? "")
+        results[SignUpFormView.Tags.firstName] = Validators.firstName.assert(values[SignUpFormView.Tags.firstName] as? String ?? "")
+        results[SignUpFormView.Tags.lastName] = Validators.lastName.assert(values[SignUpFormView.Tags.lastName] as? String ?? "")
+        results[SignUpFormView.Tags.email] = Validators.email.assert(values[SignUpFormView.Tags.email] as? String ?? "")
+        results[SignUpFormView.Tags.username] = Validators.username.assert(values[SignUpFormView.Tags.username] as? String ?? "")
+        results[SignUpFormView.Tags.password] = Validators.password.assert(values[SignUpFormView.Tags.password] as? String ?? "")
+//        results[SignUpFormView.Tags.passwordVerify] = Validators.passwordVerify.assert(values[SignUpFormView.Tags.passwordVerify] as? String ?? "")
 
         var isValid = true
         var invalidRules = Dictionary<String, Array<Rule>>()
@@ -136,11 +89,11 @@ class SignUpViewController: FormViewController {
         PKHUD.sharedHUD.show()
         
         let formValues = form.formValues()
-        let username = formValues[Tags.username] as? String ?? ""
-        let password = formValues[Tags.password] as? String ?? ""
-        let email = formValues[Tags.email] as? String ?? ""
-        let firstName = formValues[Tags.firstName] as? String ?? ""
-        let lastName = formValues[Tags.lastName] as? String ?? ""
+        let username = formValues[SignUpFormView.Tags.username] as? String ?? ""
+        let password = formValues[SignUpFormView.Tags.password] as? String ?? ""
+        let email = formValues[SignUpFormView.Tags.email] as? String ?? ""
+        let firstName = formValues[SignUpFormView.Tags.firstName] as? String ?? ""
+        let lastName = formValues[SignUpFormView.Tags.lastName] as? String ?? ""
         
         let user = PFUser()
         user.username = username

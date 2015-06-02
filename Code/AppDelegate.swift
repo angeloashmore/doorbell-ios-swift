@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import LayerKit
+import ParsePromiseKitSwift
 
 struct ExternalKeys {
     struct Layer {

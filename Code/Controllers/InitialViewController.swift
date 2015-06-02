@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 import PKHUD
-import ParsePromiseKitSwift
 
 class InitialViewController: UIViewController {
 

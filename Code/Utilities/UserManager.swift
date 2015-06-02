@@ -9,7 +9,6 @@
 import Foundation
 import Parse
 import PromiseKit
-import ParsePromiseKitSwift
 
 class UserManager: NSObject {
     // MARK: Class Properties

@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import PKHUD
 import SwiftForms
-import ParsePromiseKitSwift
 
 class SettingsViewController: FormViewController {
 

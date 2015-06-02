@@ -11,18 +11,10 @@ import Parse
 import PKHUD
 import SwiftForms
 import Honour
-import PromiseKit
-import ParsePromiseKitSwift
 
 class LogInViewController: FormViewController {
 
     // MARK: Class Properties
-    private struct Tags {
-        static let username = "username"
-        static let password = "password"
-        static let signUp = "signUp"
-    }
-
     private struct Validators {
         static let username = Validator().addRule(NotEmpty())
         static let password = Validator().addRule(NotEmpty())
@@ -32,11 +24,14 @@ class LogInViewController: FormViewController {
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         self.loadForm()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = "Log In"
 
         let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
         self.navigationItem.rightBarButtonItem = submitButton
@@ -45,38 +40,13 @@ class LogInViewController: FormViewController {
 
     // MARK: Methods
     private func loadForm() {
-        let form = FormDescriptor()
+        let formView = LogInFormView()
 
-        form.title = "Log In"
-
-        let section1 = FormSectionDescriptor()
-        section1.headerTitle = "Account Credentials"
-
-        var row = FormRowDescriptor(tag: Tags.username, rowType: FormRowType.Name, title: "Username", placeholder: "Username")
-        row.title = nil
-        section1.addRow(row)
-
-        row = FormRowDescriptor(tag: Tags.password, rowType: FormRowType.Password, title: "Password", placeholder: "Password")
-        row.title = nil
-        section1.addRow(row)
-
-        let section2 = FormSectionDescriptor()
-        section2.footerTitle = "Join Doorbell now to start chatting with your clients. The first 3 months are FREE and then only $10 a month."
-
-        row = FormRowDescriptor(tag: Tags.signUp, rowType: FormRowType.Button, title: "Create a new Doorbell account")
-        row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
-            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
-        ]
-        row.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.performSegueWithIdentifier("SignUpSegue", sender: self)
+        formView.formRowDescriptors[LogInFormView.Tags.signUp]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+            self.performSegueWithIdentifier("SignUpSegue", sender: nil)
         } as DidSelectClosure
-        section2.addRow(row)
 
-        form.sections = [section1, section2]
-
-        self.form = form
+        self.form = formView.form
     }
 
     func submit() {
@@ -96,8 +66,8 @@ class LogInViewController: FormViewController {
         let values = form.formValues()
         var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
 
-        results[Tags.username] = Validators.username.assert(values[Tags.username] as? String ?? "")
-        results[Tags.password] = Validators.password.assert(values[Tags.password] as? String ?? "")
+        results[LogInFormView.Tags.username] = Validators.username.assert(values[LogInFormView.Tags.username] as? String ?? "")
+        results[LogInFormView.Tags.password] = Validators.password.assert(values[LogInFormView.Tags.password] as? String ?? "")
 
         var isValid = true
         var invalidRules = Dictionary<String, Array<Rule>>()
@@ -116,8 +86,8 @@ class LogInViewController: FormViewController {
         PKHUD.sharedHUD.show()
 
         let formValues = form.formValues()
-        let username = formValues[Tags.username] as? String ?? ""
-        let password = formValues[Tags.password] as? String ?? ""
+        let username = formValues[LogInFormView.Tags.username] as? String ?? ""
+        let password = formValues[LogInFormView.Tags.password] as? String ?? ""
 
         PFUser.promiseLogInWithUsername(username, password: password)
             .then { user -> Void in

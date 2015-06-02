@@ -89,6 +89,8 @@
 			<key>children</key>
 			<array>
 				<string>17223D371B0FB0C400B37BCD</string>
+				<string>1774219A1B1E5A61006968E6</string>
+				<string>1774219C1B1E5A6C006968E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -246,6 +248,46 @@
 		<dict>
 			<key>fileRef</key>
 			<string>177421981B1E529C006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1774219A1B1E5A61006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LogInFormView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1774219B1B1E5A61006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1774219A1B1E5A61006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1774219C1B1E5A6C006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SignUpFormView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1774219D1B1E5A6C006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1774219C1B1E5A6C006968E6</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -442,6 +484,7 @@
 				<string>179262A51B164A25006315AA</string>
 				<string>179262A61B164A25006315AA</string>
 				<string>179262BA1B164A25006315AA</string>
+				<string>1774219D1B1E5A6C006968E6</string>
 				<string>179262B81B164A25006315AA</string>
 				<string>179262AD1B164A25006315AA</string>
 				<string>177589671B18FED90094CED2</string>
@@ -470,6 +513,7 @@
 				<string>173CC1431B1177E7007ACB1C</string>
 				<string>179262A21B164A25006315AA</string>
 				<string>179262AE1B164A25006315AA</string>
+				<string>1774219B1B1E5A61006968E6</string>
 				<string>1792629B1B164A25006315AA</string>
 				<string>17E670061B1288A60086D68F</string>
 				<string>173CC1411B117323007ACB1C</string>
