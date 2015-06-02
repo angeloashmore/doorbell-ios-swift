@@ -55,7 +55,7 @@ class SettingsChangePasswordViewController: FormViewController {
         let validationResults = validate()
 
         if validationResults.isValid {
-            cancel()
+            updateUser()
         } else {
             let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
@@ -80,6 +80,47 @@ class SettingsChangePasswordViewController: FormViewController {
         }
 
         return (isValid, invalidRules)
+    }
+
+    func updateUser() {
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        PKHUD.sharedHUD.show()
+        
+        let formValues = form.formValues()
+        let password = formValues[SettingsChangePasswordFormView.Tags.newPassword] as? String ?? ""
+
+        let user = PFUser.currentUser()!
+        user.setValue(password, forKey: "password")
+
+        user.promiseSave()
+            .then { user -> Void in
+                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                self.cancel()
+
+            }.catch(policy: .AllErrors) { (error) -> Void in
+                PKHUD.sharedHUD.hide()
+
+                var message: String
+
+                switch error.code {
+                default:
+                    message = "An error occured. Please re-check all fields and try again."
+                }
+
+                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+
+        PFUser.promiseLogOut()
+            .then { _ in
+                return LayerClient.sharedClient.deauthenticateWithLayer()
+
+            }.then { _ -> Void in
+                PKHUD.sharedHUD.hide()
+                self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+
+            }
     }
 
     func cancel() {

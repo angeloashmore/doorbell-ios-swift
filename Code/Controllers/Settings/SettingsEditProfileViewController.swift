@@ -59,7 +59,7 @@ class SettingsEditProfileViewController: FormViewController {
         let validationResults = validate()
 
         if validationResults.isValid {
-            cancel()
+            updateUser()
         } else {
             let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
@@ -84,6 +84,43 @@ class SettingsEditProfileViewController: FormViewController {
         }
 
         return (isValid, invalidRules)
+    }
+
+    func updateUser() {
+        PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
+        PKHUD.sharedHUD.show()
+        
+        let formValues = form.formValues()
+        let firstName = formValues[SettingsEditProfileFormView.Tags.firstName] as? String ?? ""
+        let lastName = formValues[SettingsEditProfileFormView.Tags.lastName] as? String ?? ""
+        let email = formValues[SettingsEditProfileFormView.Tags.email] as? String ?? ""
+        
+        let user = PFUser.currentUser()!
+        user.setValue(firstName, forKey: "firstName")
+        user.setValue(lastName, forKey: "lastName")
+        user.setValue(email, forKey: "email")
+
+        user.promiseSave()
+            .then { user -> Void in
+                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
+                self.cancel()
+                
+            }.catch(policy: .AllErrors) { (error) -> Void in
+                PKHUD.sharedHUD.hide()
+
+                var message: String
+
+                switch error.code {
+                case 203:
+                    message = "Email taken. Please try another email."
+                default:
+                    message = "An error occured. Please re-check all fields and try again."
+                }
+
+                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
     }
 
     func cancel() {

@@ -56,7 +56,7 @@ public class SettingsChangePasswordFormView {
         newPasswordSection.headerTitle = "New Password"
         newPasswordSection.addRow(formRowDescriptors[Tags.newPassword]!)
         newPasswordSection.addRow(formRowDescriptors[Tags.newPasswordVerify]!)
-        newPasswordSection.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
+        newPasswordSection.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter.\n\nNote: You will be logged out after changing your password."
 
         form.sections = [currentPasswordSection, newPasswordSection]
 
