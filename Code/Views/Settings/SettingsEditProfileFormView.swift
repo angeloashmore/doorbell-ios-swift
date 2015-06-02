@@ -12,7 +12,7 @@ import SwiftForms
 public class SettingsEditProfileFormView {
     // MARK: Class Properties
     struct Tags {
-        static let firstName = "fistName"
+        static let firstName = "firstName"
         static let lastName = "lastName"
         static let email = "email"
     }
