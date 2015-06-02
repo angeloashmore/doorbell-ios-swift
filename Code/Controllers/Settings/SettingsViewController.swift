@@ -23,11 +23,13 @@ class SettingsViewController: FormViewController {
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         self.loadForm()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.title = "Settings"
     }
 
@@ -36,19 +38,19 @@ class SettingsViewController: FormViewController {
     func loadForm() {
         let formView = SettingsFormView()
 
-        formView.formRowDescriptors.editProfile.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+        formView.formRowDescriptors[SettingsFormView.Tags.editProfile]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.performSegueWithIdentifier("EditProfile", sender: nil)
         } as DidSelectClosure
 
-        formView.formRowDescriptors.changePassword.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+        formView.formRowDescriptors[SettingsFormView.Tags.changePassword]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
 //            self.performSegueWithIdentifier("ChangePassword", sender: nil)
         } as DidSelectClosure
 
-        formView.formRowDescriptors.aboutThisVersion.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+        formView.formRowDescriptors[SettingsFormView.Tags.aboutThisVersion]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.performSegueWithIdentifier("About", sender: nil)
         } as DidSelectClosure
 
-        formView.formRowDescriptors.logOut.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
+        formView.formRowDescriptors[SettingsFormView.Tags.logOut]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.handleLogOutButton()
         } as DidSelectClosure
 

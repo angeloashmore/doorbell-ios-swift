@@ -25,6 +25,7 @@ class SettingsEditProfileViewController: FormViewController {
     // MARK: Life-Cycle Methods
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         self.loadForm()
     }
 
@@ -32,8 +33,6 @@ class SettingsEditProfileViewController: FormViewController {
         super.viewDidLoad()
 
         self.title = "Edit Profile"
-
-        self.loadForm()
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         self.navigationItem.leftBarButtonItem = cancelButton
@@ -47,9 +46,9 @@ class SettingsEditProfileViewController: FormViewController {
     private func loadForm() {
         let formView = SettingsEditProfileFormView()
 
-        formView.formRowDescriptors.firstName.value = PFUser.currentUser()?.objectForKey("firstName") as? String ?? ""
-        formView.formRowDescriptors.lastName.value = PFUser.currentUser()?.objectForKey("lastName") as? String ?? ""
-        formView.formRowDescriptors.email.value = PFUser.currentUser()?.objectForKey("email") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.value = PFUser.currentUser()?.objectForKey("firstName") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.value = PFUser.currentUser()?.objectForKey("lastName") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.value = PFUser.currentUser()?.objectForKey("email") as? String ?? ""
 
         self.form = formView.form
     }

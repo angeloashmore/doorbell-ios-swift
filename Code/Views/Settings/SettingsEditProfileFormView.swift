@@ -23,43 +23,38 @@ public class SettingsEditProfileFormView {
         }
     }
 
-    struct FormRowDescriptors {
-        var firstName: FormRowDescriptor = {
+
+    // MARK: Instance Properties
+    var formRowDescriptors: [String: FormRowDescriptor] = [
+        Tags.firstName: {
             let row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
             row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
             return row
-        }()
+        }(),
 
-        var lastName: FormRowDescriptor = {
+        Tags.lastName: {
             let row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
             row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
             return row
-        }()
+        }(),
 
-        var email: FormRowDescriptor = {
+        Tags.email: {
             let row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
             row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
             return row
         }()
-    }
-
-
-    // MARK: Instance Properties
-    var formRowDescriptors = FormRowDescriptors()
+    ]
 
     var form: FormDescriptor {
         let form = FormDescriptor()
 
         let section = FormSectionDescriptor()
-        section.addRow(formRowDescriptors.firstName)
-        section.addRow(formRowDescriptors.lastName)
-        section.addRow(formRowDescriptors.email)
+        section.addRow(formRowDescriptors[Tags.firstName]!)
+        section.addRow(formRowDescriptors[Tags.lastName]!)
+        section.addRow(formRowDescriptors[Tags.email]!)
 
         form.sections = [section]
 
         return form
     }
-
-
-    // MARK: Methods
 }

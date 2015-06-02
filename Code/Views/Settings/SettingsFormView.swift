@@ -30,62 +30,57 @@ public class SettingsFormView {
         ]
     }
 
-    struct FormRowDescriptors {
-        var editProfile: FormRowDescriptor = {
+
+    // MARK: Instance Properties
+    var formRowDescriptors: [String: FormRowDescriptor] = [
+        Tags.editProfile: {
             let row = FormRowDescriptor(tag: Tags.editProfile, rowType: .Button, title: "Edit Profile")
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
             return row
-        }()
+        }(),
 
-        var changePassword: FormRowDescriptor = {
+        Tags.changePassword: {
             let row = FormRowDescriptor(tag: Tags.changePassword, rowType: .Button, title: "Change Password")
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
             return row
-        }()
+        }(),
 
-        var privateAccount: FormRowDescriptor = {
+        Tags.privateAccount: {
             let row = FormRowDescriptor(tag: Tags.privateAccount, rowType: .BooleanSwitch, title: "Private Account")
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
             return row
-        }()
+        }(),
 
-        var aboutThisVersion: FormRowDescriptor = {
+        Tags.aboutThisVersion: {
             let row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: .Button, title: "About This Version")
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
             return row
-        }()
+        }(),
 
-        var logOut: FormRowDescriptor = {
+        Tags.logOut: {
             let row = FormRowDescriptor(tag: Tags.logOut, rowType: .Button, title: "Log Out")
             row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DefaultButton
             return row
         }()
-    }
-
-
-    // MARK: Instance Properties
-    var formRowDescriptors = FormRowDescriptors()
+    ]
 
     var form: FormDescriptor {
         let form = FormDescriptor()
 
         let userSection = FormSectionDescriptor()
         userSection.footerTitle = "When your account is private, only people you approve can see your profile and interact with you."
-        userSection.addRow(formRowDescriptors.editProfile)
-        userSection.addRow(formRowDescriptors.changePassword)
-        userSection.addRow(formRowDescriptors.privateAccount)
+        userSection.addRow(formRowDescriptors[Tags.editProfile]!)
+        userSection.addRow(formRowDescriptors[Tags.changePassword]!)
+        userSection.addRow(formRowDescriptors[Tags.privateAccount]!)
 
         let aboutSection = FormSectionDescriptor()
-        aboutSection.addRow(formRowDescriptors.aboutThisVersion)
+        aboutSection.addRow(formRowDescriptors[Tags.aboutThisVersion]!)
 
         let logOutSection = FormSectionDescriptor()
-        logOutSection.addRow(formRowDescriptors.logOut)
+        logOutSection.addRow(formRowDescriptors[Tags.logOut]!)
 
         form.sections = [userSection, aboutSection, logOutSection]
 
         return form
     }
-
-
-    // MARK: Methods
 }
