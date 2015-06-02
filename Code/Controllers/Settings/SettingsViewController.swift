@@ -42,7 +42,7 @@ class SettingsViewController: FormViewController {
         } as DidSelectClosure
 
         formView.formRowDescriptors[SettingsFormView.Tags.changePassword]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-//            self.performSegueWithIdentifier("ChangePassword", sender: nil)
+            self.performSegueWithIdentifier("ChangePassword", sender: nil)
         } as DidSelectClosure
 
         formView.formRowDescriptors[SettingsFormView.Tags.aboutThisVersion]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {

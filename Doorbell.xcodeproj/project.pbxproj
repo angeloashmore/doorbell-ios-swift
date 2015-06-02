@@ -132,6 +132,7 @@
 				<string>17D14D921B1540B2003C93BA</string>
 				<string>17D86E531B1D243000A72F34</string>
 				<string>177421981B1E529C006968E6</string>
+				<string>1774219E1B1E623C006968E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -288,6 +289,46 @@
 		<dict>
 			<key>fileRef</key>
 			<string>1774219C1B1E5A6C006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1774219E1B1E623C006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SettingsChangePasswordFormView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1774219F1B1E623C006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1774219E1B1E623C006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>177421A01B1E6361006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SettingsChangePasswordViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>177421A11B1E6361006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>177421A01B1E6361006968E6</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -472,6 +513,7 @@
 				<string>179262BB1B164A25006315AA</string>
 				<string>179262B21B164A25006315AA</string>
 				<string>179262B41B164A25006315AA</string>
+				<string>177421A11B1E6361006968E6</string>
 				<string>177589691B1910640094CED2</string>
 				<string>17D14D761B14F751003C93BA</string>
 				<string>17D86E541B1D243000A72F34</string>
@@ -512,6 +554,7 @@
 				<string>179262A81B164A25006315AA</string>
 				<string>173CC1431B1177E7007ACB1C</string>
 				<string>179262A21B164A25006315AA</string>
+				<string>1774219F1B1E623C006968E6</string>
 				<string>179262AE1B164A25006315AA</string>
 				<string>1774219B1B1E5A61006968E6</string>
 				<string>1792629B1B164A25006315AA</string>
@@ -2762,6 +2805,7 @@
 			<array>
 				<string>173CC1441B11A771007ACB1C</string>
 				<string>173CC1481B11CF7F007ACB1C</string>
+				<string>177421A01B1E6361006968E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>

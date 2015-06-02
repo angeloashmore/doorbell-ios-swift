@@ -21,6 +21,7 @@
                     <connections>
                         <segue destination="PqI-9l-Xr8" kind="show" identifier="About" id="jje-lg-iRZ"/>
                         <segue destination="ynV-v2-cTR" kind="presentation" identifier="EditProfile" id="CEg-lG-KK3"/>
+                        <segue destination="DF0-4A-Ast" kind="presentation" identifier="ChangePassword" id="VQp-ct-JJs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fL-b8-taY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,6 +100,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZu-AT-9ql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="317"/>
+        </scene>
+        <!--Settings Change Password View Controller-->
+        <scene sceneID="C0m-RX-E96">
+            <objects>
+                <tableViewController id="zYi-JY-CmK" customClass="SettingsChangePasswordViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hSC-JK-lq1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="zYi-JY-CmK" id="0x4-bQ-p85"/>
+                            <outlet property="delegate" destination="zYi-JY-CmK" id="1CJ-ia-ij6"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="LH5-4x-4SJ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CV8-qy-i3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2016" y="1015"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="r9j-H2-mPK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DF0-4A-Ast" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z35-Bw-Qf4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zYi-JY-CmK" kind="relationship" relationship="rootViewController" id="ZmJ-ay-Ztw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dum-j3-VZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1204" y="1015"/>
         </scene>
     </scenes>
 </document>
