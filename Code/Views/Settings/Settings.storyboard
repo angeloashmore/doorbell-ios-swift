@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="507" y="-51"/>
         </scene>
-        <!--Settings About View Controller-->
+        <!--View Controller-->
         <scene sceneID="ePa-og-mfV">
             <objects>
-                <viewController id="PqI-9l-Xr8" customClass="SettingsAboutViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PqI-9l-Xr8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K8R-9L-bnq"/>
                         <viewControllerLayoutGuide type="bottom" id="49r-eR-SRh"/>
