@@ -8,8 +8,8 @@
 
 import UIKit
 import Parse
-import LayerKit
 import ParsePromiseKitSwift
+import LayerKit
 import SwiftFormsHonour
 
 struct ExternalKeys {

@@ -76,7 +76,7 @@ class SettingsViewController: FormViewController {
 
         PFUser.promiseLogOut()
             .then { _ in
-                return LayerClient.sharedClient.deauthenticateWithLayer()
+                return LayerClient.sharedClient.client?.promiseDeauthenticate()
 
             }.then { _ -> Void in
                 PKHUD.sharedHUD.hide()

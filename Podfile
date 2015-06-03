@@ -16,5 +16,6 @@ target 'Doorbell' do
   pod 'SwiftFormsHonour'
   pod 'Evergreen'
   pod 'PromiseKit'
+  pod 'PromiseKitClosures'
   pod 'ParsePromiseKitSwift'
 end
