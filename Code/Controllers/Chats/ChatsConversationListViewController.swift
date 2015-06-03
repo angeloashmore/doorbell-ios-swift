@@ -17,8 +17,11 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     // MARK: Life-Cycle Methods
     override func viewDidLoad() {
         self.title = "Chats"
+
         self.dataSource = self
         self.delegate = self
+
+        self.configureUI()
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -30,6 +33,10 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
 
     // MARK: Methods
+    func configureUI() {
+        ATLConversationTableViewCell.appearance().unreadMessageIndicatorBackgroundColor = self.view.tintColor
+    }
+
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
         let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
         controller.conversation = conversation

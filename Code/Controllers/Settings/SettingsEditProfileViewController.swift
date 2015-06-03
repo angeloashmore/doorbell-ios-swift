@@ -46,8 +46,13 @@ class SettingsEditProfileViewController: FormViewController {
     private func loadForm() {
         let formView = SettingsEditProfileFormView()
 
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.firstName
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.value = PFUser.currentUser()?.objectForKey("firstName") as? String ?? ""
+
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.lastName
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.value = PFUser.currentUser()?.objectForKey("lastName") as? String ?? ""
+
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.email
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.value = PFUser.currentUser()?.objectForKey("email") as? String ?? ""
 
         self.form = formView.form
@@ -55,35 +60,17 @@ class SettingsEditProfileViewController: FormViewController {
 
     func submit() {
         self.view.endEditing(true)
-        
-        let validationResults = validate()
 
-        if validationResults.isValid {
+        if form.validateFormWithHonour() {
             updateUser()
         } else {
-            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(OKAction)
+
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-
-    func validate() -> (isValid: Bool, invalidRules: [String: Array<Rule>]) {
-        let values = form.formValues()
-        var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
-
-        results[SettingsEditProfileFormView.Tags.firstName] = Validators.firstName.assert(values[SettingsEditProfileFormView.Tags.firstName] as? String ?? "")
-        results[SettingsEditProfileFormView.Tags.lastName] = Validators.lastName.assert(values[SettingsEditProfileFormView.Tags.lastName] as? String ?? "")
-        results[SettingsEditProfileFormView.Tags.email] = Validators.email.assert(values[SettingsEditProfileFormView.Tags.email] as? String ?? "")
-
-        var isValid = true
-        var invalidRules = Dictionary<String, Array<Rule>>()
-        for (key, result) in results {
-            if !result.isValid {
-                isValid = false
-                invalidRules[key] = result.invalidRules
-            }
-        }
-
-        return (isValid, invalidRules)
     }
 
     func updateUser() {
@@ -118,8 +105,12 @@ class SettingsEditProfileViewController: FormViewController {
                     message = "An error occured. Please re-check all fields and try again."
                 }
 
-                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+
+                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(OKAction)
+
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
     }
 

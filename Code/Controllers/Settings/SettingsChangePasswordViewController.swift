@@ -18,7 +18,7 @@ class SettingsChangePasswordViewController: FormViewController {
     private struct Validators {
         static let currentPassword = Validator().addRule(NotEmpty())
         static let newPassword = Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
-//        static let passwordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
+//        static let newPasswordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
     }
 
 
@@ -46,40 +46,26 @@ class SettingsChangePasswordViewController: FormViewController {
     private func loadForm() {
         let formView = SettingsChangePasswordFormView()
 
+        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.currentPassword]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.currentPassword
+        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.newPassword
+//        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPasswordVerify]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.newPasswordVerify
+
         self.form = formView.form
     }
 
     func submit() {
         self.view.endEditing(true)
         
-        let validationResults = validate()
-
-        if validationResults.isValid {
+        if form.validateFormWithHonour() {
             updateUser()
         } else {
-            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(OKAction)
+
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-
-    func validate() -> (isValid: Bool, invalidRules: [String: Array<Rule>]) {
-        let values = form.formValues()
-        var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
-
-        results[SettingsChangePasswordFormView.Tags.currentPassword] = Validators.currentPassword.assert(values[SettingsChangePasswordFormView.Tags.currentPassword] as? String ?? "")
-        results[SettingsChangePasswordFormView.Tags.newPassword] = Validators.newPassword.assert(values[SettingsChangePasswordFormView.Tags.newPassword] as? String ?? "")
-//        results[SettingsChangePasswordFormView.Tags.newPasswordVerify] = Validators.newPasswordVerify.assert(values[SettingsChangePasswordFormView.Tags.newPasswordVerify] as? String ?? "")
-
-        var isValid = true
-        var invalidRules = Dictionary<String, Array<Rule>>()
-        for (key, result) in results {
-            if !result.isValid {
-                isValid = false
-                invalidRules[key] = result.invalidRules
-            }
-        }
-
-        return (isValid, invalidRules)
     }
 
     func updateUser() {
@@ -108,8 +94,12 @@ class SettingsChangePasswordViewController: FormViewController {
                     message = "An error occured. Please re-check all fields and try again."
                 }
 
-                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+
+                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(OKAction)
+
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
 
         PFUser.promiseLogOut()

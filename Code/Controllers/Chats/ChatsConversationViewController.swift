@@ -35,6 +35,7 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     func configureUI() {
         ATLOutgoingMessageCollectionViewCell.appearance().messageTextColor = UIColor.whiteColor()
         ATLOutgoingMessageCollectionViewCell.appearance().bubbleViewColor = self.view.tintColor
+        ATLMessageInputToolbar.appearance().rightAccessoryButtonActiveColor = self.view.tintColor
     }
 
     func conversationViewController(viewController: ATLConversationViewController!, didSendMessage message: LYRMessage!) {

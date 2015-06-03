@@ -42,6 +42,10 @@ class LogInViewController: FormViewController {
     private func loadForm() {
         let formView = LogInFormView()
 
+        formView.formRowDescriptors[LogInFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
+
+        formView.formRowDescriptors[LogInFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
+
         formView.formRowDescriptors[LogInFormView.Tags.signUp]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.performSegueWithIdentifier("SignUpSegue", sender: nil)
         } as DidSelectClosure

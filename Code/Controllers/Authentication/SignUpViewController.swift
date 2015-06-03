@@ -45,43 +45,29 @@ class SignUpViewController: FormViewController {
     private func loadForm() {
         let formView = SignUpFormView()
 
+        formView.formRowDescriptors[SignUpFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.firstName
+        formView.formRowDescriptors[SignUpFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.lastName
+        formView.formRowDescriptors[SignUpFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.email
+        formView.formRowDescriptors[SignUpFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.username
+        formView.formRowDescriptors[SignUpFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
+//        formView.formRowDescriptors[SignUpFormView.Tags.passwordVerify]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.passwordVerify
+
         self.form = formView.form
     }
 
 
     // MARK: Methods
     func submit() {
-        let validationResults = validate()
-
-        if validationResults.isValid {
+        if form.validateFormWithHonour() {
             signUp()
         } else {
-            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(OKAction)
+
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-
-    func validate() -> (isValid: Bool, invalidRules: [String: Array<Rule>]) {
-        let values = form.formValues()
-        var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
-
-        results[SignUpFormView.Tags.firstName] = Validators.firstName.assert(values[SignUpFormView.Tags.firstName] as? String ?? "")
-        results[SignUpFormView.Tags.lastName] = Validators.lastName.assert(values[SignUpFormView.Tags.lastName] as? String ?? "")
-        results[SignUpFormView.Tags.email] = Validators.email.assert(values[SignUpFormView.Tags.email] as? String ?? "")
-        results[SignUpFormView.Tags.username] = Validators.username.assert(values[SignUpFormView.Tags.username] as? String ?? "")
-        results[SignUpFormView.Tags.password] = Validators.password.assert(values[SignUpFormView.Tags.password] as? String ?? "")
-//        results[SignUpFormView.Tags.passwordVerify] = Validators.passwordVerify.assert(values[SignUpFormView.Tags.passwordVerify] as? String ?? "")
-
-        var isValid = true
-        var invalidRules = Dictionary<String, Array<Rule>>()
-        for (key, result) in results {
-            if !result.isValid {
-                isValid = false
-                invalidRules[key] = result.invalidRules
-            }
-        }
-
-        return (isValid, invalidRules)
     }
 
     func signUp() {
@@ -123,8 +109,12 @@ class SignUpViewController: FormViewController {
                     message = "An error occured. Please re-check all fields and try again."
                 }
 
-                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+
+                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(OKAction)
+
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
     }
 }
