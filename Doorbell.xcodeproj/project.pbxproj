@@ -332,26 +332,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>177421AA1B1E7C2E006968E6</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SwiftForms+Honour.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>177421AB1B1E7C2E006968E6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>177421AA1B1E7C2E006968E6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>177589661B18FED90094CED2</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -531,7 +511,6 @@
 				<string>17223D3A1B0FB21C00B37BCD</string>
 				<string>179262AC1B164A25006315AA</string>
 				<string>179262BB1B164A25006315AA</string>
-				<string>177421AB1B1E7C2E006968E6</string>
 				<string>179262B21B164A25006315AA</string>
 				<string>179262B41B164A25006315AA</string>
 				<string>177421A11B1E6361006968E6</string>
@@ -3104,7 +3083,6 @@
 			<array>
 				<string>17E670051B1288A60086D68F</string>
 				<string>177589661B18FED90094CED2</string>
-				<string>177421AA1B1E7C2E006968E6</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>

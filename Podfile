@@ -13,6 +13,7 @@ target 'Doorbell' do
   pod 'PKHUD', git: 'https://github.com/pkluz/PKHUD.git'
   pod 'SwiftForms'
   pod 'Honour'
+  pod 'SwiftFormsHonour'
   pod 'Evergreen'
   pod 'PromiseKit'
   pod 'ParsePromiseKitSwift'

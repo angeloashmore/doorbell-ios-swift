@@ -32,6 +32,9 @@ PODS:
   - PromiseKit/UIKit (2.0.1):
     - PromiseKit/CorePromise
   - SwiftForms (1.0)
+  - SwiftFormsHonour (0.0.2):
+    - Honour (~> 0.1)
+    - SwiftForms (~> 1.0)
   - SwiftValidator (2.1.1)
 
 DEPENDENCIES:
@@ -44,6 +47,7 @@ DEPENDENCIES:
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
   - PromiseKit
   - SwiftForms
+  - SwiftFormsHonour
   - SwiftValidator
 
 EXTERNAL SOURCES:
@@ -67,6 +71,7 @@ SPEC CHECKSUMS:
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
   PromiseKit: 99e70653af4599292678d92dc3bcf82b2872a578
   SwiftForms: b16bf2978e6eb6617bc9f438322a1daa6c3d2dbd
+  SwiftFormsHonour: c4839cecde2b211a45f1f5c2be57c2082b44015e
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
 
 COCOAPODS: 0.37.2
