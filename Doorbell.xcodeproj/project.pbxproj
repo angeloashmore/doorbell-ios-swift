@@ -332,6 +332,46 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>177421AC1B1E8B3B006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LYRClientPromiseKit.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>177421AD1B1E8B3B006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>177421AC1B1E8B3B006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>177421AE1B1E8C04006968E6</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>LYRClientPromiseKitClosures.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>177421AF1B1E8C04006968E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>177421AE1B1E8C04006968E6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>177589661B18FED90094CED2</key>
 		<dict>
 			<key>fileEncoding</key>
@@ -548,6 +588,8 @@
 				<string>179262B31B164A25006315AA</string>
 				<string>1792629A1B164A25006315AA</string>
 				<string>179262AB1B164A25006315AA</string>
+				<string>177421AD1B1E8B3B006968E6</string>
+				<string>177421AF1B1E8C04006968E6</string>
 				<string>179262B91B164A25006315AA</string>
 				<string>179262AA1B164A25006315AA</string>
 				<string>179262B71B164A25006315AA</string>
@@ -3082,6 +3124,8 @@
 			<key>children</key>
 			<array>
 				<string>17E670051B1288A60086D68F</string>
+				<string>177421AC1B1E8B3B006968E6</string>
+				<string>177421AE1B1E8C04006968E6</string>
 				<string>177589661B18FED90094CED2</string>
 			</array>
 			<key>isa</key>
