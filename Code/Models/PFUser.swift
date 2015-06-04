@@ -11,11 +11,11 @@ import Parse
 
 extension PFUser: ATLParticipant {
     public var firstName: String? {
-        return self["firstName"] as? String
+        return self.objectForKey("firstName") as? String
     }
 
     public var lastName: String? {
-        return self["lastName"] as? String
+        return self.objectForKey("lastName") as? String
     }
 
     public var fullName: String? {

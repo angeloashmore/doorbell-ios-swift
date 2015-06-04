@@ -40,16 +40,20 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
     }
 
     func configureTitle() {
-        if let title = conversation.metadata["title"] as? String {
-            self.title = title
-        } else {
-            let resolvedNames = UserManager.sharedManager.resolvedNamesFromParticipants(conversation.participants) as! [String]
-
-            if resolvedNames.count > 1 {
-                self.title = "Group"
+        if let conversation = self.conversation {
+            if let title = conversation.metadata["title"] as? String {
+                self.title = title
             } else {
-                self.title = resolvedNames.first
+                let resolvedNames = UserManager.sharedManager.resolvedNamesFromParticipants(conversation.participants) as! [String]
+
+                if resolvedNames.count > 1 {
+                    self.title = "Group"
+                } else {
+                    self.title = resolvedNames.first
+                }
             }
+        } else {
+            self.title = "New Chat"
         }
     }
 
@@ -74,8 +78,8 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
             UserManager.sharedManager.queryAndCacheUsersWithIDs([participantIdentifier])
 
             .then { (participants) -> () in
-//                self.addressBarController.reloadView()
-//                self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
+                self.addressBarController.reloadView()
+                self.reloadCellsForMessagesSentByParticipantWithIdentifier(participantIdentifier)
 
             }.catch { (error) -> () in
                 log("Error querying for users: \(error)", forLevel: .Error)

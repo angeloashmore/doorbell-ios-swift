@@ -94,7 +94,10 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     func composeButtonTapped() {
         let controller = ChatsConversationViewController(layerClient: LayerClient.sharedClient.client)
         controller.displaysAddressBar = true
+
+        self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
+        self.hidesBottomBarWhenPushed = false
     }
 
 }
