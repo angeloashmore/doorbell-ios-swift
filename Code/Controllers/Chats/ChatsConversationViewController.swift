@@ -30,12 +30,27 @@ class ChatsConversationViewController: ATLConversationViewController, ATLConvers
         self.dateFormatter!.timeStyle = NSDateFormatterStyle.ShortStyle
 
         self.configureUI()
+        self.configureTitle()
     }
 
     func configureUI() {
         ATLOutgoingMessageCollectionViewCell.appearance().messageTextColor = UIColor.whiteColor()
         ATLOutgoingMessageCollectionViewCell.appearance().bubbleViewColor = self.view.tintColor
         ATLMessageInputToolbar.appearance().rightAccessoryButtonActiveColor = self.view.tintColor
+    }
+
+    func configureTitle() {
+        if let title = conversation.metadata["title"] as? String {
+            self.title = title
+        } else {
+            let resolvedNames = UserManager.sharedManager.resolvedNamesFromParticipants(conversation.participants) as! [String]
+
+            if resolvedNames.count > 1 {
+                self.title = "Group"
+            } else {
+                self.title = resolvedNames.first
+            }
+        }
     }
 
     func conversationViewController(viewController: ATLConversationViewController!, didSendMessage message: LYRMessage!) {
