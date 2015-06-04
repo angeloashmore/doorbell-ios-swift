@@ -19,7 +19,7 @@ public class SettingsChangePasswordFormView {
 
     private struct VisualConstraints {
         static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(85)]-[textField]-16-|"]
+            return ["H:|-16-[titleLabel(80)]-[textField]-16-|"]
         }
     }
 
