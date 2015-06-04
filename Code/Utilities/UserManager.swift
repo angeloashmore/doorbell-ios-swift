@@ -92,7 +92,7 @@ class UserManager: NSObject {
         for userID in participants {
             if userID == PFUser.currentUser()!.objectId! { continue }
             if let user = self.userCache.objectForKey(userID) as? PFUser {
-                array.addObject(user.firstName!)
+                array.addObject(user.fullName!)
             }
         }
 
