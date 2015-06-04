@@ -52,6 +52,7 @@ public class SettingsEditProfileFormView {
         section.addRow(formRowDescriptors[Tags.firstName]!)
         section.addRow(formRowDescriptors[Tags.lastName]!)
         section.addRow(formRowDescriptors[Tags.email]!)
+        section.footerTitle = "Your email address will need to be re-verified if changed."
 
         form.sections = [section]
 
