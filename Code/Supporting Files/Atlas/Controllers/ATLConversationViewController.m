@@ -194,7 +194,19 @@ static NSString *const ATLDefaultPushAlertText = @"sent you a message.";
 - (void)fetchLayerMessages
 {
     if (!self.conversation) return;
-    self.conversationDataSource = [ATLConversationDataSource dataSourceWithLayerClient:self.layerClient conversation:self.conversation];
+    
+    LYRQuery *query = [LYRQuery queryWithQueryableClass:[LYRMessage class]];
+    query.predicate = [LYRPredicate predicateWithProperty:@"conversation" predicateOperator:LYRPredicateOperatorIsEqualTo value:self.conversation];
+    query.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"position" ascending:YES]];
+    
+    if ([self.dataSource respondsToSelector:@selector(conversationViewController:willLoadWithQuery:)]) {
+        query = [self.dataSource conversationViewController:self willLoadWithQuery:query];
+        if (![query isKindOfClass:[LYRQuery class]]){
+            @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Data source must return an `LYRQuery` object." userInfo:nil];
+        }
+    }
+    
+    self.conversationDataSource = [ATLConversationDataSource dataSourceWithLayerClient:self.layerClient query:query];
     self.conversationDataSource.queryController.delegate = self;
     self.showingMoreMessagesIndicator = [self.conversationDataSource moreMessagesAvailable];
     [self.collectionView reloadData];
@@ -726,14 +738,11 @@ static NSString *const ATLDefaultPushAlertText = @"sent you a message.";
     if (![notification.object isEqual:self.layerClient]) return;
     
     NSArray *changes = notification.userInfo[LYRClientObjectChangesUserInfoKey];
-    for (NSDictionary *change in changes) {
-        
-        id changedObject = change[LYRObjectChangeObjectKey];
-        if (![changedObject isEqual:self.conversation]) continue;
-        
-        LYRObjectChangeType changeType = [change[LYRObjectChangeTypeKey] integerValue];
-        NSString *changedProperty = change[LYRObjectChangePropertyKey];
-        if (changeType == LYRObjectChangeTypeUpdate && [changedProperty isEqualToString:@"participants"]) {
+    for (LYRObjectChange *change in changes) {
+        if (![change.object isEqual:self.conversation]) {
+            continue;
+        }
+        if (change.type == LYRObjectChangeTypeUpdate && [change.property isEqualToString:@"participants"]) {
             [self configureControllerForChangedParticipants];
             break;
         }
