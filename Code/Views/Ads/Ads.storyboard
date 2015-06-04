@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Ads View Controller-->
+        <!--Ads-->
         <scene sceneID="zS6-Rb-KTs">
             <objects>
                 <viewController id="yqy-M7-6zW" customClass="AdsViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wHm-py-DIv"/>
+                    <navigationItem key="navigationItem" title="Ads" id="wHm-py-DIv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qzc-ri-H5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

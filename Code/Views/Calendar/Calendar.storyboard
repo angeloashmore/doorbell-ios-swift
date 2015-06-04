@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Calendar View Controller-->
+        <!--Calendar-->
         <scene sceneID="Vx1-ty-1Lu">
             <objects>
                 <viewController id="qTE-NQ-g5n" customClass="CalendarViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Kp9-kW-A5l"/>
+                    <navigationItem key="navigationItem" title="Calendar" id="Kp9-kW-A5l"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1g-Oi-4xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
