@@ -45,17 +45,17 @@ class SettingsEditProfileViewController: FormViewController {
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
             return Validator().addRule(NotEmpty())
         } as ValidatorClosure
-        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.value = PFUser.currentUser()?.objectForKey("firstName") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.firstName]!.value = PFUser.currentUser()?.objectForKey("firstName") as? String
 
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
             return Validator().addRule(NotEmpty())
         } as ValidatorClosure
-        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.value = PFUser.currentUser()?.objectForKey("lastName") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.lastName]!.value = PFUser.currentUser()?.objectForKey("lastName") as? String
 
         formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
             return Validator().addRule(NotEmpty()).addRule(Email())
         } as ValidatorClosure
-        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.value = PFUser.currentUser()?.objectForKey("email") as? String ?? ""
+        formView.formRowDescriptors[SettingsEditProfileFormView.Tags.email]!.value = PFUser.currentUser()?.objectForKey("email") as? String
 
         self.form = formView.form
     }
