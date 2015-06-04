@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import ParsePromiseKitSwift
+import ParsePromiseKit
 import LayerKit
 import SwiftFormsHonour
 

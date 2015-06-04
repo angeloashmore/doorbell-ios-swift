@@ -16,6 +16,8 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
     // MARK: Life-Cycle Methods
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         self.title = "Chats"
 
         self.dataSource = self
@@ -55,7 +57,11 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSearchForText searchText: String!, completion: ((Set<NSObject>!) -> Void)!) {
-        log("Searched for text")
+        log("Searched for text: \(searchText)")
+        UserManager.sharedManager.queryForUserWithName(searchText)
+            .then { users -> Void in
+                completion(NSSet(array: users) as Set<NSObject>)
+            }
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, titleForConversation conversation: LYRConversation!) -> String! {
