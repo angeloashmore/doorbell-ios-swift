@@ -28,10 +28,11 @@
             </objects>
             <point key="canvasLocation" x="507" y="-51"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings About View Controller-->
         <scene sceneID="ePa-og-mfV">
             <objects>
-                <viewController id="PqI-9l-Xr8" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4Q-2J-MKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="PqI-9l-Xr8" customClass="SettingsAboutViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K8R-9L-bnq"/>
                         <viewControllerLayoutGuide type="bottom" id="49r-eR-SRh"/>
@@ -42,7 +43,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c4Q-2J-MKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="-446"/>
         </scene>

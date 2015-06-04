@@ -542,6 +542,7 @@
 				<string>177421991B1E529C006968E6</string>
 				<string>1792629C1B164A25006315AA</string>
 				<string>17850AD91B0D464600504176</string>
+				<string>17D7D5851B203E1200FA96A3</string>
 				<string>179262B01B164A25006315AA</string>
 				<string>179262A51B164A25006315AA</string>
 				<string>179262A61B164A25006315AA</string>
@@ -2821,6 +2822,7 @@
 				<string>173CC1441B11A771007ACB1C</string>
 				<string>173CC1481B11CF7F007ACB1C</string>
 				<string>177421A01B1E6361006968E6</string>
+				<string>17D7D5841B203E1200FA96A3</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -3112,6 +3114,28 @@
 			<string>Utilities</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D7D5841B203E1200FA96A3</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>SettingsAboutViewController.swift</string>
+			<key>path</key>
+			<string>SettingsAboutViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17D7D5851B203E1200FA96A3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17D7D5841B203E1200FA96A3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>17D86E531B1D243000A72F34</key>
 		<dict>
