@@ -10,15 +10,12 @@ import UIKit
 import Parse
 import PKHUD
 import SwiftForms
+import SwiftFormsHonour
 import Honour
 
 class LogInViewController: FormViewController {
 
     // MARK: Class Properties
-    private struct Validators {
-        static let username = Validator().addRule(NotEmpty())
-        static let password = Validator().addRule(NotEmpty())
-    }
 
 
     // MARK: Life-Cycle Methods
@@ -42,9 +39,13 @@ class LogInViewController: FormViewController {
     private func loadForm() {
         let formView = LogInFormView()
 
-        formView.formRowDescriptors[LogInFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
+        formView.formRowDescriptors[LogInFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
 
-        formView.formRowDescriptors[LogInFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
+        formView.formRowDescriptors[LogInFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
 
         formView.formRowDescriptors[LogInFormView.Tags.signUp]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.performSegueWithIdentifier("SignUpSegue", sender: nil)
@@ -56,33 +57,16 @@ class LogInViewController: FormViewController {
     func submit() {
         self.view.endEditing(true)
         
-        let validationResults = validate()
-
-        if validationResults.isValid {
+        if form.validateFormWithHonour() {
             logIn()
         } else {
-            let alert = UIAlertView(title: "Error", message: "Please re-check all fields and try again.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertController.addAction(OKAction)
+
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
-    }
-
-    func validate() -> (isValid: Bool, invalidRules: [String: Array<Rule>]) {
-        let values = form.formValues()
-        var results = Dictionary<String, (isValid: Bool, invalidRules: Array<Rule>)>()
-
-        results[LogInFormView.Tags.username] = Validators.username.assert(values[LogInFormView.Tags.username] as? String ?? "")
-        results[LogInFormView.Tags.password] = Validators.password.assert(values[LogInFormView.Tags.password] as? String ?? "")
-
-        var isValid = true
-        var invalidRules = Dictionary<String, Array<Rule>>()
-        for (key, result) in results {
-            if !result.isValid {
-                isValid = false
-                invalidRules[key] = result.invalidRules
-            }
-        }
-
-        return (isValid, invalidRules)
     }
 
     func logIn() {
@@ -112,8 +96,12 @@ class LogInViewController: FormViewController {
                     message = "An error occured. Please try again."
                 }
 
-                let alert = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+
+                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(OKAction)
+
+                self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
 }

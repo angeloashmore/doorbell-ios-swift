@@ -10,19 +10,12 @@ import UIKit
 import Parse
 import PKHUD
 import SwiftForms
+import SwiftFormsHonour
 import Honour
 
 class SignUpViewController: FormViewController {
 
     // MARK: Class Properties
-    private struct Validators {
-        static let firstName = Validator().addRule(NotEmpty())
-        static let lastName = Validator().addRule(NotEmpty())
-        static let email = Validator().addRule(NotEmpty()).addRule(Email())
-        static let username = Validator().addRule(NotEmpty()).addRule(Length(min: 3))
-        static let password = Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
-//        static let passwordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
-    }
 
 
     // MARK: Life-Cycle Methods
@@ -45,12 +38,29 @@ class SignUpViewController: FormViewController {
     private func loadForm() {
         let formView = SignUpFormView()
 
-        formView.formRowDescriptors[SignUpFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.firstName
-        formView.formRowDescriptors[SignUpFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.lastName
-        formView.formRowDescriptors[SignUpFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.email
-        formView.formRowDescriptors[SignUpFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.username
-        formView.formRowDescriptors[SignUpFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.password
-//        formView.formRowDescriptors[SignUpFormView.Tags.passwordVerify]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.passwordVerify
+        formView.formRowDescriptors[SignUpFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SignUpFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SignUpFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty()).addRule(Email())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SignUpFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty()).addRule(Length(min: 3))
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SignUpFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SignUpFormView.Tags.passwordVerify]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(Regex("^\(self.valueForTag(SignUpFormView.Tags.password))$"))
+        } as ValidatorClosure
 
         self.form = formView.form
     }

@@ -10,16 +10,12 @@ import UIKit
 import Parse
 import PKHUD
 import SwiftForms
+import SwiftFormsHonour
 import Honour
 
 class SettingsChangePasswordViewController: FormViewController {
 
     // MARK: Class Properties
-    private struct Validators {
-        static let currentPassword = Validator().addRule(NotEmpty())
-        static let newPassword = Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
-//        static let newPasswordVerify = Validator().addRule(Regex("^\(self.form.formValues()[Tags.password])$"))
-    }
 
 
     // MARK: Life-Cycle Methods
@@ -46,9 +42,17 @@ class SettingsChangePasswordViewController: FormViewController {
     private func loadForm() {
         let formView = SettingsChangePasswordFormView()
 
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.currentPassword]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.currentPassword
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.newPassword
-//        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPasswordVerify]!.configuration[FormRowDescriptor.Configuration.Validator] = Validators.newPasswordVerify
+        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.currentPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPasswordVerify]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(Regex("^\(self.valueForTag(SettingsChangePasswordFormView.Tags.newPassword))$"))
+        } as ValidatorClosure
 
         self.form = formView.form
     }

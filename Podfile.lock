@@ -34,7 +34,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKitClosures (1.0.1)
   - SwiftForms (1.0)
-  - SwiftFormsHonour (0.0.2):
+  - SwiftFormsHonour (0.3.0):
     - Honour (~> 0.1)
     - SwiftForms (~> 1.0)
   - SwiftValidator (2.1.1)
@@ -75,7 +75,7 @@ SPEC CHECKSUMS:
   PromiseKit: 5e61b12a400e9686564a9d9b27e90b1a2b7bb3bf
   PromiseKitClosures: 036ae04b0c51ed7827d0e4e6fc8c0d6a71afffb5
   SwiftForms: b16bf2978e6eb6617bc9f438322a1daa6c3d2dbd
-  SwiftFormsHonour: c4839cecde2b211a45f1f5c2be57c2082b44015e
+  SwiftFormsHonour: 1009179b91b4d247d58df9be576dd910b87e6692
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
 
 COCOAPODS: 0.37.2
