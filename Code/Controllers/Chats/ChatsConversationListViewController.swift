@@ -36,7 +36,16 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
 
     // MARK: Methods
     func configureUI() {
+        self.deletionModes = [LYRDeletionMode.Local.rawValue]
+
         ATLConversationTableViewCell.appearance().unreadMessageIndicatorBackgroundColor = self.view.tintColor
+    }
+
+    func conversationListViewController(conversationListViewController: ATLConversationListViewController!, textForButtonWithDeletionMode deletionMode: LYRDeletionMode) -> String! {
+        switch deletionMode {
+        default:
+            return "Delete"
+        }
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {
