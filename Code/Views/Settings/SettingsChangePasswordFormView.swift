@@ -26,12 +26,6 @@ public class SettingsChangePasswordFormView {
 
     // MARK: Instance Properties
     var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.currentPassword: {
-            let row = FormRowDescriptor(tag: Tags.currentPassword, rowType: FormRowType.Password, title: "Password", placeholder: "Current password")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
-
         Tags.newPassword: {
             let row = FormRowDescriptor(tag: Tags.newPassword, rowType: FormRowType.Password, title: "Password", placeholder: "New password")
             row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
@@ -48,17 +42,13 @@ public class SettingsChangePasswordFormView {
     var form: FormDescriptor {
         let form = FormDescriptor()
 
-        let currentPasswordSection = FormSectionDescriptor()
-        currentPasswordSection.headerTitle = "Current Password"
-        currentPasswordSection.addRow(formRowDescriptors[Tags.currentPassword]!)
-
         let newPasswordSection = FormSectionDescriptor()
         newPasswordSection.headerTitle = "New Password"
         newPasswordSection.addRow(formRowDescriptors[Tags.newPassword]!)
         newPasswordSection.addRow(formRowDescriptors[Tags.newPasswordVerify]!)
         newPasswordSection.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter.\n\nNote: You will be logged out after changing your password."
 
-        form.sections = [currentPasswordSection, newPasswordSection]
+        form.sections = [newPasswordSection]
 
         return form
     }

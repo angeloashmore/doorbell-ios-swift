@@ -42,10 +42,6 @@ class SettingsChangePasswordViewController: FormViewController {
     private func loadForm() {
         let formView = SettingsChangePasswordFormView()
 
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.currentPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty())
-        } as ValidatorClosure
-
         formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
             return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
         } as ValidatorClosure
