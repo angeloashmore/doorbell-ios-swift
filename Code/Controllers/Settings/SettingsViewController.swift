@@ -49,11 +49,25 @@ class SettingsViewController: FormViewController {
             self.performSegueWithIdentifier("About", sender: nil)
         } as DidSelectClosure
 
+        formView.formRowDescriptors[SettingsFormView.Tags.privateAccount]!.value = PFUser.currentUser()?.valueForKey("private") as? Bool
+        formView.formRowDescriptors[SettingsFormView.Tags.privateAccount]!.configuration[FormRowDescriptor.Configuration.DidUpdateClosure] = { row -> Void in
+            self.handlePrivateAccountSwitch()
+        } as UpdateClosure
+
         formView.formRowDescriptors[SettingsFormView.Tags.logOut]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
             self.handleLogOutButton()
         } as DidSelectClosure
 
         self.form = formView.form
+    }
+
+    func handlePrivateAccountSwitch() {
+        let value = self.valueForTag(SettingsFormView.Tags.privateAccount)
+
+        let user = PFUser.currentUser()!
+        user.setValue(value, forKey: "private")
+
+        user.promiseSave()
     }
 
     func handleLogOutButton() {
