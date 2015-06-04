@@ -21,6 +21,8 @@ class SettingsAboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "About This Version"
+
         loadWebView()
     }
 
