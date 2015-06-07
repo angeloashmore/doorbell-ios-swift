@@ -42,10 +42,7 @@ class ChatsConversationListViewController: ATLConversationListViewController, AT
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, textForButtonWithDeletionMode deletionMode: LYRDeletionMode) -> String! {
-        switch deletionMode {
-        default:
-            return "Delete"
-        }
+        return "Delete"
     }
 
     func conversationListViewController(conversationListViewController: ATLConversationListViewController!, didSelectConversation conversation: LYRConversation!) {

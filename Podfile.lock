@@ -1,7 +1,8 @@
 PODS:
-  - Bolts/Tasks (1.1.5)
+  - Bolts/Tasks (1.2.0)
   - Evergreen (0.4.1)
   - Honour (0.1.1)
+  - KHAForm (0.1.8)
   - LayerKit (0.13.3)
   - OMGHTTPURLRQ (2.1):
     - OMGHTTPURLRQ/RQ (= 2.1)
@@ -12,11 +13,11 @@ PODS:
   - OMGHTTPURLRQ/UserAgent (2.1)
   - Parse (1.7.4):
     - Bolts/Tasks (>= 1.1.5)
-  - ParsePromiseKitSwift (1.0.0):
+  - ParsePromiseKitSwift (1.0.1):
     - Parse (~> 1.7)
     - ParseUI (~> 1.1.1)
     - PromiseKit (~> 2.0)
-    - PromiseKitClosures (~> 1.0)
+    - PromiseKitClosures (~> 1.1)
   - ParseUI (1.1.4):
     - Parse (~> 1.7)
   - PKHUD (2.0.1)
@@ -32,7 +33,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (2.0.2):
     - PromiseKit/CorePromise
-  - PromiseKitClosures (1.0.1)
+  - PromiseKitClosures (1.1.2)
   - SwiftForms (1.0)
   - SwiftFormsHonour (0.3.0):
     - Honour (~> 0.1)
@@ -42,6 +43,7 @@ PODS:
 DEPENDENCIES:
   - Evergreen
   - Honour
+  - KHAForm
   - LayerKit
   - Parse
   - ParsePromiseKitSwift
@@ -63,17 +65,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/pkluz/PKHUD.git
 
 SPEC CHECKSUMS:
-  Bolts: aac24961496d504aa56fc267cde95162a71bac39
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Evergreen: 11ba79fe1f49dae762df433bbf00b370f93c609b
   Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
+  KHAForm: cdaa8215d255cf44696a68afa578cb4ac70ca096
   LayerKit: 212b87bdaa7e3592b7188952e2211404a2f59614
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
   Parse: 6ca512c6e860b66739c95151b2f76ac4712b7842
-  ParsePromiseKitSwift: d0a0f66b4d38b416149b408b34dd9bcfa0dbbe06
+  ParsePromiseKitSwift: 35569af2578d155f0b36ce332e1c8a6e3c0401a2
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
   PromiseKit: 5e61b12a400e9686564a9d9b27e90b1a2b7bb3bf
-  PromiseKitClosures: 036ae04b0c51ed7827d0e4e6fc8c0d6a71afffb5
+  PromiseKitClosures: 34a30bf8276291a53e52aa9748c71d753b99a2de
   SwiftForms: b16bf2978e6eb6617bc9f438322a1daa6c3d2dbd
   SwiftFormsHonour: 1009179b91b4d247d58df9be576dd910b87e6692
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d

@@ -1,8 +1,8 @@
 //
-//  SettingsChangePasswordViewController.swift
+//  CalendarAddViewController.swift
 //  Doorbell
 //
-//  Created by Angelo on 6/2/15.
+//  Created by Angelo on 6/7/15.
 //  Copyright (c) 2015 Doorbell. All rights reserved.
 //
 
@@ -11,10 +11,9 @@ import Parse
 import PKHUD
 import SwiftForms
 import SwiftFormsHonour
-import PromiseKit
 import Honour
 
-class SettingsChangePasswordViewController: FormViewController {
+class CalendarAddViewController: FormViewController {
 
     // MARK: Class Properties
 
@@ -29,7 +28,7 @@ class SettingsChangePasswordViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Change Password"
+        self.title = "New Event"
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         self.navigationItem.leftBarButtonItem = cancelButton
@@ -41,14 +40,34 @@ class SettingsChangePasswordViewController: FormViewController {
 
     // MARK: Methods
     private func loadForm() {
-        let formView = SettingsChangePasswordFormView()
+        let formView = CalendarAddFormView()
 
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
+        formView.formRowDescriptors[CalendarAddFormView.Tags.location]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
         } as ValidatorClosure
 
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPasswordVerify]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(Regex("^\(self.valueForTag(SettingsChangePasswordFormView.Tags.newPassword))$"))
+        formView.formRowDescriptors[CalendarAddFormView.Tags.description]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[CalendarAddFormView.Tags.date]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[CalendarAddFormView.Tags.startTime]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[CalendarAddFormView.Tags.endTime]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[CalendarAddFormView.Tags.attendees]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
+        } as ValidatorClosure
+
+        formView.formRowDescriptors[CalendarAddFormView.Tags.notes]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
+            return Validator().addRule(NotEmpty())
         } as ValidatorClosure
 
         self.form = formView.form
@@ -56,7 +75,7 @@ class SettingsChangePasswordViewController: FormViewController {
 
     func submit() {
         self.view.endEditing(true)
-        
+
         if form.validateFormWithHonour() {
             updateUser()
         } else {
@@ -74,29 +93,29 @@ class SettingsChangePasswordViewController: FormViewController {
         PKHUD.sharedHUD.show()
         
         let formValues = form.formValues()
-        let password = formValues[SettingsChangePasswordFormView.Tags.newPassword] as? String ?? ""
-
+        let firstName = formValues[SettingsEditProfileFormView.Tags.firstName] as? String ?? ""
+        let lastName = formValues[SettingsEditProfileFormView.Tags.lastName] as? String ?? ""
+        let email = formValues[SettingsEditProfileFormView.Tags.email] as? String ?? ""
+        
         let user = PFUser.currentUser()!
-        user.setValue(password, forKey: "password")
+        user.setValue(firstName, forKey: "firstName")
+        user.setValue(lastName, forKey: "lastName")
+        user.setValue(email, forKey: "email")
 
         user.promiseSave()
-            .then { user -> Promise<Bool> in
-                return PFUser.promiseLogOut()
-
-            }.then { _ -> Promise<Bool> in
-                return LayerClient.sharedClient.client!.promiseDeauthenticate()
-
-            }.then { _ -> Void in
+            .then { user -> Void in
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
                 PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                self.dismissViewControllerAnimated(true, completion: nil)
-
+                self.cancel()
+                
             }.catch(policy: .AllErrors) { (error) -> Void in
                 PKHUD.sharedHUD.hide()
 
                 var message: String
 
                 switch error.code {
+                case 203:
+                    message = "Email taken. Please try another email."
                 default:
                     message = "An error occured. Please re-check all fields and try again."
                 }

@@ -18,4 +18,5 @@ target 'Doorbell' do
   pod 'PromiseKit'
   pod 'PromiseKitClosures'
   pod 'ParsePromiseKitSwift'
+  pod 'KHAForm'
 end
