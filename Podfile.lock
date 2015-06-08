@@ -1,7 +1,6 @@
 PODS:
   - Bolts/Tasks (1.2.0)
   - Evergreen (0.4.1)
-  - Honour (0.1.1)
   - KHAForm (0.1.8)
   - LayerKit (0.13.3)
   - OMGHTTPURLRQ (2.1):
@@ -34,15 +33,10 @@ PODS:
   - PromiseKit/UIKit (2.0.2):
     - PromiseKit/CorePromise
   - PromiseKitClosures (1.1.2)
-  - SwiftForms (1.0)
-  - SwiftFormsHonour (0.3.0):
-    - Honour (~> 0.1)
-    - SwiftForms (~> 1.0)
   - SwiftValidator (2.1.1)
 
 DEPENDENCIES:
   - Evergreen
-  - Honour
   - KHAForm
   - LayerKit
   - Parse
@@ -51,8 +45,6 @@ DEPENDENCIES:
   - PKHUD (from `https://github.com/pkluz/PKHUD.git`)
   - PromiseKit
   - PromiseKitClosures
-  - SwiftForms
-  - SwiftFormsHonour
   - SwiftValidator
 
 EXTERNAL SOURCES:
@@ -67,7 +59,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Evergreen: 11ba79fe1f49dae762df433bbf00b370f93c609b
-  Honour: 7a9e60a8a6be64c12ddd691cb39366bd3dce36c8
   KHAForm: cdaa8215d255cf44696a68afa578cb4ac70ca096
   LayerKit: 212b87bdaa7e3592b7188952e2211404a2f59614
   OMGHTTPURLRQ: f8c515dfd2f57a5d74c710978f600231f52afec5
@@ -77,8 +68,6 @@ SPEC CHECKSUMS:
   PKHUD: a35d89fd82d0aeb67f53de086b3029aea3423b74
   PromiseKit: 5e61b12a400e9686564a9d9b27e90b1a2b7bb3bf
   PromiseKitClosures: 34a30bf8276291a53e52aa9748c71d753b99a2de
-  SwiftForms: b16bf2978e6eb6617bc9f438322a1daa6c3d2dbd
-  SwiftFormsHonour: 1009179b91b4d247d58df9be576dd910b87e6692
   SwiftValidator: 79936ea870f1dba8a0824763375375bb209fe30d
 
 COCOAPODS: 0.37.2
