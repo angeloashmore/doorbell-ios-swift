@@ -10,7 +10,11 @@ import Foundation
 import KHAForm
 
 class CalendarNewEventFormView {
-    // MARK: Class Properties
+    // MARK: Constants
+    struct Constants {
+        static let textLabelWidth = 90
+    }
+
     struct Cells {
         let location: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
@@ -73,7 +77,7 @@ class CalendarNewEventFormView {
             cell.textField.clearButtonMode = .Always
 
             let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
-            constraints.first?.constant = 90
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
 
             return cell
         }()
@@ -84,6 +88,9 @@ class CalendarNewEventFormView {
             return cell
         }()
     }
+
+
+    // MARK: Class Properties
 
 
     // MARK: Class Methods
