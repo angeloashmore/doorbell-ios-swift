@@ -11,6 +11,7 @@ import KHAForm
 import SwiftValidator
 
 protocol FormProtocol: KHAFormViewDataSource, ValidationDelegate {
+    var formView: FormViewProtocol? { get }
     var validator: Validator { get }
 
     func configureUI()

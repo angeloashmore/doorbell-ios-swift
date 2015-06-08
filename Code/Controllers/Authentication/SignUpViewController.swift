@@ -13,37 +13,44 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class SignUpViewController: KHAFormViewController, FormProtocol {
+class SignUpViewController: FormViewController {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
-    let formView = SignUpFormView()
-    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
 
-        configureUI()
-        configureValidator()
+        self.formView = SignUpFormView()
     }
 
 
-    // MARK: KHAFormViewDataSource Protocol Methods
-    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return formView.cellsInSections
+    // MARK: FormViewController Methods
+    override func configureUI() {
+        title = "Sign Up"
+
+        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = submitButton
     }
 
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return formView.footerForSection(section)
+    override func configureValidator() {
+        let formView = self.formView as! SignUpFormView
+
+        validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
+        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
     }
 
+    override func validationSuccessful() {
+        let formView = self.formView as! SignUpFormView
 
-    // MARK: ValidatorDelegate Protocol Methods
-    func validationSuccessful() {
         let user = PFUser()
 
         user.username = formView.cells.username.textField.text
@@ -84,40 +91,6 @@ class SignUpViewController: KHAFormViewController, FormProtocol {
             }
     }
 
-    func validationFailed(errors: [UITextField : ValidationError]) {
-        log(errors, forLevel: .Error)
 
-        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
-    
     // MARK: Methods
-    func configureUI() {
-        title = "Sign Up"
-
-        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
-        navigationItem.rightBarButtonItem = submitButton
-    }
-
-    func configureCells() {
-        // Unused
-    }
-
-    func configureValidator() {
-        validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
-        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
-    }
-
-    func submit() {
-        validator.validate(self)
-    }
 }

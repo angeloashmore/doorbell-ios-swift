@@ -595,6 +595,7 @@
 				<string>17D7D5F61B205A2900FA96A3</string>
 				<string>17D14D811B151E7B003C93BA</string>
 				<string>17D14D851B151FF2003C93BA</string>
+				<string>179062A41B264C590006084B</string>
 				<string>17D7D5FB1B205A2900FA96A3</string>
 			</array>
 			<key>isa</key>
@@ -1141,15 +1142,11 @@
 					<string>-framework</string>
 					<string>"Bolts"</string>
 					<string>-framework</string>
-					<string>"Honour"</string>
-					<string>-framework</string>
 					<string>"PKHUD"</string>
 					<string>-framework</string>
 					<string>"Parse"</string>
 					<string>-framework</string>
 					<string>"ParseUI"</string>
-					<string>-framework</string>
-					<string>"SwiftForms"</string>
 					<string>-framework</string>
 					<string>"SwiftValidator"</string>
 					<string>-lz</string>
@@ -1195,15 +1192,11 @@
 					<string>-framework</string>
 					<string>"Bolts"</string>
 					<string>-framework</string>
-					<string>"Honour"</string>
-					<string>-framework</string>
 					<string>"PKHUD"</string>
 					<string>-framework</string>
 					<string>"Parse"</string>
 					<string>-framework</string>
 					<string>"ParseUI"</string>
-					<string>-framework</string>
-					<string>"SwiftForms"</string>
 					<string>-framework</string>
 					<string>"SwiftValidator"</string>
 					<string>-lz</string>
@@ -1340,6 +1333,26 @@
 		<dict>
 			<key>fileRef</key>
 			<string>179062A11B264AD40006084B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>179062A31B264C590006084B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FormViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>179062A41B264C590006084B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>179062A31B264C590006084B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -1845,6 +1858,7 @@
 				<string>17E670051B1288A60086D68F</string>
 				<string>177421AC1B1E8B3B006968E6</string>
 				<string>177589661B18FED90094CED2</string>
+				<string>179062A31B264C590006084B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>

@@ -13,52 +13,30 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class SettingsViewController: KHAFormViewController, FormProtocol {
+class SettingsViewController: FormViewController {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
-    let formView = SettingsFormView()
-    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init!(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
 
-        configureUI()
-        configureCells()
-        configureValidator()
+        self.formView = SettingsFormView()
     }
 
     
-    // MARK: KHAFormViewDataSource Protocol Methods
-    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return formView.cellsInSections
-    }
-
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return formView.footerForSection(section)
-    }
-
-    
-    // MARK: ValidatorDelegate Protocol Methods
-    func validationSuccessful() {
-        // Unused
-    }
-
-    func validationFailed(errors: [UITextField : ValidationError]) {
-        // Unused
-    }
-
-
-    // MARK: Methods
-    func configureUI() {
+    // MARK: FormViewController Methods
+    override func configureUI() {
         title = "Settings"
     }
 
-    func configureCells() {
+    override func configureCells() {
+        let formView = self.formView as! SettingsFormView
+
         formView.cells.privateAccount.sswitch.setOn(PFUser.currentUser()!.objectForKey("private") as! Bool, animated: true)
 
         formView.cells.editProfile.button.addTarget(self, action: "handleEditProfileButton", forControlEvents: UIControlEvents.TouchUpInside)
@@ -68,14 +46,8 @@ class SettingsViewController: KHAFormViewController, FormProtocol {
         formView.cells.logOut.button.addTarget(self, action: "handleLogOutButton", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
-    func configureValidator() {
-        // Unused
-    }
 
-    func submit() {
-        // Unused
-    }
-
+    // MARK: Methods
     func handleEditProfileButton() {
         performSegueWithIdentifier("EditProfile", sender: nil)
     }
@@ -85,6 +57,8 @@ class SettingsViewController: KHAFormViewController, FormProtocol {
     }
 
     func handlePrivateAccountSwitch() {
+        let formView = self.formView as! SettingsFormView
+
         let value = formView.cells.privateAccount.sswitch.on
 
         let user = PFUser.currentUser()!

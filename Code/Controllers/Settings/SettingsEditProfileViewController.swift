@@ -13,38 +13,52 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class SettingsEditProfileViewController: KHAFormViewController, FormProtocol {
+class SettingsEditProfileViewController: FormViewController {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
-    let formView = SettingsEditProfileFormView()
-    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init!(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
 
-        configureUI()
-        configureCells()
-        configureValidator()
+        self.formView = SettingsEditProfileFormView()
     }
 
 
-    // MARK: KHAFormViewDataSource Protocol Methods
-    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return formView.cellsInSections
+    // MARK: FormViewController Methods
+    override func configureUI() {
+        title = "Edit Profile"
+
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = saveButton
+
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
+        navigationItem.leftBarButtonItem = cancelButton
     }
 
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return formView.footerForSection(section)
+    override func configureCells() {
+        let formView = self.formView as! SettingsEditProfileFormView
+
+        formView.cells.firstName.textField.text = PFUser.currentUser()?.objectForKey("firstName") as? String
+        formView.cells.lastName.textField.text = PFUser.currentUser()?.objectForKey("lastName") as? String
+        formView.cells.email.textField.text = PFUser.currentUser()?.objectForKey("email") as? String
     }
 
+    override func configureValidator() {
+        let formView = self.formView as! SettingsEditProfileFormView
 
-    // MARK: ValidatorDelegate Protocol Methods
-    func validationSuccessful() {
+        validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
+    }
+
+    override func validationSuccessful() {
+        let formView = self.formView as! SettingsEditProfileFormView
+
         let user = PFUser.currentUser()!
 
         user["firstName"] = formView.cells.firstName.textField.text
@@ -80,45 +94,8 @@ class SettingsEditProfileViewController: KHAFormViewController, FormProtocol {
             }
     }
 
-    func validationFailed(errors: [UITextField : ValidationError]) {
-        log(errors, forLevel: .Error)
-
-        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
 
     // MARK: Methods
-    func configureUI() {
-        title = "Edit Profile"
-
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "submit")
-        navigationItem.rightBarButtonItem = saveButton
-
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
-        navigationItem.leftBarButtonItem = cancelButton
-    }
-
-    func configureCells() {
-        formView.cells.firstName.textField.text = PFUser.currentUser()?.objectForKey("firstName") as? String
-        formView.cells.lastName.textField.text = PFUser.currentUser()?.objectForKey("lastName") as? String
-        formView.cells.email.textField.text = PFUser.currentUser()?.objectForKey("email") as? String
-    }
-
-    func configureValidator() {
-        validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
-    }
-
-    func submit() {
-        validator.validate(self)
-    }
-
     func cancel() {
         view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)

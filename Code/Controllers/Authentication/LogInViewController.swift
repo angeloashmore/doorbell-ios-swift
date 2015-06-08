@@ -13,42 +13,46 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class LogInViewController: KHAFormViewController, FormProtocol {
+class LogInViewController: FormViewController {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
-    let formView = LogInFormView()
-    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
 
-        configureUI()
-        configureCells()
-        configureValidator()
+        self.formView = LogInFormView()
     }
 
 
-    // MARK: KHAFormViewDataSource Protocol Methods
-    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return formView.cellsInSections
+    // MARK: FormViewController Methods
+    override func configureUI() {
+        title = "Log In"
+
+        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = submitButton
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return formView.headerForSection(section)
+    override func configureCells() {
+        let formView = self.formView as! LogInFormView
+
+        formView.cells.signUp.button.addTarget(self, action: "handleSignUpButton", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return formView.footerForSection(section)
+    override func configureValidator() {
+        let formView = self.formView as! LogInFormView
+
+        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
     }
 
+    override func validationSuccessful() {
+        let formView = self.formView as! LogInFormView
 
-    // MARK: ValidatorDelegate Protocol Methods
-    func validationSuccessful() {
         let username = formView.cells.username.textField.text
         let password = formView.cells.password.textField.text
 
@@ -82,40 +86,9 @@ class LogInViewController: KHAFormViewController, FormProtocol {
             }
     }
 
-    func validationFailed(errors: [UITextField : ValidationError]) {
-        log(errors, forLevel: .Error)
-
-        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
 
     // MARK: Methods
-    func configureUI() {
-        title = "Log In"
-
-        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
-        navigationItem.rightBarButtonItem = submitButton
-    }
-
-    func configureCells() {
-        formView.cells.signUp.button.addTarget(self, action: "handleSignUpButton", forControlEvents: UIControlEvents.TouchUpInside)
-    }
-
-    func configureValidator() {
-        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
-        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
-    }
-
     func handleSignUpButton() {
         performSegueWithIdentifier("SignUp", sender: nil)
-    }
-
-    func submit() {
-        validator.validate(self)
     }
 }

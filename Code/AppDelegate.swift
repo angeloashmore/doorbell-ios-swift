@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import ParsePromiseKit
 import LayerKit
-import SwiftFormsHonour
 
 struct ExternalKeys {
     struct Layer {

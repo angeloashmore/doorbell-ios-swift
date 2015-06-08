@@ -12,37 +12,42 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class CalendarNewEventViewController: KHAFormViewController, FormProtocol {
+class CalendarNewEventViewController: FormViewController {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
-    let formView = CalendarNewEventFormView()
-    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    required init!(coder aDecoder: NSCoder!) {
+        super.init(coder: aDecoder)
 
-        configureUI()
-        configureValidator()
+        self.formView = CalendarNewEventFormView()
     }
 
 
-    // MARK: KHAFormViewDataSource Protocol Methods
-    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return formView.cellsInSections
+    // MARK: FormViewController Methods
+    override func configureUI() {
+        title = "New Event"
+
+        let addButton = UIBarButtonItem(title: "Add", style: .Done, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = addButton
+
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
+        navigationItem.leftBarButtonItem = cancelButton
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return formView.headerForSection(section)
+    override func configureValidator() {
+        let formView = self.formView as! CalendarNewEventFormView
+
+        validator.registerField(formView.cells.location.textField, rules: [RequiredRule()])
     }
 
+    override func validationSuccessful() {
+        let formView = self.formView as! CalendarNewEventFormView
 
-    // MARK: ValidatorDelegate Protocol Methods
-    func validationSuccessful() {
         let event = Event()
 
         event["location"] = formView.cells.location.textField.text
@@ -79,39 +84,8 @@ class CalendarNewEventViewController: KHAFormViewController, FormProtocol {
             }
     }
 
-    func validationFailed(errors: [UITextField : ValidationError]) {
-        log(errors, forLevel: .Error)
-
-        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(OKAction)
-
-        self.presentViewController(alertController, animated: true, completion: nil)
-    }
-
 
     // MARK: Methods
-    func configureUI() {
-        let addButton = UIBarButtonItem(title: "Add", style: .Done, target: self, action: "submit")
-        navigationItem.rightBarButtonItem = addButton
-
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
-        navigationItem.leftBarButtonItem = cancelButton
-    }
-
-    func configureCells() {
-        // Unused
-    }
-
-    func configureValidator() {
-        validator.registerField(formView.cells.location.textField, rules: [RequiredRule()])
-    }
-
-    func submit() {
-        validator.validate(self)
-    }
-
     func cancel() {
         view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
