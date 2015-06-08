@@ -75,10 +75,6 @@ class CalendarNewEventFormView {
             let cell = KHAFormCell.formCellWithType(.TextField)
             cell.textField.placeholder = "Attendees"
             cell.textField.clearButtonMode = .WhileEditing
-
-            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
-            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
-
             return cell
         }()
 

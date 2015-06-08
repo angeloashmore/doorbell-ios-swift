@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Event.swift
 //  Doorbell
 //
 //  Created by Angelo on 6/7/15.
