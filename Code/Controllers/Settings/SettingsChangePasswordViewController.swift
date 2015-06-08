@@ -26,7 +26,7 @@ class SettingsChangePasswordViewController: FormViewController {
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
 
-        self.formView = SettingsChangePasswordFormView()
+        formView = SettingsChangePasswordFormView()
     }
 
 

@@ -24,7 +24,7 @@ class CalendarNewEventViewController: FormViewController {
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
 
-        self.formView = CalendarNewEventFormView()
+        formView = CalendarNewEventFormView()
     }
 
 

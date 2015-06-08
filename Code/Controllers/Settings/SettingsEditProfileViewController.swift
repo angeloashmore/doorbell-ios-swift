@@ -25,7 +25,7 @@ class SettingsEditProfileViewController: FormViewController {
     required init!(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
 
-        self.formView = SettingsEditProfileFormView()
+        formView = SettingsEditProfileFormView()
     }
 
 
