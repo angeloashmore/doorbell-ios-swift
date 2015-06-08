@@ -72,6 +72,7 @@ class FormViewController: KHAFormViewController, FormProtocol {
     }
 
     func submit() {
+        view.endEditing(true)
         validator.validate(self)
     }
 }
