@@ -14,14 +14,14 @@ class CalendarTableViewController: PFQueryTableViewController {
     required init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
 
-        self.parseClassName = "Billing"
+        self.parseClassName = "Event"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = true
         self.objectsPerPage = 25
     }
 
     override func queryForTable() -> PFQuery {
-        let query = PFQuery(className: "Billing")
+        let query = PFQuery(className: "Event")
         query.orderByAscending("created_at")
         return query
     }

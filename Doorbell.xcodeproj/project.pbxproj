@@ -533,11 +533,13 @@
 				<string>17D7D5DA1B205A2900FA96A3</string>
 				<string>17D7D5F71B205A2900FA96A3</string>
 				<string>17223D3A1B0FB21C00B37BCD</string>
+				<string>17B5B6251B24FB1100571AB0</string>
 				<string>177421A11B1E6361006968E6</string>
 				<string>17D7D5F81B205A2900FA96A3</string>
 				<string>17D7D5E61B205A2900FA96A3</string>
 				<string>17D7D5E71B205A2900FA96A3</string>
 				<string>17D7D5EE1B205A2900FA96A3</string>
+				<string>17B5B6291B25262600571AB0</string>
 				<string>17D7D5D91B205A2900FA96A3</string>
 				<string>17D7D5ED1B205A2900FA96A3</string>
 				<string>17D7D5E31B205A2900FA96A3</string>
@@ -557,7 +559,6 @@
 				<string>177421991B1E529C006968E6</string>
 				<string>17D7D5EC1B205A2900FA96A3</string>
 				<string>17850AD91B0D464600504176</string>
-				<string>17B5B6231B24EEF100571AB0</string>
 				<string>17D7D5EB1B205A2900FA96A3</string>
 				<string>17D7D5851B203E1200FA96A3</string>
 				<string>1774219D1B1E5A6C006968E6</string>
@@ -1290,6 +1291,7 @@
 			<key>children</key>
 			<array>
 				<string>179262441B163889006315AA</string>
+				<string>17B5B6281B25262600571AB0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -1379,7 +1381,7 @@
 			<key>children</key>
 			<array>
 				<string>17D14D801B151E7B003C93BA</string>
-				<string>17B5B6221B24EEF100571AB0</string>
+				<string>17B5B6241B24FB1100571AB0</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -1473,7 +1475,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>CalendarAddFormView.swift</string>
+			<string>CalendarNewEventFormView.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1484,7 +1486,7 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>17B5B6221B24EEF100571AB0</key>
+		<key>17B5B6241B24FB1100571AB0</key>
 		<dict>
 			<key>fileEncoding</key>
 			<string>4</string>
@@ -1493,14 +1495,34 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.swift</string>
 			<key>path</key>
-			<string>CalendarAddViewController.swift</string>
+			<string>CalendarNewEventViewController.swift</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>17B5B6231B24EEF100571AB0</key>
+		<key>17B5B6251B24FB1100571AB0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>17B5B6221B24EEF100571AB0</string>
+			<string>17B5B6241B24FB1100571AB0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17B5B6281B25262600571AB0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Event.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17B5B6291B25262600571AB0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17B5B6281B25262600571AB0</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
