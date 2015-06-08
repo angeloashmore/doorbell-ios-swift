@@ -13,7 +13,7 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class SignUpViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
+class SignUpViewController: KHAFormViewController, FormProtocol {
 
     // MARK: Class Properties
 
@@ -102,6 +102,10 @@ class SignUpViewController: KHAFormViewController, KHAFormViewDataSource, Valida
 
         let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
         navigationItem.rightBarButtonItem = submitButton
+    }
+
+    func configureCells() {
+        // Unused
     }
 
     func configureValidator() {

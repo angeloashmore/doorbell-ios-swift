@@ -11,14 +11,16 @@ import Parse
 import PKHUD
 import Evergreen
 import KHAForm
+import SwiftValidator
 
-class SettingsViewController: KHAFormViewController, KHAFormViewDataSource {
+class SettingsViewController: KHAFormViewController, FormProtocol {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
     let formView = SettingsFormView()
+    let validator = Validator()
 
 
     // MARK: Life-Cycle Methods
@@ -27,6 +29,7 @@ class SettingsViewController: KHAFormViewController, KHAFormViewDataSource {
 
         configureUI()
         configureCells()
+        configureValidator()
     }
 
     
@@ -37,6 +40,16 @@ class SettingsViewController: KHAFormViewController, KHAFormViewDataSource {
 
     override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return formView.footerForSection(section)
+    }
+
+    
+    // MARK: ValidatorDelegate Protocol Methods
+    func validationSuccessful() {
+        // Unused
+    }
+
+    func validationFailed(errors: [UITextField : ValidationError]) {
+        // Unused
     }
 
 
@@ -53,6 +66,14 @@ class SettingsViewController: KHAFormViewController, KHAFormViewDataSource {
         formView.cells.privateAccount.sswitch.addTarget(self, action: "handlePrivateAccountSwitch", forControlEvents: UIControlEvents.ValueChanged)
         formView.cells.aboutThisVersion.button.addTarget(self, action: "handleAboutThisVersionButton", forControlEvents: UIControlEvents.TouchUpInside)
         formView.cells.logOut.button.addTarget(self, action: "handleLogOutButton", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+
+    func configureValidator() {
+        // Unused
+    }
+
+    func submit() {
+        // Unused
     }
 
     func handleEditProfileButton() {

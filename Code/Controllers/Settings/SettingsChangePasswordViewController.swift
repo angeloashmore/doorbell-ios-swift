@@ -14,7 +14,7 @@ import KHAForm
 import SwiftValidator
 import PromiseKit
 
-class SettingsChangePasswordViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
+class SettingsChangePasswordViewController: KHAFormViewController, FormProtocol {
 
     // MARK: Class Properties
 
@@ -103,6 +103,10 @@ class SettingsChangePasswordViewController: KHAFormViewController, KHAFormViewDa
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         navigationItem.leftBarButtonItem = cancelButton
+    }
+
+    func configureCells() {
+        // Unused
     }
 
     func configureValidator() {

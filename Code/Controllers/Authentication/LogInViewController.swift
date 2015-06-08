@@ -13,7 +13,7 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class LogInViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
+class LogInViewController: KHAFormViewController, FormProtocol {
 
     // MARK: Class Properties
 

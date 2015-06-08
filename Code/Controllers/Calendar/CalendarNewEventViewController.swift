@@ -12,7 +12,7 @@ import Evergreen
 import KHAForm
 import SwiftValidator
 
-class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
+class CalendarNewEventViewController: KHAFormViewController, FormProtocol {
 
     // MARK: Class Properties
 
@@ -98,6 +98,10 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
         navigationItem.leftBarButtonItem = cancelButton
+    }
+
+    func configureCells() {
+        // Unused
     }
 
     func configureValidator() {
