@@ -9,7 +9,7 @@
 import Foundation
 import KHAForm
 
-public class LogInFormView {
+public class LogInFormView: FormViewProtocol {
     // MARK: Constants
     struct Cells {
         let username: KHAFormCell = {

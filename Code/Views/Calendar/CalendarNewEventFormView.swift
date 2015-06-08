@@ -9,7 +9,7 @@
 import Foundation
 import KHAForm
 
-class CalendarNewEventFormView {
+class CalendarNewEventFormView: FormViewProtocol {
     // MARK: Constants
     struct Constants {
         static let textLabelWidth = 90
@@ -106,12 +106,16 @@ class CalendarNewEventFormView {
 
 
     // MARK: Instance Methods
-    func titleForSection(section: Int) -> String? {
+    func headerForSection(section: Int) -> String? {
         switch section {
         case 2:
             return "Attendees"
         default:
             return nil
         }
+    }
+
+    func footerForSection(section: Int) -> String? {
+        return nil
     }
 }

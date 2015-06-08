@@ -37,7 +37,7 @@ class CalendarNewEventViewController: KHAFormViewController, FormProtocol {
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return formView.titleForSection(section)
+        return formView.headerForSection(section)
     }
 
 

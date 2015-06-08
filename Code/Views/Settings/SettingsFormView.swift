@@ -9,7 +9,7 @@
 import Foundation
 import KHAForm
 
-public class SettingsFormView {
+public class SettingsFormView: FormViewProtocol {
     // MARK: Constants
     struct Cells {
         let editProfile: KHAFormCell = {
@@ -82,6 +82,10 @@ public class SettingsFormView {
 
 
     // MARK: Instance Methods
+    func headerForSection(section: Int) -> String? {
+        return nil
+    }
+
     func footerForSection(section: Int) -> String? {
         switch section {
         case 0:

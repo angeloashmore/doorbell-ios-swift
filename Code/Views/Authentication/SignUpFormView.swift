@@ -9,7 +9,7 @@
 import Foundation
 import KHAForm
 
-public class SignUpFormView {
+public class SignUpFormView: FormViewProtocol {
     // MARK: Constants
     struct Constants {
         static let textLabelWidth = 115
@@ -110,6 +110,10 @@ public class SignUpFormView {
 
 
     // MARK: Instance Methods
+    func headerForSection(section: Int) -> String? {
+        return nil
+    }
+
     func footerForSection(section: Int) -> String? {
         switch section {
         case 1:
