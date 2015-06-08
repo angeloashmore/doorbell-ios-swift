@@ -7,81 +7,115 @@
 //
 
 import Foundation
-import SwiftForms
+import KHAForm
 
 public class SignUpFormView {
-    // MARK: Class Properties
-    struct Tags {
-        static let firstName = "firstName"
-        static let lastName = "lastName"
-        static let email = "email"
-        static let username = "username"
-        static let password = "password"
-        static let passwordVerify = "passwordVerify"
+    // MARK: Constants
+    struct Constants {
+        static let textLabelWidth = 115
     }
 
-    private struct VisualConstraints {
-        static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(90)]-[textField]-16-|"]
-        }
+    struct Cells {
+        let firstName: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "First Name"
+            cell.textField.placeholder = "First"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let lastName: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Last Name"
+            cell.textField.placeholder = "Last"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let email: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Email"
+            cell.textField.placeholder = "name@example.com"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let username: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Username"
+            cell.textField.placeholder = "Username"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let password: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Password"
+            cell.textField.placeholder = "Password"
+            cell.textField.clearButtonMode = .WhileEditing
+            cell.textField.secureTextEntry = true
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let passwordVerify: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Verify"
+            cell.textField.placeholder = "Retype password"
+            cell.textField.clearButtonMode = .WhileEditing
+            cell.textField.secureTextEntry = true
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
     }
+
+
+    // MARK: Class Properties
+
+
+    // MARK: Class Methods
 
 
     // MARK: Instance Properties
-    var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.firstName: {
-            let row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
+    let cells = Cells()
 
-        Tags.lastName: {
-            let row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.firstName, cells.lastName, cells.email],
+            [cells.username, cells.password, cells.passwordVerify]
+        ]
+    }
 
-        Tags.email: {
-            let row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
 
-        Tags.username: {
-            let row = FormRowDescriptor(tag: Tags.username, rowType: FormRowType.Name, title: "Username", placeholder: "Required")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
-
-        Tags.password: {
-            let row = FormRowDescriptor(tag: Tags.password, rowType: FormRowType.Password, title: "Password", placeholder: "Required")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
-
-        Tags.passwordVerify: {
-            let row = FormRowDescriptor(tag: Tags.passwordVerify, rowType: FormRowType.Password, title: "Verify", placeholder: "Retype password")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }()
-    ]
-
-    var form: FormDescriptor {
-        let form = FormDescriptor()
-
-        let personalDetailsSection = FormSectionDescriptor()
-        personalDetailsSection.addRow(formRowDescriptors[Tags.firstName]!)
-        personalDetailsSection.addRow(formRowDescriptors[Tags.lastName]!)
-        personalDetailsSection.addRow(formRowDescriptors[Tags.email]!)
-
-        let credentialsSection = FormSectionDescriptor()
-        credentialsSection.addRow(formRowDescriptors[Tags.username]!)
-        credentialsSection.addRow(formRowDescriptors[Tags.password]!)
-        credentialsSection.addRow(formRowDescriptors[Tags.passwordVerify]!)
-        credentialsSection.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
-
-        form.sections = [personalDetailsSection, credentialsSection]
-
-        return form
+    // MARK: Instance Methods
+    func footerForSection(section: Int) -> String? {
+        switch section {
+        case 1:
+            return "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
+        default:
+            return nil
+        }
     }
 }

@@ -20,7 +20,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="1Qz-7e-whK"/>
                     <connections>
-                        <segue destination="lep-E9-oLh" kind="show" identifier="SignUpSegue" id="FqO-Ud-Bvn"/>
+                        <segue destination="lep-E9-oLh" kind="show" identifier="SignUp" id="FqO-Ud-Bvn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHf-E5-GIQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,65 +9,71 @@
 import UIKit
 import Parse
 import PKHUD
-import SwiftForms
+import Evergreen
+import KHAForm
 
-class SettingsViewController: FormViewController {
+class SettingsViewController: KHAFormViewController, KHAFormViewDataSource {
 
     // MARK: Class Properties
 
 
     // MARK: Instance Properties
+    let formView = SettingsFormView()
 
 
     // MARK: Life-Cycle Methods
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        self.loadForm()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Settings"
+        configureUI()
+        configureCells()
+    }
+
+    
+    // MARK: KHAFormViewDataSource Protocol Methods
+    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
+        return formView.cellsInSections
+    }
+
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return formView.footerForSection(section)
     }
 
 
     // MARK: Methods
-    func loadForm() {
-        let formView = SettingsFormView()
+    func configureUI() {
+        title = "Settings"
+    }
 
-        formView.formRowDescriptors[SettingsFormView.Tags.editProfile]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.performSegueWithIdentifier("EditProfile", sender: nil)
-        } as DidSelectClosure
+    func configureCells() {
+        formView.cells.privateAccount.sswitch.setOn(PFUser.currentUser()!.objectForKey("private") as! Bool, animated: true)
 
-        formView.formRowDescriptors[SettingsFormView.Tags.changePassword]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.performSegueWithIdentifier("ChangePassword", sender: nil)
-        } as DidSelectClosure
+        formView.cells.editProfile.button.addTarget(self, action: "handleEditProfileButton", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.cells.changePassword.button.addTarget(self, action: "handleChangePasswordButton", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.cells.privateAccount.sswitch.addTarget(self, action: "handlePrivateAccountSwitch", forControlEvents: UIControlEvents.ValueChanged)
+        formView.cells.aboutThisVersion.button.addTarget(self, action: "handleAboutThisVersionButton", forControlEvents: UIControlEvents.TouchUpInside)
+        formView.cells.logOut.button.addTarget(self, action: "handleLogOutButton", forControlEvents: UIControlEvents.TouchUpInside)
+    }
 
-        formView.formRowDescriptors[SettingsFormView.Tags.aboutThisVersion]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.performSegueWithIdentifier("About", sender: nil)
-        } as DidSelectClosure
+    func handleEditProfileButton() {
+        performSegueWithIdentifier("EditProfile", sender: nil)
+    }
 
-        formView.formRowDescriptors[SettingsFormView.Tags.privateAccount]!.value = PFUser.currentUser()?.valueForKey("private") as? Bool
-        formView.formRowDescriptors[SettingsFormView.Tags.privateAccount]!.configuration[FormRowDescriptor.Configuration.DidUpdateClosure] = { row -> Void in
-            self.handlePrivateAccountSwitch()
-        } as UpdateClosure
-
-        formView.formRowDescriptors[SettingsFormView.Tags.logOut]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.handleLogOutButton()
-        } as DidSelectClosure
-
-        self.form = formView.form
+    func handleChangePasswordButton() {
+        performSegueWithIdentifier("ChangePassword", sender: nil)
     }
 
     func handlePrivateAccountSwitch() {
-        let value = self.valueForTag(SettingsFormView.Tags.privateAccount)
+        let value = formView.cells.privateAccount.sswitch.on
 
         let user = PFUser.currentUser()!
         user.setValue(value, forKey: "private")
 
         user.promiseSave()
+    }
+
+    func handleAboutThisVersionButton() {
+        performSegueWithIdentifier("AboutThisVersion", sender: nil)
     }
 
     func handleLogOutButton() {
@@ -87,7 +93,6 @@ class SettingsViewController: FormViewController {
     func logOut() {
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
-
         PFUser.promiseLogOut()
             .then { _ in
                 return LayerClient.sharedClient.client?.promiseDeauthenticate()

@@ -7,80 +7,87 @@
 //
 
 import Foundation
-import SwiftForms
+import KHAForm
 
 public class SettingsFormView {
-    // MARK: Class Properties
-    struct Tags {
-        static let editProfile = "editProfile"
-        static let changePassword = "changePassword"
-        static let privateAccount = "privateAccount"
-        static let aboutThisVersion = "aboutThisVersion"
-        static let logOut = "logOut"
+    // MARK: Constants
+    struct Cells {
+        let editProfile: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.button.setTitle("Edit Profile", forState: .Normal)
+            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
+            cell.button.contentHorizontalAlignment = .Left
+            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+            cell.accessoryType = .DisclosureIndicator
+            return cell
+        }()
+
+        let changePassword: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.button.setTitle("Change Password", forState: .Normal)
+            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
+            cell.button.contentHorizontalAlignment = .Left
+            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+            cell.accessoryType = .DisclosureIndicator
+            return cell
+        }()
+
+        let privateAccount: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Switch)
+            cell.textLabel?.text = "Private Account"
+            return cell
+        }()
+
+        let aboutThisVersion: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.button.setTitle("About This Version", forState: .Normal)
+            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
+            cell.button.contentHorizontalAlignment = .Left
+            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+            cell.accessoryType = .DisclosureIndicator
+            return cell
+        }()
+
+        let logOut: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.button.setTitle("Log Out", forState: .Normal)
+            cell.button.setTitleColor(UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0), forState: .Normal)
+            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
+            cell.button.contentHorizontalAlignment = .Left
+            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+            return cell
+        }()
     }
 
-    private struct RowConfigurationTypes {
-        static let DisclosureIndicatorButton = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
-        ]
-        static let DefaultButton = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
-        ]
-    }
+
+    // MARK: Class Properties
+
+
+    // MARK: Class Methods
 
 
     // MARK: Instance Properties
-    var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.editProfile: {
-            let row = FormRowDescriptor(tag: Tags.editProfile, rowType: .Button, title: "Edit Profile")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
-            return row
-        }(),
+    let cells = Cells()
 
-        Tags.changePassword: {
-            let row = FormRowDescriptor(tag: Tags.changePassword, rowType: .Button, title: "Change Password")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
-            return row
-        }(),
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.editProfile, cells.changePassword, cells.privateAccount],
+            [cells.aboutThisVersion],
+            [cells.logOut]
+        ]
+    }
 
-        Tags.privateAccount: {
-            let row = FormRowDescriptor(tag: Tags.privateAccount, rowType: .BooleanSwitch, title: "Private Account")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
-            return row
-        }(),
 
-        Tags.aboutThisVersion: {
-            let row = FormRowDescriptor(tag: Tags.aboutThisVersion, rowType: .Button, title: "About This Version")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DisclosureIndicatorButton
-            return row
-        }(),
-
-        Tags.logOut: {
-            let row = FormRowDescriptor(tag: Tags.logOut, rowType: .Button, title: "Log Out")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DefaultButton
-            return row
-        }()
-    ]
-
-    var form: FormDescriptor {
-        let form = FormDescriptor()
-
-        let userSection = FormSectionDescriptor()
-        userSection.footerTitle = "When your account is private, only people you approve can see your profile and interact with you."
-        userSection.addRow(formRowDescriptors[Tags.editProfile]!)
-        userSection.addRow(formRowDescriptors[Tags.changePassword]!)
-        userSection.addRow(formRowDescriptors[Tags.privateAccount]!)
-
-        let aboutSection = FormSectionDescriptor()
-        aboutSection.addRow(formRowDescriptors[Tags.aboutThisVersion]!)
-
-        let logOutSection = FormSectionDescriptor()
-        logOutSection.addRow(formRowDescriptors[Tags.logOut]!)
-
-        form.sections = [userSection, aboutSection, logOutSection]
-
-        return form
+    // MARK: Instance Methods
+    func footerForSection(section: Int) -> String? {
+        switch section {
+        case 0:
+            return "When your account is private, only people you approve can see your profile and interact with you."
+        default:
+            return nil
+        }
     }
 }

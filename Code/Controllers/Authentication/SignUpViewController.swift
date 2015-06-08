@@ -9,95 +9,51 @@
 import UIKit
 import Parse
 import PKHUD
-import SwiftForms
-import SwiftFormsHonour
-import Honour
+import Evergreen
+import KHAForm
+import SwiftValidator
 
-class SignUpViewController: FormViewController {
+class SignUpViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
 
     // MARK: Class Properties
 
 
-    // MARK: Life-Cycle Methods
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.loadForm()
-    }
+    // MARK: Instance Properties
+    let formView = SignUpFormView()
+    let validator = Validator()
 
+
+    // MARK: Life-Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Sign Up"
-
-        let submitButton = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
-        self.navigationItem.rightBarButtonItem = submitButton
+        configureUI()
+        configureValidator()
     }
 
 
-    // MARK: Form Configuration
-    private func loadForm() {
-        let formView = SignUpFormView()
+    // MARK: KHAFormViewDataSource Protocol Methods
+    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
+        return formView.cellsInSections
+    }
 
-        formView.formRowDescriptors[SignUpFormView.Tags.firstName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty())
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SignUpFormView.Tags.lastName]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty())
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SignUpFormView.Tags.email]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty()).addRule(Email())
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SignUpFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty()).addRule(Length(min: 3))
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SignUpFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SignUpFormView.Tags.passwordVerify]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(Regex("^\(self.valueForTag(SignUpFormView.Tags.password))$"))
-        } as ValidatorClosure
-
-        self.form = formView.form
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return formView.footerForSection(section)
     }
 
 
-    // MARK: Methods
-    func submit() {
-        if form.validateFormWithHonour() {
-            signUp()
-        } else {
-            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+    // MARK: ValidatorDelegate Protocol Methods
+    func validationSuccessful() {
+        let user = PFUser()
 
-            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            alertController.addAction(OKAction)
+        user.username = formView.cells.username.textField.text
+        user.password = formView.cells.password.textField.text
+        user.email = formView.cells.email.textField.text
+        user["firstName"] = formView.cells.firstName.textField.text
+        user["lastName"] = formView.cells.lastName.textField.text
 
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
-    }
-
-    func signUp() {
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
-        
-        let formValues = form.formValues()
-        let username = formValues[SignUpFormView.Tags.username] as? String ?? ""
-        let password = formValues[SignUpFormView.Tags.password] as? String ?? ""
-        let email = formValues[SignUpFormView.Tags.email] as? String ?? ""
-        let firstName = formValues[SignUpFormView.Tags.firstName] as? String ?? ""
-        let lastName = formValues[SignUpFormView.Tags.lastName] as? String ?? ""
-        
-        let user = PFUser()
-        user.username = username
-        user.password = password
-        user.email = email
-        user["firstName"] = firstName
-        user["lastName"] = lastName
-
         user.promiseSignUp()
             .then { user -> Void in
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
@@ -126,5 +82,38 @@ class SignUpViewController: FormViewController {
 
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
+    }
+
+    func validationFailed(errors: [UITextField : ValidationError]) {
+        log(errors, forLevel: .Error)
+
+        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+    
+    // MARK: Methods
+    func configureUI() {
+        title = "Sign Up"
+
+        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = submitButton
+    }
+
+    func configureValidator() {
+        validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
+        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
+    }
+
+    func submit() {
+        validator.validate(self)
     }
 }

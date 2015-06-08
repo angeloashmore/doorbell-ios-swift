@@ -19,7 +19,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="41S-NT-7qI"/>
                     <connections>
-                        <segue destination="PqI-9l-Xr8" kind="show" identifier="About" id="jje-lg-iRZ"/>
+                        <segue destination="PqI-9l-Xr8" kind="show" identifier="AboutThisVersion" id="jje-lg-iRZ"/>
                         <segue destination="ynV-v2-cTR" kind="presentation" identifier="EditProfile" id="CEg-lG-KK3"/>
                         <segue destination="DF0-4A-Ast" kind="presentation" identifier="ChangePassword" id="VQp-ct-JJs"/>
                     </connections>
@@ -31,7 +31,6 @@
         <!--Settings About View Controller-->
         <scene sceneID="ePa-og-mfV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c4Q-2J-MKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="PqI-9l-Xr8" customClass="SettingsAboutViewController" customModule="Doorbell" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="K8R-9L-bnq"/>
@@ -43,6 +42,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4Q-2J-MKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="-446"/>
         </scene>

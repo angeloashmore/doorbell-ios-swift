@@ -9,76 +9,48 @@
 import UIKit
 import Parse
 import PKHUD
-import SwiftForms
-import SwiftFormsHonour
+import Evergreen
+import KHAForm
+import SwiftValidator
 import PromiseKit
-import Honour
 
-class SettingsChangePasswordViewController: FormViewController {
+class SettingsChangePasswordViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
 
     // MARK: Class Properties
 
 
+    // MARK: Instance Properties
+    let formView = SettingsChangePasswordFormView()
+    let validator = Validator()
+
+
     // MARK: Life-Cycle Methods
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        self.loadForm()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Change Password"
-
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
-        self.navigationItem.leftBarButtonItem = cancelButton
-
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "submit")
-        self.navigationItem.rightBarButtonItem = saveButton
+        configureUI()
+        configureValidator()
     }
 
 
-    // MARK: Methods
-    private func loadForm() {
-        let formView = SettingsChangePasswordFormView()
-
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPassword]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty()).addRule(Regex("^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")) // 8 char, 1 num, 1 uppercase, 1 lowercase
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[SettingsChangePasswordFormView.Tags.newPasswordVerify]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(Regex("^\(self.valueForTag(SettingsChangePasswordFormView.Tags.newPassword))$"))
-        } as ValidatorClosure
-
-        self.form = formView.form
+    // MARK: KHAFormViewDataSource Protocol Methods
+    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
+        return formView.cellsInSections
     }
 
-    func submit() {
-        self.view.endEditing(true)
-        
-        if form.validateFormWithHonour() {
-            updateUser()
-        } else {
-            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            alertController.addAction(OKAction)
-
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return formView.footerForSection(section)
     }
 
-    func updateUser() {
+
+    // MARK: ValidatorDelegate Protocol Methods
+    func validationSuccessful() {
+        let user = PFUser.currentUser()!
+
+        user["password"] = formView.cells.password.textField.text
+
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
-        
-        let formValues = form.formValues()
-        let password = formValues[SettingsChangePasswordFormView.Tags.newPassword] as? String ?? ""
-
-        let user = PFUser.currentUser()!
-        user.setValue(password, forKey: "password")
-
         user.promiseSave()
             .then { user -> Promise<Bool> in
                 return PFUser.promiseLogOut()
@@ -110,8 +82,40 @@ class SettingsChangePasswordViewController: FormViewController {
             }
     }
 
+    func validationFailed(errors: [UITextField : ValidationError]) {
+        log(errors, forLevel: .Error)
+
+        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+
+    // MARK: Methods
+    func configureUI() {
+        title = "Change Password"
+
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = saveButton
+
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel")
+        navigationItem.leftBarButtonItem = cancelButton
+    }
+
+    func configureValidator() {
+        validator.registerField(formView.cells.password.textField, rules: [RequiredRule(),PasswordRule(regex: "^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[a-z]).{8,}$")])
+        validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
+    }
+
+    func submit() {
+        validator.validate(self)
+    }
+
     func cancel() {
-        self.view.endEditing(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

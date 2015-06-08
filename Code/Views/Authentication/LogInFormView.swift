@@ -7,60 +7,72 @@
 //
 
 import Foundation
-import SwiftForms
+import KHAForm
 
 public class LogInFormView {
-    // MARK: Class Properties
-    struct Tags {
-        static let username = "username"
-        static let password = "password"
-        static let signUp = "signUp"
+    // MARK: Constants
+    struct Cells {
+        let username: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textField.placeholder = "Username"
+            cell.textField.clearButtonMode = .WhileEditing
+            return cell
+        }()
+
+        let password: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textField.placeholder = "Password"
+            cell.textField.clearButtonMode = .WhileEditing
+            cell.textField.secureTextEntry = true
+            return cell
+        }()
+
+        let signUp: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.button.setTitle("Create a new Doorbell account", forState: .Normal)
+            cell.button.setTitleColor(UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0), forState: .Normal)
+            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
+            cell.button.contentHorizontalAlignment = .Left
+            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
+            cell.accessoryType = .DisclosureIndicator
+            return cell
+        }()
     }
 
-    private struct RowConfigurationTypes {
-        static let DefaultButton = [
-            "titleLabel.textAlignment": NSTextAlignment.Left.rawValue,
-            "titleLabel.textColor": UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0),
-            "accessoryType": UITableViewCellAccessoryType.DisclosureIndicator.rawValue
+
+    // MARK: Class Properties
+
+
+    // MARK: Class Methods
+
+
+    // MARK: Instance Properties
+    let cells = Cells()
+
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.username, cells.password],
+            [cells.signUp]
         ]
     }
 
 
-    // MARK: Instance Properties
-    var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.username: {
-            let row = FormRowDescriptor(tag: Tags.username, rowType: .Name, title: "Username", placeholder: "Username")
-            row.title = nil
-            return row
-        }(),
+    // MARK: Instance Methods
+    func headerForSection(section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Account Credentials"
+        default:
+            return nil
+        }
+    }
 
-        Tags.password: {
-            let row = FormRowDescriptor(tag: Tags.password, rowType: .Password, title: "Password", placeholder: "Password")
-            row.title = nil
-            return row
-        }(),
-
-        Tags.signUp: {
-            let row = FormRowDescriptor(tag: Tags.signUp, rowType: .Button, title: "Create a new Doorbell account")
-            row.configuration[FormRowDescriptor.Configuration.CellConfiguration] = RowConfigurationTypes.DefaultButton
-            return row
-        }()
-    ]
-
-    var form: FormDescriptor {
-        let form = FormDescriptor()
-
-        let credentialsSection = FormSectionDescriptor()
-        credentialsSection.headerTitle = "Account Credentials"
-        credentialsSection.addRow(formRowDescriptors[Tags.username]!)
-        credentialsSection.addRow(formRowDescriptors[Tags.password]!)
-
-        let signUpSection = FormSectionDescriptor()
-        signUpSection.addRow(formRowDescriptors[Tags.signUp]!)
-        signUpSection.footerTitle = "Join Doorbell now to start chatting with your clients. The first 3 months are FREE and then only $10 a month."
-
-        form.sections = [credentialsSection, signUpSection]
-
-        return form
+    func footerForSection(section: Int) -> String? {
+        switch section {
+        case 1:
+            return "Join Doorbell now to start chatting with your clients. The first 3 months are FREE and then only $1 a month."
+        default:
+            return nil
+        }
     }
 }

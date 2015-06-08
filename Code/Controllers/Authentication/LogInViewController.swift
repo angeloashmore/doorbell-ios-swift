@@ -9,74 +9,51 @@
 import UIKit
 import Parse
 import PKHUD
-import SwiftForms
-import SwiftFormsHonour
-import Honour
+import Evergreen
+import KHAForm
+import SwiftValidator
 
-class LogInViewController: FormViewController {
+class LogInViewController: KHAFormViewController, KHAFormViewDataSource, ValidationDelegate {
 
     // MARK: Class Properties
 
 
+    // MARK: Instance Properties
+    let formView = LogInFormView()
+    let validator = Validator()
+
+
     // MARK: Life-Cycle Methods
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        self.loadForm()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Log In"
-
-        let submitButton = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.Done, target: self, action: "submit")
-        self.navigationItem.rightBarButtonItem = submitButton
+        configureUI()
+        configureCells()
+        configureValidator()
     }
 
 
-    // MARK: Methods
-    private func loadForm() {
-        let formView = LogInFormView()
-
-        formView.formRowDescriptors[LogInFormView.Tags.username]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty())
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[LogInFormView.Tags.password]!.configuration[FormRowDescriptor.Configuration.ValidatorClosure] = { Void -> Validator in
-            return Validator().addRule(NotEmpty())
-        } as ValidatorClosure
-
-        formView.formRowDescriptors[LogInFormView.Tags.signUp]!.configuration[FormRowDescriptor.Configuration.DidSelectClosure] = {
-            self.performSegueWithIdentifier("SignUpSegue", sender: nil)
-        } as DidSelectClosure
-
-        self.form = formView.form
+    // MARK: KHAFormViewDataSource Protocol Methods
+    override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
+        return formView.cellsInSections
     }
 
-    func submit() {
-        self.view.endEditing(true)
-        
-        if form.validateFormWithHonour() {
-            logIn()
-        } else {
-            let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
-
-            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            alertController.addAction(OKAction)
-
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return formView.headerForSection(section)
     }
 
-    func logIn() {
+    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return formView.footerForSection(section)
+    }
+
+
+    // MARK: ValidatorDelegate Protocol Methods
+    func validationSuccessful() {
+        let username = formView.cells.username.textField.text
+        let password = formView.cells.password.textField.text
+
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
-
-        let formValues = form.formValues()
-        let username = formValues[LogInFormView.Tags.username] as? String ?? ""
-        let password = formValues[LogInFormView.Tags.password] as? String ?? ""
-
         PFUser.promiseLogInWithUsername(username, password: password)
             .then { user -> Void in
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
@@ -102,6 +79,43 @@ class LogInViewController: FormViewController {
                 alertController.addAction(OKAction)
 
                 self.presentViewController(alertController, animated: true, completion: nil)
-        }
+            }
+    }
+
+    func validationFailed(errors: [UITextField : ValidationError]) {
+        log(errors, forLevel: .Error)
+
+        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
+
+    // MARK: Methods
+    func configureUI() {
+        title = "Log In"
+
+        let submitButton = UIBarButtonItem(title: "Submit", style: .Done, target: self, action: "submit")
+        navigationItem.rightBarButtonItem = submitButton
+    }
+
+    func configureCells() {
+        formView.cells.signUp.button.addTarget(self, action: "handleSignUpButton", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+
+    func configureValidator() {
+        validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
+    }
+
+    func handleSignUpButton() {
+        performSegueWithIdentifier("SignUp", sender: nil)
+    }
+
+    func submit() {
+        validator.validate(self)
     }
 }

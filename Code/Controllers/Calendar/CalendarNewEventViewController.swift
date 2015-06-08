@@ -43,7 +43,6 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
 
     // MARK: ValidatorDelegate Protocol Methods
     func validationSuccessful() {
-        // Validation successful
         let event = Event()
 
         event["location"] = formView.cells.location.textField.text
@@ -69,7 +68,6 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
     }
 
     func validationFailed(errors: [UITextField : ValidationError]) {
-        // Validation unsuccessful
         log(errors, forLevel: .Error)
     }
 

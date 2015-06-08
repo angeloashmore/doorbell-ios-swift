@@ -19,7 +19,7 @@ class CalendarNewEventFormView {
         let location: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
             cell.textField.placeholder = "Location"
-            cell.textField.clearButtonMode = .Always
+            cell.textField.clearButtonMode = .WhileEditing
             return cell
         }()
 
@@ -74,7 +74,7 @@ class CalendarNewEventFormView {
         let attendees: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
             cell.textField.placeholder = "Attendees"
-            cell.textField.clearButtonMode = .Always
+            cell.textField.clearButtonMode = .WhileEditing
 
             let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
             constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)

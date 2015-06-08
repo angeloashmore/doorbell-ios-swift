@@ -7,55 +7,76 @@
 //
 
 import Foundation
-import SwiftForms
+import KHAForm
 
 public class SettingsEditProfileFormView {
-    // MARK: Class Properties
-    struct Tags {
-        static let firstName = "firstName"
-        static let lastName = "lastName"
-        static let email = "email"
+    // MARK: Constants
+    struct Constants {
+        static let textLabelWidth = 115
     }
 
-    private struct VisualConstraints {
-        static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(90)]-[textField]-16-|"]
-        }
+    struct Cells {
+        let firstName: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "First Name"
+            cell.textField.placeholder = "First"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let lastName: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Last Name"
+            cell.textField.placeholder = "Last"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let email: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Email"
+            cell.textField.placeholder = "name@example.com"
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
     }
+
+
+    // MARK: Class Properties
+
+
+    // MARK: Class Methods
 
 
     // MARK: Instance Properties
-    var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.firstName: {
-            let row = FormRowDescriptor(tag: Tags.firstName, rowType: FormRowType.Name, title: "First Name", placeholder: "First")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
+    let cells = Cells()
 
-        Tags.lastName: {
-            let row = FormRowDescriptor(tag: Tags.lastName, rowType: FormRowType.Name, title: "Last Name", placeholder: "Last")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.firstName, cells.lastName, cells.email]
+        ]
+    }
 
-        Tags.email: {
-            let row = FormRowDescriptor(tag: Tags.email, rowType: FormRowType.Email, title: "Email", placeholder: "name@example.com")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }()
-    ]
 
-    var form: FormDescriptor {
-        let form = FormDescriptor()
-
-        let section = FormSectionDescriptor()
-        section.addRow(formRowDescriptors[Tags.firstName]!)
-        section.addRow(formRowDescriptors[Tags.lastName]!)
-        section.addRow(formRowDescriptors[Tags.email]!)
-        section.footerTitle = "Your email address will need to be re-verified if changed."
-
-        form.sections = [section]
-
-        return form
+    // MARK: Instance Methods
+    func footerForSection(section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Your email address will need to be re-verified if changed."
+        default:
+            return nil
+        }
     }
 }

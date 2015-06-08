@@ -7,49 +7,69 @@
 //
 
 import Foundation
-import SwiftForms
+import KHAForm
 
 public class SettingsChangePasswordFormView {
-    // MARK: Class Properties
-    struct Tags {
-        static let currentPassword = "currentPassword"
-        static let newPassword = "newPassword"
-        static let newPasswordVerify = "newPasswordVerify"
+    // MARK: Constants
+    struct Constants {
+        static let textLabelWidth = 105
     }
 
-    private struct VisualConstraints {
-        static let textFieldRow: VisualConstraintsClosure = { row in
-            return ["H:|-16-[titleLabel(80)]-[textField]-16-|"]
-        }
+    struct Cells {
+        let password: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Password"
+            cell.textField.placeholder = "New password"
+            cell.textField.clearButtonMode = .WhileEditing
+            cell.textField.secureTextEntry = true
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let passwordVerify: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Verify"
+            cell.textField.placeholder = "Retype new password"
+            cell.textField.clearButtonMode = .WhileEditing
+            cell.textField.secureTextEntry = true
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
     }
+
+
+    // MARK: Class Properties
+
+
+    // MARK: Class Methods
 
 
     // MARK: Instance Properties
-    var formRowDescriptors: [String: FormRowDescriptor] = [
-        Tags.newPassword: {
-            let row = FormRowDescriptor(tag: Tags.newPassword, rowType: FormRowType.Password, title: "Password", placeholder: "New password")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
+    let cells = Cells()
 
-        Tags.newPasswordVerify: {
-            let row = FormRowDescriptor(tag: Tags.newPasswordVerify, rowType: FormRowType.Password, title: "Verify", placeholder: "Retype new password")
-            row.configuration[FormRowDescriptor.Configuration.VisualConstraintsClosure] = VisualConstraints.textFieldRow
-            return row
-        }(),
-    ]
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.password, cells.passwordVerify],
+            []
+        ]
+    }
 
-    var form: FormDescriptor {
-        let form = FormDescriptor()
 
-        let newPasswordSection = FormSectionDescriptor()
-        newPasswordSection.headerTitle = "New Password"
-        newPasswordSection.addRow(formRowDescriptors[Tags.newPassword]!)
-        newPasswordSection.addRow(formRowDescriptors[Tags.newPasswordVerify]!)
-        newPasswordSection.footerTitle = "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter.\n\nNote: You will be logged out after changing your password."
-
-        form.sections = [newPasswordSection]
-
-        return form
+    // MARK: Instance Methods
+    func footerForSection(section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
+        case 1:
+            return "Note: You will be logged out after changing your password."
+        default:
+            return nil
+        }
     }
 }
