@@ -12,20 +12,20 @@ import KHAForm
 class CalendarNewEventFormView {
     // MARK: Class Properties
     struct Cells {
-        static let location: KHAFormCell = {
+        let location: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
             cell.textField.placeholder = "Location"
             cell.textField.clearButtonMode = .Always
             return cell
         }()
 
-        static let description: KHAFormCell = {
+        let description: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextView)
             cell.textView.placeholder = "Description"
             return cell
         }()
 
-        static let date: KHAFormCell = {
+        let date: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Date)
             cell.textLabel?.text = "Date"
             cell.date = NSDate()
@@ -39,7 +39,7 @@ class CalendarNewEventFormView {
             return cell
         }()
 
-        static let startTime: KHAFormCell = {
+        let startTime: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Date)
             cell.textLabel?.text = "Start Time"
             cell.date = NSDate()
@@ -53,7 +53,7 @@ class CalendarNewEventFormView {
             return cell
         }()
 
-        static let endTime: KHAFormCell = {
+        let endTime: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Date)
             cell.textLabel?.text = "End Time"
             cell.date = NSDate()
@@ -67,7 +67,7 @@ class CalendarNewEventFormView {
             return cell
         }()
 
-        static let attendees: KHAFormCell = {
+        let attendees: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
             cell.textField.placeholder = "Attendees"
             cell.textField.clearButtonMode = .Always
@@ -78,23 +78,32 @@ class CalendarNewEventFormView {
             return cell
         }()
 
-        static let notes: KHAFormCell = {
+        let notes: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextView)
             cell.textView.placeholder = "Notes"
             return cell
         }()
     }
 
-    static let cellsInSections = [
-        [Cells.location, Cells.description],
-        [Cells.date, Cells.startTime, Cells.endTime],
-        [Cells.attendees],
-        [Cells.notes]
-    ]
-
 
     // MARK: Class Methods
-    static func titleForSection(section: Int) -> String? {
+
+
+    // MARK: Instance Properties
+    let cells = Cells()
+
+    var cellsInSections: [[KHAFormCell]] {
+        return [
+            [cells.location, cells.description],
+            [cells.date, cells.startTime, cells.endTime],
+            [cells.attendees],
+            [cells.notes]
+        ]
+    }
+
+
+    // MARK: Instance Methods
+    func titleForSection(section: Int) -> String? {
         switch section {
         case 2:
             return "Attendees"
@@ -102,10 +111,4 @@ class CalendarNewEventFormView {
             return nil
         }
     }
-
-
-    // MARK: Instance Properties
-
-
-    // MARK: Instance Methods
 }

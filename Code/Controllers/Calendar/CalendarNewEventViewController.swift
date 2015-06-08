@@ -18,6 +18,7 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
 
 
     // MARK: Instance Properties
+    let formView = CalendarNewEventFormView()
     let validator = Validator()
 
 
@@ -32,11 +33,11 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
 
     // MARK: KHAFormViewDataSource Protocol Methods
     override func formCellsInForm(form: KHAFormViewController) -> [[KHAFormCell]] {
-        return CalendarNewEventFormView.cellsInSections
+        return formView.cellsInSections
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return CalendarNewEventFormView.titleForSection(section)
+        return formView.titleForSection(section)
     }
 
 
@@ -45,16 +46,16 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
         // Validation successful
         let event = Event()
 
-        event["location"] = CalendarNewEventFormView.Cells.location.textField.text
-        event["description"] = CalendarNewEventFormView.Cells.description.textView.text
-        event["startDate"] = CalendarNewEventFormView.Cells.startTime.date
-        event["endDate"] = CalendarNewEventFormView.Cells.endTime.date
-        event["notes"] = CalendarNewEventFormView.Cells.description.textView.text
+        event["location"] = formView.cells.location.textField.text
+        event["description"] = formView.cells.description.textView.text
+        event["startDate"] = formView.cells.startTime.date
+        event["endDate"] = formView.cells.endTime.date
+        event["notes"] = formView.cells.description.textView.text
 
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()
         event.promiseSave()
-            .then { object -> Void in
+            .then { _ -> Void in
                 PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Success", image: PKHUDAssets.checkmarkImage)
                 PKHUD.sharedHUD.hide(afterDelay: 1.0)
                 self.cancel()
@@ -83,7 +84,7 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
     }
 
     func configureValidator() {
-        validator.registerField(CalendarNewEventFormView.Cells.location.textField, rules: [RequiredRule()])
+        validator.registerField(formView.cells.location.textField, rules: [RequiredRule()])
     }
 
     func submit() {
