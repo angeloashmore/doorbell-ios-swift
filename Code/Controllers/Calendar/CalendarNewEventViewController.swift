@@ -60,15 +60,34 @@ class CalendarNewEventViewController: KHAFormViewController, KHAFormViewDataSour
                 self.cancel()
 
             }.catch { error -> Void in
-                PKHUD.sharedHUD.contentView = PKHUDSubtitleView(subtitle: "Error", image: PKHUDAssets.crossImage)
-                PKHUD.sharedHUD.hide(afterDelay: 1.0)
-                log(error, forLevel: .Error)
+                PKHUD.sharedHUD.hide()
+
+                var message: String
+
+                switch error.code {
+                default:
+                    message = "An error occured. Please re-check all fields and try again."
+                }
+
+                let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+
+                let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                alertController.addAction(OKAction)
+
+                self.presentViewController(alertController, animated: true, completion: nil)
 
             }
     }
 
     func validationFailed(errors: [UITextField : ValidationError]) {
         log(errors, forLevel: .Error)
+
+        let alertController = UIAlertController(title: "Error", message: "Please re-check all fields and try again", preferredStyle: .Alert)
+
+        let OKAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OKAction)
+
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
 
