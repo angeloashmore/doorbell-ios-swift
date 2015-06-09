@@ -29,12 +29,8 @@ public class LogInFormView: FormViewProtocol {
 
         let signUp: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonActionDisclosure)
             cell.button.setTitle("Create a new Doorbell account", forState: .Normal)
-            cell.button.setTitleColor(UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0), forState: .Normal)
-            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            cell.button.contentHorizontalAlignment = .Left
-            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
-            cell.accessoryType = .DisclosureIndicator
             return cell
         }()
     }

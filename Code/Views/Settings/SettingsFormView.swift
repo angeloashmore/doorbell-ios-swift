@@ -14,23 +14,15 @@ public class SettingsFormView: FormViewProtocol {
     struct Cells {
         let editProfile: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonDisclosure)
             cell.button.setTitle("Edit Profile", forState: .Normal)
-            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            cell.button.contentHorizontalAlignment = .Left
-            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
-            cell.accessoryType = .DisclosureIndicator
             return cell
         }()
 
         let changePassword: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonDisclosure)
             cell.button.setTitle("Change Password", forState: .Normal)
-            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            cell.button.contentHorizontalAlignment = .Left
-            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
-            cell.accessoryType = .DisclosureIndicator
             return cell
         }()
 
@@ -42,22 +34,15 @@ public class SettingsFormView: FormViewProtocol {
 
         let aboutThisVersion: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonDisclosure)
             cell.button.setTitle("About This Version", forState: .Normal)
-            cell.button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            cell.button.contentHorizontalAlignment = .Left
-            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
-            cell.accessoryType = .DisclosureIndicator
             return cell
         }()
 
         let logOut: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonAction)
             cell.button.setTitle("Log Out", forState: .Normal)
-            cell.button.setTitleColor(UIColor(red: 0.0, green: 122.0/255, blue: 1.0, alpha: 1.0), forState: .Normal)
-            cell.button.titleLabel?.font = UIFont.systemFontOfSize(17)
-            cell.button.contentHorizontalAlignment = .Left
-            cell.button.titleEdgeInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
             return cell
         }()
     }

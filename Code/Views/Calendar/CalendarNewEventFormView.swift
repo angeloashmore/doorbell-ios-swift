@@ -11,10 +11,6 @@ import KHAForm
 
 class CalendarNewEventFormView: FormViewProtocol {
     // MARK: Constants
-    struct Constants {
-        static let textLabelWidth = 90
-    }
-
     struct Cells {
         let location: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextField)
