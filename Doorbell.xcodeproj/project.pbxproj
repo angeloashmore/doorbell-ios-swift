@@ -412,6 +412,7 @@
 			<key>children</key>
 			<array>
 				<string>17D14D9A1B154CCC003C93BA</string>
+				<string>17FC75911B27865F00E5E4B1</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -571,6 +572,7 @@
 				<string>173CC1451B11A771007ACB1C</string>
 				<string>173CC1491B11CF7F007ACB1C</string>
 				<string>177421AD1B1E8B3B006968E6</string>
+				<string>17FC75921B27865F00E5E4B1</string>
 				<string>17D7D5E01B205A2900FA96A3</string>
 				<string>173CC1431B1177E7007ACB1C</string>
 				<string>17D7D5EF1B205A2900FA96A3</string>
@@ -3364,6 +3366,26 @@
 		<dict>
 			<key>fileRef</key>
 			<string>17E670051B1288A60086D68F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>17FC75911B27865F00E5E4B1</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DirectoryUserTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>17FC75921B27865F00E5E4B1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>17FC75911B27865F00E5E4B1</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
