@@ -43,6 +43,7 @@ class SignUpViewController: FormViewController {
         validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
+
         validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
@@ -58,6 +59,8 @@ class SignUpViewController: FormViewController {
         user.email = formView.cells.email.textField.text
         user["firstName"] = formView.cells.firstName.textField.text
         user["lastName"] = formView.cells.lastName.textField.text
+        user["professionTitle"] = formView.cells.professionTitle.selectionFormViewController.selectedIndex
+        user["professionLocation"] = formView.cells.professionLocation.selectionFormViewController.selectedIndex
 
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()

@@ -43,9 +43,16 @@ class SettingsEditProfileViewController: FormViewController {
     override func configureCells() {
         let formView = self.formView as! SettingsEditProfileFormView
 
-        formView.cells.firstName.textField.text = PFUser.currentUser()?.objectForKey("firstName") as? String
-        formView.cells.lastName.textField.text = PFUser.currentUser()?.objectForKey("lastName") as? String
-        formView.cells.email.textField.text = PFUser.currentUser()?.objectForKey("email") as? String
+        let user = PFUser.currentUser()!
+
+        formView.cells.firstName.textField.text = user.objectForKey("firstName") as? String
+        formView.cells.lastName.textField.text = user.objectForKey("lastName") as? String
+        formView.cells.email.textField.text = user.objectForKey("email") as? String
+
+        formView.cells.professionTitle.selectionFormViewController.selectedIndex = user.objectForKey("professionTitle") as! Int
+        formView.cells.professionTitle.detailTextLabel?.text = formView.cells.professionTitle.selectionFormViewController.selections[user.objectForKey("professionTitle") as! Int]
+        formView.cells.professionLocation.selectionFormViewController.selectedIndex = user.objectForKey("professionLocation") as! Int
+        formView.cells.professionLocation.detailTextLabel?.text = formView.cells.professionLocation.selectionFormViewController.selections[user.objectForKey("professionLocation") as! Int]
     }
 
     override func configureValidator() {
@@ -64,6 +71,8 @@ class SettingsEditProfileViewController: FormViewController {
         user["firstName"] = formView.cells.firstName.textField.text
         user["lastName"] = formView.cells.lastName.textField.text
         user["email"] = formView.cells.email.textField.text
+        user["professionTitle"] = formView.cells.professionTitle.selectionFormViewController.selectedIndex
+        user["professionLocation"] = formView.cells.professionLocation.selectionFormViewController.selectedIndex
 
         PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
         PKHUD.sharedHUD.show()

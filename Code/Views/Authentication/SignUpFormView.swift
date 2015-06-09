@@ -89,6 +89,30 @@ public class SignUpFormView: FormViewProtocol {
 
             return cell
         }()
+
+        let professionTitle: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Selection)
+            cell.textLabel?.text = "Professional Title"
+
+            let selectionFormViewController = KHASelectionFormViewController()
+            selectionFormViewController.title = "Professional Title"
+            selectionFormViewController.selections = ["None", "Real Estate Agent", "Property Manager", "Mortgage Broker", "Other"]
+            cell.selectionFormViewController = selectionFormViewController
+
+            return cell
+        }()
+
+        let professionLocation: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Selection)
+            cell.textLabel?.text = "Location"
+
+            let selectionFormViewController = KHASelectionFormViewController()
+            selectionFormViewController.title = "Location"
+            selectionFormViewController.selections = ["Honolulu, Hawaii"]
+            cell.selectionFormViewController = selectionFormViewController
+
+            return cell
+        }()
     }
 
 
@@ -104,20 +128,34 @@ public class SignUpFormView: FormViewProtocol {
     var cellsInSections: [[KHAFormCell]] {
         return [
             [cells.firstName, cells.lastName, cells.email],
-            [cells.username, cells.password, cells.passwordVerify]
+            [cells.username, cells.password, cells.passwordVerify],
+            [cells.professionTitle, cells.professionLocation]
         ]
     }
 
 
     // MARK: Instance Methods
     func headerForSection(section: Int) -> String? {
-        return nil
+        switch section {
+        case 0:
+            return "Personal Info"
+        case 1:
+            return "Account Credentials"
+        case 2:
+            return "Profession"
+        default:
+            return nil
+        }
     }
 
     func footerForSection(section: Int) -> String? {
         switch section {
+        case 0:
+            return "Use an email address you are comfortable sharing with others."
         case 1:
             return "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
+        case 2:
+            return "Users find others using professional titles and geographical location. Select the most accurate option."
         default:
             return nil
         }

@@ -51,6 +51,30 @@ public class SettingsEditProfileFormView: FormViewProtocol {
 
             return cell
         }()
+
+        let professionTitle: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Selection)
+            cell.textLabel?.text = "Professional Title"
+
+            let selectionFormViewController = KHASelectionFormViewController()
+            selectionFormViewController.title = "Professional Title"
+            selectionFormViewController.selections = ["None", "Real Estate Agent", "Property Manager", "Mortgage Broker", "Other"]
+            cell.selectionFormViewController = selectionFormViewController
+
+            return cell
+        }()
+
+        let professionLocation: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Selection)
+            cell.textLabel?.text = "Location"
+
+            let selectionFormViewController = KHASelectionFormViewController()
+            selectionFormViewController.title = "Location"
+            selectionFormViewController.selections = ["Honolulu, Hawaii"]
+            cell.selectionFormViewController = selectionFormViewController
+
+            return cell
+        }()
     }
 
 
@@ -65,20 +89,30 @@ public class SettingsEditProfileFormView: FormViewProtocol {
 
     var cellsInSections: [[KHAFormCell]] {
         return [
-            [cells.firstName, cells.lastName, cells.email]
+            [cells.firstName, cells.lastName, cells.email],
+            [cells.professionTitle, cells.professionLocation]
         ]
     }
 
 
     // MARK: Instance Methods
     func headerForSection(section: Int) -> String? {
-        return nil
+        switch section {
+        case 0:
+            return "Personal Info"
+        case 1:
+            return "Profession"
+        default:
+            return nil
+        }
     }
 
     func footerForSection(section: Int) -> String? {
         switch section {
         case 0:
-            return "Your email address will need to be re-verified if changed."
+            return "Use an email address you are comfortable sharing with others.\n\nYour email address will need to be re-verified if changed."
+        case 1:
+            return "Users find others using professional titles and geographical location. Select the most accurate option."
         default:
             return nil
         }
