@@ -74,6 +74,13 @@ class CalendarNewEventFormView: FormViewProtocol {
             return cell
         }()
 
+        let addAttendeeButton: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.Button)
+            cell.addStyle(.ButtonAction)
+            cell.button.setTitle("Add Attendee", forState: .Normal)
+            return cell
+        }()
+
         let notes: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.TextView)
             cell.textView.placeholder = "Notes"
@@ -95,7 +102,7 @@ class CalendarNewEventFormView: FormViewProtocol {
         return [
             [cells.location, cells.description],
             [cells.date, cells.startTime, cells.endTime],
-            [cells.attendees],
+            [cells.attendees, cells.addAttendeeButton],
             [cells.notes]
         ]
     }
