@@ -29,10 +29,12 @@ class DirectoryViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         var cell = tableView.dequeueReusableCellWithIdentifier("DirectoryCell", forIndexPath: indexPath) as! DirectoryUserTableViewCell
 
-        cell.fullNameLabel.text = object?.objectForKey("fullName") as? String
-        cell.typeLabel.text = "Professional"
-        cell.locationLabel.text = "Honolulu, Hawaii"
+        cell.fullNameLabel?.text = object?.objectForKey("fullName") as? String
+        cell.titleLabel?.text = "Real Estate Agent"
 
         return cell
+    }
+
+    @IBAction func prepareForUnwindFromDirectoryFilterViewController(segue: UIStoryboardSegue) {
     }
 }
