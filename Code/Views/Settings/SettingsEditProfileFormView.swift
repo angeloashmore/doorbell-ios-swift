@@ -13,6 +13,7 @@ public class SettingsEditProfileFormView: FormViewProtocol {
     // MARK: Constants
     struct Constants {
         static let textLabelWidth = 115
+        static let textLabelWidthProfession = 125
     }
 
     struct Cells {
@@ -48,6 +49,19 @@ public class SettingsEditProfileFormView: FormViewProtocol {
 
             let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
             constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidth)
+
+            return cell
+        }()
+
+        let professionOrganization: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Organization"
+            cell.textField.placeholder = "Organization/Company Name"
+            cell.textField.textAlignment = .Right
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidthProfession)
 
             return cell
         }()
@@ -90,7 +104,7 @@ public class SettingsEditProfileFormView: FormViewProtocol {
     var cellsInSections: [[KHAFormCell]] {
         return [
             [cells.firstName, cells.lastName, cells.email],
-            [cells.professionTitle, cells.professionLocation]
+            [cells.professionOrganization, cells.professionTitle, cells.professionLocation],
         ]
     }
 
@@ -112,7 +126,7 @@ public class SettingsEditProfileFormView: FormViewProtocol {
         case 0:
             return "Use an email address you are comfortable sharing with others.\n\nYour email address will need to be re-verified if changed."
         case 1:
-            return "Users find others using professional titles and geographical location. Select the most accurate option."
+            return "Users find others using professional titles and geographical location. Please provide accurate information."
         default:
             return nil
         }

@@ -13,6 +13,7 @@ public class SignUpFormView: FormViewProtocol {
     // MARK: Constants
     struct Constants {
         static let textLabelWidth = 115
+        static let textLabelWidthProfession = 125
     }
 
     struct Cells {
@@ -90,6 +91,19 @@ public class SignUpFormView: FormViewProtocol {
             return cell
         }()
 
+        let professionOrganization: KHAFormCell = {
+            let cell = KHAFormCell.formCellWithType(.TextField)
+            cell.textLabel?.text = "Organization"
+            cell.textField.placeholder = "Organization/Company Name"
+            cell.textField.textAlignment = .Right
+            cell.textField.clearButtonMode = .WhileEditing
+
+            let constraints = cell.contentView.constraints() as! [NSLayoutConstraint]
+            constraints.first?.constant = CGFloat(integerLiteral: Constants.textLabelWidthProfession)
+
+            return cell
+        }()
+
         let professionTitle: KHAFormCell = {
             let cell = KHAFormCell.formCellWithType(.Selection)
             cell.textLabel?.text = "Professional Title"
@@ -129,7 +143,7 @@ public class SignUpFormView: FormViewProtocol {
         return [
             [cells.firstName, cells.lastName, cells.email],
             [cells.username, cells.password, cells.passwordVerify],
-            [cells.professionTitle, cells.professionLocation]
+            [cells.professionOrganization, cells.professionTitle, cells.professionLocation]
         ]
     }
 
@@ -155,7 +169,7 @@ public class SignUpFormView: FormViewProtocol {
         case 1:
             return "Your password must be at least 8 characters and include a number, an uppercase letter, and a lowercase letter."
         case 2:
-            return "Users find others using professional titles and geographical location. Select the most accurate option."
+            return "Users find others using professional titles and geographical location. Please provide accurate information."
         default:
             return nil
         }

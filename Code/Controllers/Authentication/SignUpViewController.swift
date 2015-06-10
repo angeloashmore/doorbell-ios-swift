@@ -47,6 +47,8 @@ class SignUpViewController: FormViewController {
         validator.registerField(formView.cells.username.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.password.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.passwordVerify.textField, rules: [ConfirmationRule(confirmField: formView.cells.password.textField)])
+
+        validator.registerField(formView.cells.professionOrganization.textField, rules: [RequiredRule()])
     }
 
     override func validationSuccessful() {
@@ -59,6 +61,7 @@ class SignUpViewController: FormViewController {
         user.email = formView.cells.email.textField.text
         user["firstName"] = formView.cells.firstName.textField.text
         user["lastName"] = formView.cells.lastName.textField.text
+        user["professionOrganization"] = formView.cells.professionOrganization.textField.text
         user["professionTitle"] = formView.cells.professionTitle.selectionFormViewController.selectedIndex
         user["professionLocation"] = formView.cells.professionLocation.selectionFormViewController.selectedIndex
 

@@ -49,6 +49,7 @@ class SettingsEditProfileViewController: FormViewController {
         formView.cells.lastName.textField.text = user.objectForKey("lastName") as? String
         formView.cells.email.textField.text = user.objectForKey("email") as? String
 
+        formView.cells.professionOrganization.textField.text = user.objectForKey("professionOrganization") as? String
         formView.cells.professionTitle.selectionFormViewController.selectedIndex = user.objectForKey("professionTitle") as! Int
         formView.cells.professionTitle.detailTextLabel?.text = formView.cells.professionTitle.selectionFormViewController.selections[user.objectForKey("professionTitle") as! Int]
         formView.cells.professionLocation.selectionFormViewController.selectedIndex = user.objectForKey("professionLocation") as! Int
@@ -61,6 +62,8 @@ class SettingsEditProfileViewController: FormViewController {
         validator.registerField(formView.cells.firstName.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.lastName.textField, rules: [RequiredRule()])
         validator.registerField(formView.cells.email.textField, rules: [RequiredRule(), EmailRule()])
+
+        validator.registerField(formView.cells.professionOrganization.textField, rules: [RequiredRule()])
     }
 
     override func validationSuccessful() {
@@ -71,6 +74,7 @@ class SettingsEditProfileViewController: FormViewController {
         user["firstName"] = formView.cells.firstName.textField.text
         user["lastName"] = formView.cells.lastName.textField.text
         user["email"] = formView.cells.email.textField.text
+        user["professionOrganization"] = formView.cells.professionOrganization.textField.text
         user["professionTitle"] = formView.cells.professionTitle.selectionFormViewController.selectedIndex
         user["professionLocation"] = formView.cells.professionLocation.selectionFormViewController.selectedIndex
 

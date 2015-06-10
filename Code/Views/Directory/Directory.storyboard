@@ -33,12 +33,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="xxH-aH-bzY">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="aR4-fN-Bc0" id="DIE-E3-f8g"/>
-                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectoryCell" rowHeight="77" id="2C1-Vs-dKr" customClass="DirectoryUserTableViewCell" customModule="Doorbell" customModuleProvider="target">
@@ -53,12 +50,6 @@
                                                 <constraint firstAttribute="width" constant="60" id="Zfa-Yh-m2D"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAb-x9-S4x">
-                                            <rect key="frame" x="161" y="12" width="14" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9A-B1-EpA">
                                             <rect key="frame" x="78" y="11" width="75" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -66,45 +57,62 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwP-Qw-rjy">
-                                            <rect key="frame" x="78" y="33" width="24" height="15"/>
+                                            <rect key="frame" x="78" y="33" width="514" height="15"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPq-0u-wT3">
-                                            <rect key="frame" x="78" y="50" width="71" height="15"/>
+                                            <rect key="frame" x="78" y="50" width="514" height="15"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAb-x9-S4x">
+                                            <rect key="frame" x="157" y="10" width="16" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="bAb-x9-S4x" firstAttribute="leading" secondItem="F9A-B1-EpA" secondAttribute="trailing" constant="4" id="4NV-5u-R3c"/>
                                         <constraint firstItem="F9A-B1-EpA" firstAttribute="leading" secondItem="bww-5z-W6L" secondAttribute="trailing" constant="8" id="6K5-K7-z6S"/>
                                         <constraint firstItem="xwP-Qw-rjy" firstAttribute="leading" secondItem="F9A-B1-EpA" secondAttribute="leading" id="6wM-cD-1Tx"/>
                                         <constraint firstItem="bww-5z-W6L" firstAttribute="leading" secondItem="3sM-z3-GpH" secondAttribute="leadingMargin" id="E23-oE-qeS"/>
                                         <constraint firstItem="xwP-Qw-rjy" firstAttribute="top" secondItem="F9A-B1-EpA" secondAttribute="bottom" multiplier="0.75" constant="8" symbolic="YES" id="Khx-gl-hY1"/>
                                         <constraint firstItem="rPq-0u-wT3" firstAttribute="top" secondItem="xwP-Qw-rjy" secondAttribute="bottom" constant="2" id="Me5-dp-96I"/>
                                         <constraint firstItem="xwP-Qw-rjy" firstAttribute="top" secondItem="F9A-B1-EpA" secondAttribute="bottom" constant="2" id="Ob8-Tc-s0p"/>
-                                        <constraint firstItem="bAb-x9-S4x" firstAttribute="leading" secondItem="F9A-B1-EpA" secondAttribute="trailing" constant="8" symbolic="YES" id="OxE-od-VWA"/>
+                                        <constraint firstItem="bAb-x9-S4x" firstAttribute="leading" secondItem="F9A-B1-EpA" secondAttribute="trailing" constant="4" id="OxE-od-VWA"/>
                                         <constraint firstItem="F9A-B1-EpA" firstAttribute="top" secondItem="3sM-z3-GpH" secondAttribute="topMargin" constant="3" id="QXC-1j-qxu"/>
                                         <constraint firstItem="F9A-B1-EpA" firstAttribute="leading" secondItem="bww-5z-W6L" secondAttribute="trailing" constant="10" id="TOO-Xm-tmA"/>
+                                        <constraint firstItem="rPq-0u-wT3" firstAttribute="trailing" secondItem="3sM-z3-GpH" secondAttribute="trailingMargin" id="TOT-5M-QNB"/>
+                                        <constraint firstItem="F9A-B1-EpA" firstAttribute="baseline" secondItem="bAb-x9-S4x" secondAttribute="baseline" multiplier="1.02" id="VqI-DN-jJz"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bAb-x9-S4x" secondAttribute="trailing" id="XdZ-5x-Sxw"/>
                                         <constraint firstItem="F9A-B1-EpA" firstAttribute="centerY" secondItem="bAb-x9-S4x" secondAttribute="centerY" id="b57-nd-Fjy"/>
                                         <constraint firstItem="F9A-B1-EpA" firstAttribute="top" secondItem="3sM-z3-GpH" secondAttribute="topMargin" id="dKx-7T-I7R"/>
                                         <constraint firstItem="bww-5z-W6L" firstAttribute="top" secondItem="3sM-z3-GpH" secondAttribute="topMargin" id="gl2-Gg-ai1"/>
                                         <constraint firstItem="xwP-Qw-rjy" firstAttribute="leading" secondItem="bww-5z-W6L" secondAttribute="trailing" constant="8" id="l8T-Sz-DId"/>
+                                        <constraint firstItem="xwP-Qw-rjy" firstAttribute="trailing" secondItem="3sM-z3-GpH" secondAttribute="trailingMargin" id="mJ4-Rd-81G"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bAb-x9-S4x" secondAttribute="trailing" id="xdo-Ti-wej"/>
                                         <constraint firstItem="xwP-Qw-rjy" firstAttribute="leading" secondItem="rPq-0u-wT3" secondAttribute="leading" id="yb4-8r-qXB"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="6K5-K7-z6S"/>
+                                            <exclude reference="b57-nd-Fjy"/>
                                             <exclude reference="dKx-7T-I7R"/>
                                             <exclude reference="Khx-gl-hY1"/>
                                             <exclude reference="l8T-Sz-DId"/>
+                                            <exclude reference="OxE-od-VWA"/>
+                                            <exclude reference="xdo-Ti-wej"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="86" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="favoriteLabel" destination="bAb-x9-S4x" id="MEa-Pj-aJK"/>
                                     <outlet property="fullNameLabel" destination="F9A-B1-EpA" id="t0e-7G-Nvq"/>
+                                    <outlet property="organizationLabel" destination="rPq-0u-wT3" id="7ea-wP-rhh"/>
                                     <outlet property="profileImage" destination="bww-5z-W6L" id="AWo-RC-voh"/>
                                     <outlet property="titleLabel" destination="xwP-Qw-rjy" id="yve-DH-Fcq"/>
                                 </connections>

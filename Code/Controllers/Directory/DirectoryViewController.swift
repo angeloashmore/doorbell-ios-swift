@@ -31,6 +31,7 @@ class DirectoryViewController: PFQueryTableViewController {
 
         cell.fullNameLabel?.text = object?.objectForKey("fullName") as? String
         cell.titleLabel?.text = "Real Estate Agent"
+        cell.organizationLabel?.text = object?.objectForKey("professionOrganization") as? String
 
         return cell
     }
